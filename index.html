@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nijper | Web Solutions For You</title>
+    <meta name="description"
+        content="We build premium websites for small businesses like cafes, restaurants, small shops, and festivals using robust Django backends.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo"><span class="brand-name-dot highlight"></span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact" class="btn btn-primary">Get in Touch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg">
+            <div class="gradient-sphere sphere-1"></div>
+            <div class="gradient-sphere sphere-2"></div>
+        </div>
+        <div class="container hero-content">
+            <h1 class="fade-up">Crafting Digital <span class="highlight">Experiences</span></h1>
+            <p class="subtitle fade-up delay-1">We build robust, beautiful websites tailored for cafes, restaurants,
+                small shops, and festivals.</p>
+            <a href="#portfolio" class="btn btn-large btn-glow fade-up delay-2">View Our Work</a>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Who We <span class="highlight">Are</span></h2>
+                <p>A passionate duo dedicated to empowering small businesses online.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card glass-panel fade-up delay-1" data-name="Roel" data-role="Co-founder & Developer" data-bio="Roel specializes in crafting scalable backend architectures and seamless user experiences. With a strong background in Django and Python, he ensures our applications are robust and secure." data-img="assets/RoelProfiel.jpg">
+                    <div class="card-img">
+                        <img src="assets/RoelProfiel.jpg" alt="Roel - Co-founder & Developer">
+                    </div>
+                    <div class="card-content">
+                        <h3>Roel</h3>
+                        <p class="role">Co-founder & Developer</p>
+                        <p>Specializes in crafting scalable backend architectures and seamless user experiences.</p>
+                    </div>
+                </div>
+
+                <div class="team-card glass-panel fade-up delay-2" data-name="Sarah" data-role="Co-founder & Designer" data-bio="Sarah brings visions to life through intuitive design and striking visual aesthetics. Her attention to detail guarantees that every project is beautiful and highly functional." data-img="assets/SarahProfiel.jpg">
+                    <div class="card-img">
+                        <img src="assets/SarahProfiel.jpg" alt="Sarah - Co-founder & Designer">
+                    </div>
+                    <div class="card-content">
+                        <h3>Sarah</h3>
+                        <p class="role">Co-founder & Designer</p>
+                        <p>Brings visions to life through intuitive design and striking visual aesthetics.<br> press for more info.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Our <span class="highlight">Expertise</span></h2>
+                <p>We leverage modern technologies to build websites that stand out.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card glass-panel fade-up delay-1">
+                    <div class="icon">💻</div>
+                    <h3>Custom Development</h3>
+                    <p>Tailored solutions specifically designed for cafes, shops, and unique festivals.</p>
+                </div>
+                <div class="service-card glass-panel fade-up delay-2">
+                    <div class="icon"><img src="assets/Python-Emblem.png" alt="Django Python Logo" style="height: 72px; width: auto;"></div>
+                    <h3>Django Backend</h3>
+                    <p>We use Python and Django as our robust backend framework, ensuring security, scalability, and
+                        ease of content management.</p>
+                </div>
+                <div class="service-card glass-panel fade-up delay-3">
+                    <div class="icon">✨</div>
+                    <h3>Premium Design</h3>
+                    <p>Stunning, modern aesthetics with fluid animations that captivate your audience from the first
+                        click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Featured <span class="highlight">Work</span></h2>
+                <p>Take a look at what we've built.</p>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card glass-panel fade-up delay-1">
+                    <div class="portfolio-content">
+                        <div class="tag">Festival Website</div>
+                        <h3>Thalia Lustrum Festival</h3>
+                        <p>A vibrant, interactive platform built for the lustrum festival of study association Thalia in
+                            Nijmegen. Features a dynamic schedule and artist lineup.</p>
+                        <a href="https://evo439.github.io/Lustrum-Festival2/" target="_blank" rel="noopener noreferrer"
+                            class="link-arrow">Visit Website <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container contact-container glass-panel fade-up">
+            <div class="contact-info">
+                <h2>Let's build something <span class="highlight">amazing</span></h2>
+                <p>Ready to elevate your business's online presence? Get in touch with us today.</p>
+            </div>
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="9a0f52ef-0b63-43bf-ac1f-6d82a42c3c98">
+                <div class="form-group">
+                    <input type="text" name="name" id="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <textarea name="message" id="message" rows="4" required
+                        placeholder="Tell us about your project"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><span class="brand-name-dot highlight"></div>
+                <p>&copy; 2026 <span class="brand-name"></span> Web Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Team Modal -->
+    <div id="team-modal" class="modal">
+        <div class="modal-content glass-panel">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="Team Member">
+                </div>
+                <div class="modal-text">
+                    <h3 id="modal-name">Name</h3>
+                    <p id="modal-role" class="role highlight">Role</p>
+                    <p id="modal-bio">Bio goes here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/animations.js"></script>
+    <script src="js/components/scroll.js"></script>
+    <script src="js/components/contact.js"></script>
+    <script src="js/components/modal.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="100">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800&amp;display=swap');
+      .logo-text {
+        font-family: 'Outfit', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 64px;
+        letter-spacing: -2px;
+      }
+    </style>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7000ff" />
+      <stop offset="100%" stop-color="#00f0ff" />
+    </linearGradient>
+  </defs>
+  
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" class="logo-text">
+    <tspan fill="url(#accentGradient)">Nijper.</tspan>
+  </text>
+</svg>

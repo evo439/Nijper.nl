@@ -1,0 +1,22 @@
+/* Responsive */
+
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        padding: 3rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* In a real app, implement a hamburger menu here */
+    }
+    
+    section {
+        padding: 5rem 0;
+    }
+    
+    .team-card, .service-card, .portfolio-card {
+        padding: 2rem 1.5rem;
+    }
+}

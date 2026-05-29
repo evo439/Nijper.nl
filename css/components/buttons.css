@@ -1,0 +1,70 @@
+/* Buttons */
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(112, 0, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+}
+
+.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-glow {
+    position: relative;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-secondary);
+    color: #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-gradient);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.btn-glow:hover::before {
+    left: 0;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-success {
+    background: #3BB143 !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(59, 177, 67, 0.3) !important;
+}
+
+.btn-error {
+    background: #DC143C !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px #800000 !important;
+}
+

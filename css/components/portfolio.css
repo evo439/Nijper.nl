@@ -1,0 +1,55 @@
+/* Portfolio */
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.portfolio-card {
+    position: relative;
+    padding: 3rem;
+    overflow: hidden;
+}
+
+.portfolio-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    background: rgba(112, 0, 255, 0.2);
+    color: var(--accent-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    transition: var(--transition);
+}
+
+.arrow {
+    transition: var(--transition);
+}
+
+.link-arrow:hover {
+    color: var(--accent-secondary);
+}
+
+.link-arrow:hover .arrow {
+    transform: translateX(5px);
+}
