@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nijper | Web Solutions For You</title>
     <meta name="description"
-        content="We build premium websites for small businesses like cafes, restaurants, small shops, and festivals using robust Django backends.">
+        content="Wij bouwen robuuste websites op maat voor cafés, restaurants en festivals.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <noscript>
+        <style>
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -19,11 +27,11 @@
         <div class="container nav-container">
             <a href="#" class="logo"><span class="brand-name-dot highlight"></span></a>
             <ul class="nav-links">
-                <li><a href="#about" data-i18n="nav_about">About Us</a></li>
-                <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                <li><a href="#about" data-i18n="nav_about">Over Ons</a></li>
+                <li><a href="#services" data-i18n="nav_services">Diensten</a></li>
                 <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
-                <li class="lang-switch"><a href="#" class="lang-btn active" data-lang="en">EN</a> | <a href="#" class="lang-btn" data-lang="nl">NL</a></li>
-                <li><a href="#contact" class="btn btn-primary" data-i18n="nav_contact">Get in Touch</a></li>
+                <li class="lang-switch"><a href="#" class="lang-btn" data-lang="en">EN</a> | <a href="#" class="lang-btn active" data-lang="nl">NL</a></li>
+                <li><a href="#contact" class="btn btn-primary" data-i18n="nav_contact">Neem Contact Op</a></li>
             </ul>
         </div>
     </nav>
@@ -34,40 +42,39 @@
             <div class="gradient-sphere sphere-2"></div>
         </div>
         <div class="container hero-content">
-            <h1 class="fade-up" data-i18n="hero_title">Crafting Digital <span class="highlight">Experiences</span></h1>
-            <p class="subtitle fade-up delay-1" data-i18n="hero_subtitle">We build robust, beautiful websites tailored for cafes, restaurants,
-                small shops, and festivals.</p>
-            <a href="#portfolio" class="btn btn-large btn-glow fade-up delay-2" data-i18n="hero_btn">View Our Work</a>
+            <h1 class="fade-up" data-i18n="hero_title">Digitale <span class='highlight'>Oplossingen</span> Creëren</h1>
+            <p class="subtitle fade-up delay-1" data-i18n="hero_subtitle">Wij bouwen robuuste websites op maat voor cafés, restaurants en festivals.</p>
+            <a href="#portfolio" class="btn btn-large btn-glow fade-up delay-2" data-i18n="hero_btn">Bekijk Ons Werk</a>
         </div>
     </header>
 
     <section id="about" class="about">
         <div class="container">
             <div class="section-header fade-up">
-                <h2 data-i18n="about_title">Who We <span class="highlight">Are</span></h2>
-                <p data-i18n="about_subtitle">A passionate duo dedicated to empowering small businesses online.</p>
+                <h2 data-i18n="about_title">Wie Zijn <span class='highlight'>Wij</span></h2>
+                <p data-i18n="about_subtitle">Een gepassioneerd duo uit Nijmegen, toegewijd aan het online versterken van lokale bedrijven.</p>
             </div>
 
             <div class="team-grid">
-                <div class="team-card glass-panel fade-up delay-1" data-name="Roel" data-role="Co-founder & Developer" data-bio="Roel specializes in crafting scalable backend architectures and seamless user experiences. With a strong background in Django and Python, he ensures our applications are robust and secure." data-img="assets/RoelProfiel.jpg">
+                <div class="team-card glass-panel fade-up delay-1" data-name="Roel" data-role="Mede-oprichter & Developer" data-bio="Als developer uit Nijmegen houd ik mij bezig met het bouwen van functionele websites voor bedrijven in de regio. Ik heb mijn bachelor Computing Science aan de Radboud Universiteit afgerond, waar ik de technische basis voor mijn werk heb gelegd. Op dit moment ben ik 25 jaar en woon ik in Nijmegen, waar ik mijn opgedane ervaring inzet voor diverse projecten. Mijn ontwikkeling staat niet stil, vanaf 2026 start ik met de master Information Science om mijn kennis verder te verdiepen. Ik richt me op het opleveren van goed werkende websites die bijdragen aan een professionele online aanwezigheid. Graag kijk ik samen met jou naar de mogelijkheden voor jouw bedrijf." data-img="assets/RoelProfiel.jpg">
                     <div class="card-img">
                         <img src="assets/RoelProfiel.jpg" alt="Roel - Co-founder & Developer">
                     </div>
                     <div class="card-content">
                         <h3>Roel</h3>
-                        <p class="role" data-i18n="role_roel">Co-founder & Developer</p>
-                        <p data-i18n="bio_roel_short">Specializes in crafting scalable backend architectures and seamless user experiences.</p>
+                        <p class="role" data-i18n="role_roel">Mede-oprichter & Developer</p>
+                        <p data-i18n="bio_roel_short">Gespecialiseerd in het bouwen van schaalbare backend architecturen en naadloze gebruikerservaringen.</p>
                     </div>
                 </div>
 
-                <div class="team-card glass-panel fade-up delay-2" data-name="Sarah" data-role="Co-founder & Designer" data-bio="Sarah brings visions to life through intuitive design and striking visual aesthetics. Her attention to detail guarantees that every project is beautiful and highly functional." data-img="assets/SarahProfiel.jpg">
+                <div class="team-card glass-panel fade-up delay-2" data-name="Sarah" data-role="Mede-oprichter & Designer" data-bio="Als front-end developer en designer uit Nijmegen houd ik mij bezig met het creëren van visueel sterke websites. Momenteel bevind ik mij in het laatste jaar van mijn bachelor Computing Science aan de Radboud Universiteit, waar ik mijn technische kennis combineer met een oog voor design. Door mijn ervaring als front-end developer vertaal ik ontwerpen naar toegankelijke en goed werkende interfaces. Graag kijk ik samen met jou naar de mogelijkheden om jouw digitale visie te realiseren." data-img="assets/SarahProfiel.jpg">
                     <div class="card-img">
                         <img src="assets/SarahProfiel.jpg" alt="Sarah - Co-founder & Designer">
                     </div>
                     <div class="card-content">
                         <h3>Sarah</h3>
-                        <p class="role" data-i18n="role_sarah">Co-founder & Designer</p>
-                        <p data-i18n="bio_sarah_short">Brings visions to life through intuitive design and striking visual aesthetics.</p>
+                        <p class="role" data-i18n="role_sarah">Mede-oprichter & Designer</p>
+                        <p data-i18n="bio_sarah_short">Brengt visies tot leven door intuïtief design en opvallende visuele elementen.</p>
                     </div>
                 </div>
             </div>
@@ -77,27 +84,25 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header fade-up">
-                <h2 data-i18n="services_title">Our <span class="highlight">Expertise</span></h2>
-                <p data-i18n="services_subtitle">We leverage modern technologies to build websites that stand out.</p>
+                <h2 data-i18n="services_title">Onze <span class='highlight'>Expertise</span></h2>
+                <p data-i18n="services_subtitle">Wij gebruiken moderne technologieën om websites te bouwen die opvallen.</p>
             </div>
 
             <div class="services-grid">
                 <div class="service-card glass-panel fade-up delay-1">
                     <div class="icon">💻</div>
-                    <h3 data-i18n="srv_custom1_title">Custom Development</h3>
-                    <p data-i18n="srv_custom1_desc">Tailored solutions specifically designed for cafes, shops, and unique festivals.</p>
+                    <h3 data-i18n="srv_custom1_title">Ontwikkeling Op Maat</h3>
+                    <p data-i18n="srv_custom1_desc">Oplossingen op maat, specifiek ontworpen voor jouw onderneming.</p>
                 </div>
                 <div class="service-card glass-panel fade-up delay-2">
                     <div class="icon"><img src="assets/Logo_of_Kirby_CMS-white.png" alt="Kirby cms Logo" style="height: 72px; width: auto;"></div>
-                    <h3 data-i18n="srv_custom2_title">Django Backend</h3>
-                    <p data-i18n="srv_custom2_desc">We use Python and Django as our robust backend framework, ensuring security, scalability, and
-                        ease of content management.</p>
+                    <h3 data-i18n="srv_custom2_title">Kirby CMS</h3>
+                    <p data-i18n="srv_custom2_desc">Wij maken gebruik van Kirby CMS. Dit voorziet van een flexibel en overzichtelijk dashboard, waardoor contentbeheer gebruiksvriendelijk verloopt.</p>
                 </div>
                 <div class="service-card glass-panel fade-up delay-3">
                     <div class="icon">✨</div>
-                    <h3 data-i18n="srv_custom3_title">Kirby CMS</h3>
-                    <p data-i18n="srv_custom3_desc">Stunning, modern aesthetics with fluid animations that captivate your audience from the first
-                        click.</p>
+                    <h3 data-i18n="srv_custom3_title">Jong & Enthousiast</h3>
+                    <p data-i18n="srv_custom3_desc">Wij zijn een team van twee gedreven jonge IT'ers die passie voor techniek combineren met een frisse blik op digitale innovatie. </p>
                 </div>
             </div>
         </div>
@@ -146,8 +151,8 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="section-header fade-up">
-                <h2 data-i18n="port_title">Featured <span class="highlight">Work</span></h2>
-                <p data-i18n="port_subtitle">Take a look at what we've built.</p>
+                <h2 data-i18n="port_title">Uitgelicht <span class='highlight'>Werk</span></h2>
+                <p data-i18n="port_subtitle">Bekijk wat we hebben gebouwd.</p>
             </div>
 
             <div class="portfolio-grid">
@@ -155,20 +160,19 @@
                     <div class="portfolio-content">
                         <div class="tag" data-i18n="port_tag_1">Festival Website</div>
                         <h3>Thalia Lustrum Festival</h3>
-                        <p data-i18n="port_desc_1">A vibrant, interactive platform built for the lustrum festival of study association Thalia in
-                            Nijmegen. Features a dynamic schedule and artist lineup.</p>
+                        <p data-i18n="port_desc_1">Een levendig, interactief platform gebouwd voor het lustrumfestival van studievereniging Thalia in Nijmegen. Voorzien van een dynamisch schema en artiesten line-up.</p>
                         <a href="https://evo439.github.io/Lustrum-Festival2/" target="_blank" rel="noopener noreferrer"
-                            class="link-arrow" data-i18n="port_btn">Visit Website <span class="arrow">→</span></a>
+                            class="link-arrow" data-i18n="port_btn">Bezoek Website <span class="arrow">→</span></a>
                     </div>
                 </div>
 
                 <div class="portfolio-card glass-panel fade-up delay-2">
                     <div class="portfolio-content">
-                        <div class="tag" data-i18n="port_tag_2">Personal Profile</div>
+                        <div class="tag" data-i18n="port_tag_2">Persoonlijk Profiel</div>
                         <h3>Interactive Resume</h3>
-                        <p data-i18n="port_desc_2">A sleek, modern resume website designed to showcase professional experience, skills, and projects in an interactive format.</p>
+                        <p data-i18n="port_desc_2">Een strakke, moderne cv-website ontworpen om professionele ervaring, vaardigheden en projecten op een interactieve manier te presenteren.</p>
                         <a href="https://resume-nine-gules-95.vercel.app" target="_blank" rel="noopener noreferrer"
-                            class="link-arrow" data-i18n="port_btn">Visit Website <span class="arrow">→</span></a>
+                            class="link-arrow" data-i18n="port_btn">Bezoek Website <span class="arrow">→</span></a>
                     </div>
                 </div>
             </div>
@@ -178,22 +182,22 @@
     <section id="contact" class="contact">
         <div class="container contact-container glass-panel fade-up">
             <div class="contact-info">
-                <h2 data-i18n="contact_title">Let's build something <span class="highlight">amazing</span></h2>
-                <p data-i18n="contact_subtitle">Ready to elevate your business's online presence? Get in touch with us today.</p>
+                <h2 data-i18n="contact_title">Laten we iets <span class='highlight'>geweldigs</span> bouwen</h2>
+                <p data-i18n="contact_subtitle">Klaar om de online aanwezigheid van je bedrijf naar een hoger niveau te tillen? Neem vandaag nog contact met ons op via de form.</p>
             </div>
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
                 <input type="hidden" name="access_key" value="9a0f52ef-0b63-43bf-ac1f-6d82a42c3c98">
                 <div class="form-group">
-                    <input type="text" name="name" id="name" required placeholder="Your Name" data-i18n-ph="contact_ph_name">
+                    <input type="text" name="name" id="name" required placeholder="Jouw Naam" data-i18n-ph="contact_ph_name">
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" id="email" required placeholder="Your Email" data-i18n-ph="contact_ph_email">
+                    <input type="email" name="email" id="email" required placeholder="Jouw E-mail" data-i18n-ph="contact_ph_email">
                 </div>
                 <div class="form-group">
                     <textarea name="message" id="message" rows="4" required
-                        placeholder="Tell us about your project" data-i18n-ph="contact_ph_msg"></textarea>
+                        placeholder="Vertel ons over je project" data-i18n-ph="contact_ph_msg"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-full" data-i18n="contact_btn">Send Message</button>
+                <button type="submit" class="btn btn-primary btn-full" data-i18n="contact_btn">Verstuur Bericht</button>
             </form>
         </div>
     </section>
@@ -202,7 +206,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo"><span class="brand-name-dot highlight"></div>
-                <p data-i18n="footer_text">&copy; 2026 <span class="brand-name"></span> Web Solutions. All rights reserved.</p>
+                <p data-i18n="footer_text">&copy; 2026 <span class="brand-name"></span> Web Solutions. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
