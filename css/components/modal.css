@@ -29,6 +29,8 @@
     padding: 3rem;
     transform: translateY(20px);
     transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal.show .modal-content {

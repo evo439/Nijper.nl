@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             modalImg.src = imgSrc;
 
             modal.classList.add('show');
+            document.body.classList.toggle('no-scroll');
         });
     });
 
     // Close modal function
     const closeModal = () => {
         modal.classList.remove('show');
+        document.body.classList.remove('no-scroll');
     };
 
     // Close on X click
@@ -51,4 +53,5 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
 });
