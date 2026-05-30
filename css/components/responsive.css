@@ -8,8 +8,59 @@
 }
 
 @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
     .nav-links {
-        display: none; /* In a real app, implement a hamburger menu here */
+        position: fixed;
+        right: -100%;
+        left: auto;
+        top: 0;
+        height: 100vh;
+        gap: 0;
+        flex-direction: column;
+        background-color: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: -10px 0 27px rgba(0, 0, 0, 0.5);
+        padding: 5rem 0 2rem 0;
+        border-bottom: none;
+        z-index: 99;
+        
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-logo {
+        display: block;
+        margin-bottom: 2rem;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+    
+    .lang-switch {
+        justify-content: center;
+        margin: 1rem 0;
     }
     
     section {

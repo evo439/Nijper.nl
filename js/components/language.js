@@ -1,6 +1,6 @@
 class LanguageManager {
     constructor() {
-        this.currentLang = localStorage.getItem('site_lang') || 'en';
+        this.currentLang = localStorage.getItem('site_lang') || 'nl';
         this.init();
     }
 
@@ -15,7 +15,7 @@ class LanguageManager {
     setLanguage(lang) {
         this.currentLang = lang;
         localStorage.setItem('site_lang', lang);
-        
+
         if (!translations[lang]) return;
 
         const texts = translations[lang];
@@ -43,7 +43,7 @@ class LanguageManager {
                 const lowerName = name.toLowerCase();
                 const roleKey = `role_${lowerName}`;
                 const bioKey = `bio_${lowerName}`;
-                
+
                 if (texts[roleKey]) card.setAttribute('data-role', texts[roleKey]);
                 if (texts[bioKey]) card.setAttribute('data-bio', texts[bioKey]);
             }
@@ -57,7 +57,7 @@ class LanguageManager {
                 btn.classList.remove('active');
             }
         });
-        
+
         // Update document lang attribute
         document.documentElement.lang = lang;
     }

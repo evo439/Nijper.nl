@@ -58,6 +58,10 @@
     color: var(--accent-secondary);
 }
 
+.mobile-logo {
+    display: none;
+}
+
 .lang-switch {
     display: flex;
     align-items: center;
@@ -77,4 +81,21 @@
 
 .lang-btn:hover {
     color: var(--text-main) !important;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--text-main);
+    border-radius: 3px;
 }

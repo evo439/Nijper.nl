@@ -56,6 +56,14 @@ body {
     margin: 0 auto;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
 .highlight {
     background: var(--accent-gradient);
     -webkit-background-clip: text;
