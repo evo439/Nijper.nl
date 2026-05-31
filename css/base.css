@@ -110,10 +110,3 @@ p {
     cursor: default;
 }
 
-
-.brand-name::before {
-    content: var(--brand-name);
-}
-.brand-name-dot::before{
-    content: var(--brand-name-dot);
-}

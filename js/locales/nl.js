@@ -4,7 +4,7 @@ const nl_translations = {
     "nav_portfolio": "Portfolio",
     "nav_contact": "Neem Contact Op",
     "hero_title": "Digitale <span class='highlight'>Oplossingen</span> Creëren",
-    "hero_subtitle": "Wij bouwen robuuste websites op maat voor cafés, restaurants en festivals.",
+    "hero_subtitle": "Nijper ontwerpt en ontwikkelt robuuste websites op maat voor cafés, restaurants en festivals in de regio Nijmegen.",
     "hero_btn": "Bekijk Ons Werk",
     "about_title": "Wie Zijn <span class='highlight'>Wij</span>",
     "about_subtitle": "Een gepassioneerd duo uit Nijmegen, toegewijd aan het online versterken van lokale bedrijven.",
@@ -45,5 +45,5 @@ const nl_translations = {
     "contact_ph_email": "Jouw E-mail",
     "contact_ph_msg": "Vertel ons over je project",
     "contact_btn": "Verstuur Bericht",
-    "footer_text": "&copy; 2026 <span class='brand-name'></span> Web Solutions. Alle rechten voorbehouden."
+    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. Alle rechten voorbehouden."
 };

@@ -4,7 +4,7 @@ const en_translations = {
     "nav_portfolio": "Portfolio",
     "nav_contact": "Get in Touch",
     "hero_title": "Crafting Digital <span class='highlight'>Solutions</span>",
-    "hero_subtitle": "We build robust websites tailored for cafes, restaurants, small shops, and festivals.",
+    "hero_subtitle": "Nijper designs and builds custom, robust websites for cafes, restaurants, and festivals in Nijmegen.",
     "hero_btn": "View Our Work",
     "about_title": "Who Are <span class='highlight'>We</span>",
     "about_subtitle": "A passionate duo from nijmegen, dedicated to empowering local businesses online.",
@@ -45,5 +45,5 @@ const en_translations = {
     "contact_ph_email": "Your Email",
     "contact_ph_msg": "Tell us about your project",
     "contact_btn": "Send Message",
-    "footer_text": "&copy; 2026 <span class='brand-name'></span> Web Solutions. All rights reserved."
+    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. All rights reserved."
 };
