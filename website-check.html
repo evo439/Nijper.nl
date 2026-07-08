@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nijper | Web Solutions For You</title>
+    <meta name="description"
+        content="Professionele website laten bouwen in Nijmegen? Nijper maakt snelle, robuuste en unieke websites op maat voor cafés, restaurants en festivals.">
+
+    <!-- JSON-LD Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nijper Web Solutions",
+      "image": "https://nijper.nl/assets/logo.svg",
+      "@id": "https://nijper.nl/#organization",
+      "url": "https://nijper.nl",
+      "telephone": "",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Nijmegen",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.8126,
+        "longitude": 5.8372
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": []
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <noscript>
+        <style>
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="./" class="logo"><span class="brand-name-dot highlight">Nijper.</span></a>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li class="mobile-logo"><a href="./" class="logo"><span
+                            class="brand-name-dot highlight">Nijper.</span></a></li>
+                <li><a href="./" data-i18n="nav_home">Home</a></li>
+                <li><a href="over" data-i18n="nav_about">Over Ons</a></li>
+                <li><a href="diensten" data-i18n="nav_services">Diensten</a></li
+                <li><a href="contact" data-i18n="nav_contact">Contact</a></li>
+                <li class="lang-switch"><a href="#" class="lang-btn" data-lang="en">EN</a> | <a href="#"
+                        class="lang-btn active" data-lang="nl">NL</a></li>
+                <li><a href="website-check" class="btn btn-primary" data-i18n="nav_websiteCheck">Test jouw website</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <section class="website-check-section" style="padding: 150px 0 100px 0; min-height: 80vh;">
+        <div class="container contact-container glass-panel fade-up">
+            <div class="contact-info">
+                <h2 data-i18n="check_title">Test jouw <span class='highlight'>Website</span></h2>
+                <p data-i18n="check_subtitle">Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul je gegevens in en ontvang direct een analyse.</p>
+            </div>
+            
+            <!-- Form Area -->
+            <form id="website-check-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="f263e6c9-f5c6-444f-9751-9df99c072ec9">
+                <input type="hidden" name="subject" value="Nieuwe Website Check Aanvraag">
+                
+                <div class="form-group">
+                    <input type="text" name="name" id="name" required placeholder="Jouw Naam" data-i18n-ph="contact_ph_name">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="company" id="company" required placeholder="Bedrijfsnaam" data-i18n-ph="check_ph_company">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="email" required placeholder="Jouw E-mail" data-i18n-ph="contact_ph_email">
+                </div>
+                <div class="form-group">
+                    <input type="url" name="website" id="website" required placeholder="https://jouw-website.nl" data-i18n-ph="check_ph_website">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="check-btn" data-i18n="check_btn">Start de Analyse</button>
+            </form>
+
+            <!-- Results Area (Hidden by default) -->
+            <div id="check-results" class="results-area" style="display: none; margin-top: 3rem; text-align: center;">
+                <h3 data-i18n="check_results_title" style="margin-bottom: 2rem;">Jouw Resultaten</h3>
+                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="service-card glass-panel" style="padding: 2rem;">
+                        <h4 data-i18n="check_perf">Performance</h4>
+                        <div class="score-circle highlight" id="score-performance" style="font-size: 3rem; font-weight: 800; margin: 1rem 0;">0</div>
+                        <p style="font-size: 0.9rem;" data-i18n="check_perf_desc">Laadtijd en interactiviteit</p>
+                    </div>
+                    <div class="service-card glass-panel" style="padding: 2rem;">
+                        <h4 data-i18n="check_seo">SEO</h4>
+                        <div class="score-circle highlight" id="score-seo" style="font-size: 3rem; font-weight: 800; margin: 1rem 0;">0</div>
+                        <p style="font-size: 0.9rem;" data-i18n="check_seo_desc">Vindbaarheid in Google</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; color: var(--text-muted);" data-i18n="check_contact_msg">Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren.</p>
+            </div>
+        </div>
+    </section>
+
+<footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><span class="brand-name-dot highlight">Nijper.</span></div>
+                <p data-i18n="footer_text">&copy; 2026 <span class="brand-name">Nijper</span> Web Solutions. Alle
+                    rechten
+                    voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/locales/en.js"></script>
+    <script src="js/locales/nl.js"></script>
+    <script src="js/components/translations.js"></script>
+    <script src="js/components/language.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/components/animations.js"></script>
+    <script src="js/components/scroll.js"></script>
+    <script src="js/components/contact.js"></script>
+    <script src="js/components/website-check.js"></script>
+    <script src="js/components/modal.js"></script>
+</body>
+
+</html>

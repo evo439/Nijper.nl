@@ -1,11 +1,13 @@
 const nl_translations = {
+    "nav_home" : "Home",
     "nav_about": "Over Ons",
     "nav_services": "Diensten",
-    "nav_portfolio": "Portfolio",
-    "nav_contact": "Neem Contact Op",
+    "nav_portfolio": "Poepie",
+    "nav_contact": "Contact",
+    "nav_websiteCheck" : "Test jouw website",
     "hero_title": "Digitale <span class='highlight'>Oplossingen</span> Creëren",
     "hero_subtitle": "Nijper ontwerpt en ontwikkelt robuuste websites op maat voor cafés, restaurants en festivals in de regio Nijmegen.",
-    "hero_btn": "Bekijk Ons Werk",
+    "hero_btn": "Neem Contact Op",
     "about_title": "Wie Zijn <span class='highlight'>Wij</span>",
     "about_subtitle": "Een gepassioneerd duo uit Nijmegen, toegewijd aan het online versterken van lokale bedrijven.",
     "role_roel": "Mede-oprichter & Developer",
@@ -46,4 +48,17 @@ const nl_translations = {
     "contact_ph_msg": "Vertel ons over je project",
     "contact_btn": "Verstuur Bericht",
     "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. Alle rechten voorbehouden."
+,
+    "check_title": "Test jouw <span class=\"highlight\">Website</span>",
+    "check_subtitle": "Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul je gegevens in en ontvang direct een analyse.",
+    "check_ph_company": "Bedrijfsnaam",
+    "check_ph_website": "https://jouw-website.nl",
+    "check_btn": "Start de Analyse",
+    "check_results_title": "Jouw Resultaten",
+    "check_perf": "Performance",
+    "check_perf_desc": "Laadtijd en interactiviteit",
+    "check_seo": "SEO",
+    "check_seo_desc": "Vindbaarheid in Google",
+    "check_contact_msg": "Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren."
+
 };

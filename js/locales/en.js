@@ -1,11 +1,13 @@
 const en_translations = {
+    "nav_home" : "Home",
     "nav_about": "About Us",
     "nav_services": "Services",
     "nav_portfolio": "Portfolio",
     "nav_contact": "Get in Touch",
+    "nav_websiteCheck": "Test your website",
     "hero_title": "Crafting Digital <span class='highlight'>Solutions</span>",
     "hero_subtitle": "Nijper designs and builds custom, robust websites for cafes, restaurants, and festivals in Nijmegen.",
-    "hero_btn": "View Our Work",
+    "hero_btn": "Contact Us",
     "about_title": "Who Are <span class='highlight'>We</span>",
     "about_subtitle": "A passionate duo from nijmegen, dedicated to empowering local businesses online.",
     "role_roel": "Co-founder & Developer",
@@ -46,4 +48,17 @@ const en_translations = {
     "contact_ph_msg": "Tell us about your project",
     "contact_btn": "Send Message",
     "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. All rights reserved."
+,
+    "check_title": "Test your <span class=\"highlight\">Website</span>",
+    "check_subtitle": "Discover how your website performs in terms of speed and SEO. Enter your details to get an instant analysis.",
+    "check_ph_company": "Company Name",
+    "check_ph_website": "https://your-website.com",
+    "check_btn": "Start Analysis",
+    "check_results_title": "Your Results",
+    "check_perf": "Performance",
+    "check_perf_desc": "Load time and interactivity",
+    "check_seo": "SEO",
+    "check_seo_desc": "Visibility on Google",
+    "check_contact_msg": "We will contact you shortly to discuss these results and see how we can help you improve."
+
 };
