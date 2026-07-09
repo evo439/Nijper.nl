@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: json
             });
 
-            // Step 2: Google PageSpeed API
+            // Step 2: Cloudflare Worker Proxy for PageSpeed API
             // URL encode the target website
-            const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(websiteUrl)}&category=performance&category=seo`;
+            const apiUrl = `https://nijper-lighthouse-proxy.contact-nijper.workers.dev?url=${encodeURIComponent(websiteUrl)}`;
             const psiPromise = fetch(apiUrl);
 
             // Wait for both to complete
