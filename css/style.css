@@ -11,4 +11,51 @@
 @import 'components/modal.css';
 @import 'components/animations.css';
 @import 'components/responsive.css';
-@import 'components/package.css'
+@import 'components/package.css';
+
+/* Website Check Loading & Circles */
+.loader-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-left-color: var(--primary);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.progress-circle-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 1.5rem auto;
+}
+.progress-circle {
+    transform: rotate(-90deg);
+}
+.progress-circle circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+.progress-bg {
+    stroke: rgba(255, 255, 255, 0.05);
+}
+.progress-bar {
+    stroke: var(--primary);
+    stroke-dasharray: 339.292; /* 2 * pi * 54 */
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.5s ease;
+}
+.progress-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.2rem;
+    font-weight: 800;
+}

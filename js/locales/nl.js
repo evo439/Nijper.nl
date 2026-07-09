@@ -47,10 +47,10 @@ const nl_translations = {
     "contact_ph_email": "Jouw E-mail",
     "contact_ph_msg": "Vertel ons over je project",
     "contact_btn": "Verstuur Bericht",
-    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. Alle rechten voorbehouden."
-,
-    "check_title": "Test jouw <span class=\"highlight\">Website</span>",
-    "check_subtitle": "Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul je gegevens in en ontvang direct een analyse.",
+    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. Alle rechten voorbehouden.",
+    //website check page
+    "check_title": "Doe de <span class=\"highlight\">gratis website</span> check" ,
+    "check_subtitle": "Ontdek hoe jouw website presteert op het gebied van snelheid en SEO, Vul je gegevens in en ontvang direct een analyse.",
     "check_ph_company": "Bedrijfsnaam",
     "check_ph_website": "https://jouw-website.nl",
     "check_btn": "Start de Analyse",

@@ -47,9 +47,9 @@ const en_translations = {
     "contact_ph_email": "Your Email",
     "contact_ph_msg": "Tell us about your project",
     "contact_btn": "Send Message",
-    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. All rights reserved."
-,
-    "check_title": "Test your <span class=\"highlight\">Website</span>",
+    "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. All rights reserved.",
+    //website check page
+    "check_title": "Do the <span class=\"highlight\">free website</span> check",
     "check_subtitle": "Discover how your website performs in terms of speed and SEO. Enter your details to get an instant analysis.",
     "check_ph_company": "Company Name",
     "check_ph_website": "https://your-website.com",

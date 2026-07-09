@@ -105,10 +105,18 @@
                     <input type="email" name="email" id="email" required placeholder="Jouw E-mail" data-i18n-ph="contact_ph_email">
                 </div>
                 <div class="form-group">
-                    <input type="url" name="website" id="website" required placeholder="https://jouw-website.nl" data-i18n-ph="check_ph_website">
+                    <input type="text" name="website" id="website" required placeholder="jouw-website.nl" data-i18n-ph="check_ph_website">
                 </div>
                 <button type="submit" class="btn btn-primary btn-full" id="check-btn" data-i18n="check_btn">Start de Analyse</button>
             </form>
+
+            
+            <!-- Loading Area -->
+            <div id="check-loading" style="display: none; text-align: center; margin: 4rem 0;">
+                <div class="loader-spinner"></div>
+                <h3 data-i18n="check_loading_title">Website wordt geanalyseerd...</h3>
+                <p style="color: var(--text-muted);" data-i18n="check_loading_desc">Lighthouse API wordt geraadpleegd. Dit duurt een paar seconden.</p>
+            </div>
 
             <!-- Results Area (Hidden by default) -->
             <div id="check-results" class="results-area" style="display: none; margin-top: 3rem; text-align: center;">
@@ -116,17 +124,30 @@
                 <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                     <div class="service-card glass-panel" style="padding: 2rem;">
                         <h4 data-i18n="check_perf">Performance</h4>
-                        <div class="score-circle highlight" id="score-performance" style="font-size: 3rem; font-weight: 800; margin: 1rem 0;">0</div>
+                        <div class="progress-circle-container">
+                            <svg class="progress-circle" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress-bar" id="circle-performance" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <div class="progress-value" id="score-performance">0</div>
+                        </div>
                         <p style="font-size: 0.9rem;" data-i18n="check_perf_desc">Laadtijd en interactiviteit</p>
                     </div>
                     <div class="service-card glass-panel" style="padding: 2rem;">
                         <h4 data-i18n="check_seo">SEO</h4>
-                        <div class="score-circle highlight" id="score-seo" style="font-size: 3rem; font-weight: 800; margin: 1rem 0;">0</div>
+                        <div class="progress-circle-container">
+                            <svg class="progress-circle" width="120" height="120">
+                                <circle class="progress-bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="progress-bar" id="circle-seo" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <div class="progress-value" id="score-seo">0</div>
+                        </div>
                         <p style="font-size: 0.9rem;" data-i18n="check_seo_desc">Vindbaarheid in Google</p>
                     </div>
                 </div>
                 <p style="margin-top: 2rem; color: var(--text-muted);" data-i18n="check_contact_msg">Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren.</p>
             </div>
+
         </div>
     </section>
 
