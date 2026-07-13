@@ -65,6 +65,20 @@ const en_translations = {
     "check_seo_desc": "Visibility on Google",
     "check_contact_msg": "We will contact you shortly to discuss these results and see how we can help you improve.",
     "check_loading_title" : "Website is being analysed...",
-    "check_loading_desc" : "Querying the Lighthouse API. This may take up to 2 minutes."
+    "check_loading_desc" : "Querying the Lighthouse API. This may take up to 2 minutes.",
+    "compare_title": "Report <span class=\"highlight\">Comparison</span>",
+    "compare_subtitle": "See the differences between our free test and a comprehensive report.",
+    "comp_th_feature": "Feature",
+    "comp_th_free": "Free Website Check",
+    "comp_th_paid": "Full Website Report",
+    "comp_td_seo": "SEO Score",
+    "comp_td_seo_free": "Yes, estimated score",
+    "comp_td_seo_paid": "Yes, full",
+    "comp_td_perf": "Performance",
+    "comp_td_perf_free": "Yes, estimated",
+    "comp_td_perf_paid": "Yes, full",
+    "comp_td_geo": "GEO Score",
+    "comp_td_usability": "Usability & Accessibility",
+    "comp_td_full_report": "Comprehensive report with recommendations & improvement areas"
 
 };

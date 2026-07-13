@@ -42,7 +42,7 @@ const nl_translations = {
     "port_desc_1": "Een levendig, interactief platform gebouwd voor het lustrumfestival van studievereniging Thalia in Nijmegen. Bevat een dynamisch schema en artiesten line-up.",
     "port_btn": "Bezoek Website <span class='arrow'>→</span>",
     "contact_title": "Laten we iets <span class='highlight'>geweldigs</span> bouwen",
-    "contact_subtitle": "Klaar om de online aanwezigheid van je bedrijf naar een hoger niveau te tillen? Neem vandaag nog contact met ons op via de form.",
+    "contact_subtitle": "Klaar om de online aanwezigheid van je bedrijf naar een hoger niveau te tillen? Neem vandaag nog contact met ons op via dit formulier.",
     "contact_ph_name": "Jouw Naam",
     "contact_ph_email": "Jouw E-mail",
     "contact_ph_subject": "Kies een onderwerp",
@@ -65,6 +65,20 @@ const nl_translations = {
     "check_seo_desc": "Vindbaarheid in Google",
     "check_contact_msg": "Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren.",
     "check_loading_title" : "Website wordt geanalyseerd...",
-    "check_loading_desc" : "Lighthouse API wordt geraadpleegd. Dit kan tot 2 minuten duren"
+    "check_loading_desc" : "Lighthouse API wordt geraadpleegd. Dit kan tot 2 minuten duren",
+    "compare_title": "Rapport <span class=\"highlight\">Vergelijking</span>",
+    "compare_subtitle": "Bekijk de verschillen tussen onze gratis test en een uitgebreid rapport.",
+    "comp_th_feature": "Functionaliteit",
+    "comp_th_free": "Gratis Website Check",
+    "comp_th_paid": "Volledig Website Rapport",
+    "comp_td_seo": "SEO Score",
+    "comp_td_seo_free": "Ja, geschatte score",
+    "comp_td_seo_paid": "Ja, volledig",
+    "comp_td_perf": "Performance",
+    "comp_td_perf_free": "Ja, geschat",
+    "comp_td_perf_paid": "Ja, volledig",
+    "comp_td_geo": "GEO Score",
+    "comp_td_usability": "Usability & Accessibility",
+    "comp_td_full_report": "Uitgebreid rapport met aanbevelingen & verbeterpunten"
 
 };
