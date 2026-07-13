@@ -70,7 +70,7 @@
             <ul class="nav-links">
                 <li class="mobile-logo"><a href="./" class="logo"><span
                             class="brand-name-dot highlight">Nijper.</span></a></li>
-                <li><a href="./" data-i18n="nav_home">Home</a></li>
+                <li><a href="#hero" data-i18n="nav_home">Home</a></li>
                 <li><a href="over" data-i18n="nav_about">Over Ons</a></li>
                 <li><a href="diensten" data-i18n="nav_services">Diensten</a></li
                 <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
@@ -81,16 +81,16 @@
         </div>
     </nav>
 
-    <header class="hero">
+    <header id="hero" class="hero">
         <div class="hero-bg">
             <div class="gradient-sphere sphere-1"></div>
             <div class="gradient-sphere sphere-2"></div>
         </div>
         <div class="container hero-content">
-            <h1 class="fade-up" data-i18n="hero_title">Digitale <span class='highlight'>Oplossingen</span> Creëren</h1>
-            <p class="subtitle fade-up delay-1" data-i18n="hero_subtitle">Wij bouwen robuuste websites op maat voor
+            <h1 class="fade-up" data-i18n="hero_title">Wij bouwen <span class='highlight'>Websites</span> voor jou onderneming</h1>
+            <p class="subtitle fade-up-hero delay-1" data-i18n="hero_subtitle">Wij bouwen robuuste websites op maat voor
                 cafés, restaurants en festivals.</p>
-            <a href="#contact" class="btn btn-large btn-glow fade-up delay-2" data-i18n="hero_btn">Neem Contact Op</a>
+            <a href="#contact" class="btn btn-large btn-glow fade-up-hero delay-2" data-i18n="hero_btn">Neem Contact Op</a>
         </div>
     </header>
 
@@ -274,6 +274,14 @@
                         data-i18n-ph="contact_ph_email">
                 </div>
                 <div class="form-group">
+                    <select name="subject" id="subject" required>
+                        <option value="" disabled selected data-i18n="contact_ph_subject">Onderwerp</option>
+                        <option value="Website bouwen" data-i18n="contact_opt_website">Website bouwen</option>
+                        <option value="SEO Rapport" data-i18n="contact_opt_seo">SEO Rapport</option>
+                        <option value="Overig" data-i18n="contact_opt_other">Overig</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <textarea name="message" id="message" rows="4" required placeholder="Vertel ons over je project"
                         data-i18n-ph="contact_ph_msg"></textarea>
                 </div>
@@ -313,6 +321,7 @@
     <script src="js/locales/en.js"></script>
     <script src="js/locales/nl.js"></script>
     <script src="js/components/translations.js"></script>
+    <script src="js/components/heroanimation.js"></script>
     <script src="js/components/language.js"></script>
     <script src="js/components/navbar.js"></script>
     <script src="js/components/animations.js"></script>

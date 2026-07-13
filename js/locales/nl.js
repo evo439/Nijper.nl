@@ -5,7 +5,7 @@ const nl_translations = {
     "nav_portfolio": "Poepie",
     "nav_contact": "Contact",
     "nav_websiteCheck" : "Test jouw website",
-    "hero_title": "Digitale <span class='highlight'>Oplossingen</span> Creëren",
+    "hero_title": "Nijper bouwt <span class='highlight'>websites</span> voor <span class='highlight'>jouw</span> onderneming",
     "hero_subtitle": "Nijper ontwerpt en ontwikkelt robuuste websites op maat voor cafés, restaurants en festivals in de regio Nijmegen.",
     "hero_btn": "Neem Contact Op",
     "about_title": "Wie Zijn <span class='highlight'>Wij</span>",
@@ -24,7 +24,7 @@ const nl_translations = {
     "srv_custom2_desc": "Wij bouwen je website met Kirby CMS. Je krijgt van ons een overzichtelijk dashboard waarmee je gemakkelijk je eigen teksten aanpast, foto's toevoegt of nieuwsberichten plaatst. Zo ben je niet voor elke kleine wijziging afhankelijk van een webbouwer.",
     "srv_custom3_title": "Persoonlijke Aandacht",
     "srv_custom3_desc": "Als team van twee jonge developers combineren wij een frisse blik op webdesign met slimme en betaalbare oplossingen. We houden van een persoonlijke aanpak en luisteren naar jouw visie, zodat wij een website kunnen bouwen die perfect de sfeer van jouw bedrijf uitstraalt.",
-    "package_title": "Onze <span class='highlight'> Pakketten</span>",
+    "package_title": "  <span class='highlight'>Website</span> Pakketten" ,
     "package_subtitle": "Tijdens het kennismakingsgesprek bepalen we samen welk pakket het beste aansluit bij uw behoeften.",
     "pkg1_title": "Essential Design",
     "pkg1_tag": "Snel en efficiënt",
@@ -45,6 +45,10 @@ const nl_translations = {
     "contact_subtitle": "Klaar om de online aanwezigheid van je bedrijf naar een hoger niveau te tillen? Neem vandaag nog contact met ons op via de form.",
     "contact_ph_name": "Jouw Naam",
     "contact_ph_email": "Jouw E-mail",
+    "contact_ph_subject": "Kies een onderwerp",
+    "contact_opt_website": "Website bouwen",
+    "contact_opt_seo": "SEO Rapport",
+    "contact_opt_other": "Overig",
     "contact_ph_msg": "Vertel ons over je project",
     "contact_btn": "Verstuur Bericht",
     "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. Alle rechten voorbehouden.",
@@ -59,6 +63,8 @@ const nl_translations = {
     "check_perf_desc": "Laadtijd en interactiviteit",
     "check_seo": "SEO",
     "check_seo_desc": "Vindbaarheid in Google",
-    "check_contact_msg": "Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren."
+    "check_contact_msg": "Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren.",
+    "check_loading_title" : "Website wordt geanalyseerd...",
+    "check_loading_desc" : "Lighthouse API wordt geraadpleegd. Dit kan tot 2 minuten duren"
 
 };

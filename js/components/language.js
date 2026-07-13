@@ -24,7 +24,19 @@ class LanguageManager {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (texts[key]) {
-                el.innerHTML = texts[key];
+                if (key === 'hero_title') {
+                    if (window.typeWriterHTML) {
+                        window.typeWriterHTML(el, texts[key], 60, 1000, () => {
+                            document.querySelectorAll('.fade-up-hero').forEach(heroEl => {
+                                heroEl.classList.add('visible');
+                            });
+                        });
+                    } else {
+                        el.innerHTML = texts[key];
+                    }   
+                } else {
+                    el.innerHTML = texts[key];
+                }
             }
         });
 
@@ -71,6 +83,7 @@ class LanguageManager {
             });
         });
     }
+
 }
 
 // Initialize

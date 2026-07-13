@@ -5,7 +5,7 @@ const en_translations = {
     "nav_portfolio": "Portfolio",
     "nav_contact": "Get in Touch",
     "nav_websiteCheck": "Test your website",
-    "hero_title": "Crafting Digital <span class='highlight'>Solutions</span>",
+    "hero_title": "Nijper builds <span class='highlight'>websites</span> for <span class='highlight'>your</span> business",
     "hero_subtitle": "Nijper designs and builds custom, robust websites for cafes, restaurants, and festivals in Nijmegen.",
     "hero_btn": "Contact Us",
     "about_title": "Who Are <span class='highlight'>We</span>",
@@ -24,7 +24,7 @@ const en_translations = {
     "srv_custom2_desc": "We build your website using Kirby CMS. You'll get a clear, easy-to-use dashboard that lets you effortlessly update texts, add photos, or post news yourself. This way, you won't have to rely on a web developer for every minor tweak.",
     "srv_custom3_title": "Personal Attention",
     "srv_custom3_desc": "As a team of two young developers, we combine a fresh perspective on web design with smart, affordable solutions. We value a personal approach and listen closely to your vision, allowing us to build a website that perfectly reflects the unique vibe of your business.",
-    "package_title": "Our <span class='highlight'> Packages</span>",
+    "package_title": "<span class='highlight'>Website</span> Packages",
     "package_subtitle": "During the introductory meeting, we will determine together which package best suits your needs.",
     "pkg1_title": "Essential Design",
     "pkg1_tag": "Fast and efficient",
@@ -45,6 +45,10 @@ const en_translations = {
     "contact_subtitle": "Ready to elevate your business's online presence? Get in touch with us today.",
     "contact_ph_name": "Your Name",
     "contact_ph_email": "Your Email",
+    "contact_ph_subject": "Subject",
+    "contact_opt_website": "Build a Website",
+    "contact_opt_seo": "SEO Report",
+    "contact_opt_other": "Other",
     "contact_ph_msg": "Tell us about your project",
     "contact_btn": "Send Message",
     "footer_text": "&copy; 2026 <span class='brand-name'>Nijper</span> Web Solutions. All rights reserved.",
@@ -59,6 +63,8 @@ const en_translations = {
     "check_perf_desc": "Load time and interactivity",
     "check_seo": "SEO",
     "check_seo_desc": "Visibility on Google",
-    "check_contact_msg": "We will contact you shortly to discuss these results and see how we can help you improve."
+    "check_contact_msg": "We will contact you shortly to discuss these results and see how we can help you improve.",
+    "check_loading_title" : "Website is being analysed...",
+    "check_loading_desc" : "Querying the Lighthouse API. This may take up to 2 minutes."
 
 };
