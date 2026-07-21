@@ -59,7 +59,7 @@
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 950px;
     z-index: 1;
 }
 
@@ -67,4 +67,15 @@
     font-size: clamp(1.1rem, 2vw, 1.3rem);
     margin-bottom: 2.5rem;
     max-width: 600px;
+}
+
+.typing::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    display: inline-block;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }

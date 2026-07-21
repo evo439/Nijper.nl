@@ -44,9 +44,17 @@ Nijper/
 
 ## 🛠️ Lokale Ontwikkeling
 
-Omdat dit een statische frontend-website is, heb je geen build-tools nodig. Je kunt de website lokaal starten met een eenvoudige HTTP-server.
+Omdat dit een statische frontend-website is, heb je geen build-tools nodig. Je kunt de website lokaal starten met een eenvoudige HTTP-server
 
-### Optie 1: Python HTTP Server (Aanbevolen)
+### optie 1: NPX HTTP Server
+Als je Python op je computer hebt geïnstalleerd, kun je in de hoofdmap van het project de volgende opdracht uitvoeren:
+
+```bash
+npx http-server --ext html
+```
+Testen kan gebeuren via meerdere devices.
+
+### Optie 2: Python HTTP Server (Aanbevolen)
 Als je Python op je computer hebt geïnstalleerd, kun je in de hoofdmap van het project de volgende opdracht uitvoeren:
 
 ```bash
@@ -54,7 +62,7 @@ python3 -m http.server 3000
 ```
 Open vervolgens `http://localhost:3000` in je browser.
 
-### Optie 2: VS Code Live Server
+### Optie 3: VS Code Live Server
 Als je Visual Studio Code gebruikt, kun je de extensie **Live Server** installeren. Klik vervolgens rechtsonder in de statusbalk op **"Go Live"** om de website te bekijken en live herlaadfuncties te gebruiken bij codewijzigingen.
 
 ---

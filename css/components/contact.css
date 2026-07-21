@@ -12,7 +12,7 @@
     margin-bottom: 1.5rem;
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     padding: 1rem 1.5rem;
     background: rgba(0, 0, 0, 0.2);
@@ -22,10 +22,23 @@ input, textarea {
     font-family: var(--font-main);
     font-size: 1rem;
     transition: var(--transition);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--accent-secondary);
     background: rgba(0, 0, 0, 0.4);
+}
+
+select option {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+textarea {
+    resize: vertical;
+    max-width: 100%;
 }
