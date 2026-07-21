@@ -48,6 +48,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components/compare.css">
     <noscript>
         <style>
             .fade-up {
@@ -76,7 +77,8 @@
                 <li><a href="contact" data-i18n="nav_contact">Contact</a></li>
                 <li class="lang-switch"><a href="#" class="lang-btn" data-lang="en">EN</a> | <a href="#"
                         class="lang-btn active" data-lang="nl">NL</a></li>
-                <li><a href="website-check" class="btn btn-primary" data-i18n="nav_websiteCheck">Test jouw website</a></li>
+                <li><a href="website-check" class="btn btn-primary" data-i18n="nav_websiteCheck">Test jouw website</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -87,35 +89,42 @@
         <div class="container contact-container glass-panel fade-up">
             <div class="contact-info">
                 <h2 data-i18n="check_title">Test jouw <span class='highlight'>Website</span></h2>
-                <p data-i18n="check_subtitle">Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul je gegevens in en ontvang direct een analyse.</p>
+                <p data-i18n="check_subtitle">Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul
+                    je gegevens in en ontvang direct een analyse.</p>
             </div>
-            
+
             <!-- Form Area -->
             <form id="website-check-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
                 <input type="hidden" name="access_key" value="f263e6c9-f5c6-444f-9751-9df99c072ec9">
                 <input type="hidden" name="subject" value="Nieuwe Website Check Aanvraag">
-                
+
                 <div class="form-group">
-                    <input type="text" name="name" id="name" required placeholder="Jouw Naam" data-i18n-ph="contact_ph_name">
+                    <input type="text" name="name" id="name" required placeholder="Jouw Naam"
+                        data-i18n-ph="contact_ph_name">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="company" id="company" required placeholder="Bedrijfsnaam" data-i18n-ph="check_ph_company">
+                    <input type="text" name="company" id="company" required placeholder="Bedrijfsnaam"
+                        data-i18n-ph="check_ph_company">
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" id="email" required placeholder="Jouw E-mail" data-i18n-ph="contact_ph_email">
+                    <input type="email" name="email" id="email" required placeholder="Jouw E-mail"
+                        data-i18n-ph="contact_ph_email">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="website" id="website" required placeholder="jouw-website.nl" data-i18n-ph="check_ph_website">
+                    <input type="text" name="website" id="website" required placeholder="jouw-website.nl"
+                        data-i18n-ph="check_ph_website">
                 </div>
-                <button type="submit" class="btn btn-primary btn-full" id="check-btn" data-i18n="check_btn">Start de Analyse</button>
+                <button type="submit" class="btn btn-primary btn-full" id="check-btn" data-i18n="check_btn">Start de
+                    Analyse</button>
             </form>
 
-            
+
             <!-- Loading Area -->
             <div id="check-loading" style="display: none; text-align: center; margin: 4rem 0;">
                 <div class="loader-spinner"></div>
                 <h3 data-i18n="check_loading_title">Website wordt geanalyseerd...</h3>
-                <p style="color: var(--text-muted);" data-i18n="check_loading_desc">Lighthouse API wordt geraadpleegd. Dit kan tot 2 minuten duren</p>
+                <p style="color: var(--text-muted);" data-i18n="check_loading_desc">Lighthouse API wordt geraadpleegd.
+                    Dit kan tot 2 minuten duren</p>
             </div>
 
             <!-- Results Area (Hidden by default) -->
@@ -145,52 +154,73 @@
                         <p style="font-size: 0.9rem;" data-i18n="check_seo_desc">Vindbaarheid in Google</p>
                     </div>
                 </div>
-                <p style="margin-top: 2rem; color: var(--text-muted);" data-i18n="check_contact_msg">Wij nemen binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen verbeteren.</p>
+                <p style="margin-top: 2rem; color: var(--text-muted);" data-i18n="check_contact_msg">Wij nemen
+                    binnenkort contact op om deze resultaten te bespreken en te kijken hoe we je kunnen helpen
+                    verbeteren.</p>
             </div>
 
         </div>
     </section>
 
-    <section id="compare" class="compare-section" style="padding: 4rem 0 8rem 0;">
+    <section id="compare" class="compare-section">
         <div class="container">
             <div class="section-header fade-up">
                 <h2 data-i18n="compare_title">Rapport <span class="highlight">Vergelijking</span></h2>
-                <p data-i18n="compare_subtitle">Bekijk de verschillen tussen onze gratis test en een uitgebreid rapport.</p>
+                <p data-i18n="compare_subtitle">Bekijk de verschillen tussen onze gratis test en een uitgebreid rapport.
+                </p>
             </div>
-            <div class="table-responsive glass-panel fade-up" style="padding: 2rem; border-radius: 15px; overflow-x: auto;">
-                <table class="compare-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <div class="table-responsive glass-panel fade-up compare-table-container">
+                <table class="compare-table">
                     <thead>
-                        <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
-                            <th style="padding: 1.5rem 1rem; font-size: 1.2rem;" data-i18n="comp_th_feature">Functionaliteit</th>
-                            <th style="padding: 1.5rem 1rem; font-size: 1.2rem; color: var(--accent-primary);" data-i18n="comp_th_free">Gratis Website Check</th>
-                            <th style="padding: 1.5rem 1rem; font-size: 1.2rem; color: var(--primary);" data-i18n="comp_th_paid">Volledig Website Rapport</th>
+                        <tr>
+                            <th data-i18n="comp_th_feature">Functionaliteit</th>
+                            <th class="paid" data-i18n="comp_th_free">Gratis Website Check</th>
+                            <th class="highlight" data-i18n="comp_th_paid">Volledig Website Rapport</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 1.5rem 1rem; font-weight: 600;" data-i18n="comp_td_seo">SEO Score</td>
-                            <td style="padding: 1.5rem 1rem;" data-i18n="comp_td_seo_free">Ja, geschatte score</td>
-                            <td style="padding: 1.5rem 1rem;" data-i18n="comp_td_seo_paid">Ja, volledig</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 1.5rem 1rem; font-weight: 600;" data-i18n="comp_td_perf">Performance</td>
-                            <td style="padding: 1.5rem 1rem;" data-i18n="comp_td_perf_free">Ja, geschat</td>
-                            <td style="padding: 1.5rem 1rem;" data-i18n="comp_td_perf_paid">Ja, volledig</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 1.5rem 1rem; font-weight: 600;" data-i18n="comp_td_geo">GEO Score</td>
-                            <td style="padding: 1.5rem 1rem; color: #ff4d4d; font-size: 1.2rem;">✕</td>
-                            <td style="padding: 1.5rem 1rem; color: #4CAF50; font-size: 1.2rem;">✓</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <td style="padding: 1.5rem 1rem; font-weight: 600;" data-i18n="comp_td_usability">Usability & Accessibility</td>
-                            <td style="padding: 1.5rem 1rem; color: #ff4d4d; font-size: 1.2rem;">✕</td>
-                            <td style="padding: 1.5rem 1rem; color: #4CAF50; font-size: 1.2rem;">✓</td>
+                        <tr>
+                            <td class="compare-cell feature" data-i18n="comp_td_seo">SEO Score</td>
+                            <td class="compare-cell">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                            </td>
+                            <td class="compare-cell">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                            </td>
                         </tr>
                         <tr>
-                            <td style="padding: 1.5rem 1rem; font-weight: 600;" data-i18n="comp_td_full_report">Uitgebreid rapport met aanbevelingen & verbeterpunten</td>
-                            <td style="padding: 1.5rem 1rem; color: #ff4d4d; font-size: 1.2rem;">✕</td>
-                            <td style="padding: 1.5rem 1rem; color: #4CAF50; font-size: 1.2rem;">✓</td>
+                            <td class="compare-cell feature" data-i18n="comp_td_perf">Performance</td>
+                            <td class="compare-cell">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                            </td>
+                            <td class="compare-cell">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="compare-cell feature" data-i18n="comp_td_geo">GEO Score</td>
+                            <td class="compare-cell"><span class="cross-icon">✕</span></td>
+                            <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
+                                    alt="✓"></td>
+                        </tr>
+                        <tr>
+                            <td class="compare-cell feature" data-i18n="comp_td_usability">Usability & Accessibility
+                            </td>
+                            <td class="compare-cell"><span class="cross-icon">✕</span></td>
+                            <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
+                                    alt="✓"></td>
+                        </tr>
+                        <tr>
+                            <td class="compare-cell feature" data-i18n="comp_td_full_report">Uitgebreid rapport met
+                                aanbevelingen & verbeterpunten</td>
+                            <td class="compare-cell"><span class="cross-icon">✕</span></td>
+                            <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
+                                    alt="✓"></td>
+                        </tr>
+                        <tr>
+                            <td class="compare-cell feature" data-i18n="comp_td_price">Prijs</td>
+                            <td class="compare-cell" style="font-weight: 600;"   data-i18n="comp_td_price_free">Gratis</td>
+                            <td class="compare-cell" style="font-weight: 600;">&euro;50,-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -198,7 +228,7 @@
         </div>
     </section>
 
-<footer>
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo"><span class="brand-name-dot highlight">Nijper.</span></div>

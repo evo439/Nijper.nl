@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const json = JSON.stringify(object);
 
         try {
-            // Step 1: Send email via Web3Forms (Disabled for testing)
-            /*
+            // Step 1: Send email via Web3Forms
             const emailPromise = fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
@@ -44,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: json
             });
-            */
-            const emailPromise = Promise.resolve();
 
             // Step 2: Cloudflare Worker Proxy for PageSpeed API
             // URL encode the target website
