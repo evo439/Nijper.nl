@@ -10,6 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalName = document.getElementById('modal-name');
     const modalRole = document.getElementById('modal-role');
     const modalBio = document.getElementById('modal-bio');
+    const modalSocials = document.getElementById('modal-socials');
+
+    const socialData = {
+        'Roel': [
+            { icon: 'assets/linkedin.svg', url: 'https://www.linkedin.com/in/roel-nijhuis-9a1a7733b', alt: 'LinkedIn' },
+            { icon: 'assets/github.svg', url: 'https://github.com/BigRoelof', alt: 'GitHub' },
+            { icon: 'assets/browser.svg', url: 'https://www.roelnijhuis.nl/', alt: 'Website' },
+            { icon: 'assets/email_icon.svg', url: 'mailto:roel@nijper.nl', alt: 'Email' }
+        ],
+        'Sarah': [
+            { icon: 'assets/github.svg', url: 'https://github.com/evo439', alt: 'GitHub' },
+            { icon: 'assets/email_icon.svg', url: 'mailto:sarah@nijper.nl', alt: 'Email' }
+        ]
+    };
 
     const isModalOpen = () => modal.classList.contains('show');
 
@@ -25,6 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
             modalRole.textContent = role;
             modalBio.textContent = bio;
             modalImg.src = imgSrc;
+
+            if (modalSocials) {
+                modalSocials.innerHTML = '';
+                const links = socialData[name] || [];
+                links.forEach(item => {
+                    const a = document.createElement('a');
+                    a.href = item.url;
+                    if (item.url.startsWith('mailto:')) {
+                        a.target = '_self';
+                    } else {
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                    }
+                    a.className = 'modal-social-link';
+                    a.innerHTML = `<img src="${item.icon}" alt="${item.alt}" class="modal-social-icon">`;
+                    modalSocials.appendChild(a);
+                });
+            }
 
             modal.classList.add('show');
             document.body.classList.add('no-scroll');

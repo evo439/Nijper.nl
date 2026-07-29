@@ -93,9 +93,49 @@
     margin-bottom: 1.5rem;
 }
 
+.modal-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+
+.modal-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.modal-social-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.modal-social-icon {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.modal-social-link:hover .modal-social-icon {
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
     .modal-body {
         flex-direction: column;
         text-align: center;
+    }
+
+    .modal-socials {
+        justify-content: center;
     }
 }
