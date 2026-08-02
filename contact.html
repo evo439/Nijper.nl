@@ -15,10 +15,11 @@
     <meta property="og:description" content="Klaar voor een nieuwe website? Neem contact op met Nijper, jouw website bouwer in Nijmegen.">
     <meta property="og:url" content="https://nijper.nl/contact">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://nijper.nl/assets/logo.svg">
+    <meta property="og:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contact | Nijper Website Bouwer in Nijmegen">
     <meta name="twitter:description" content="Neem contact op met Nijper voor een vrijblijvend gesprek.">
+    <meta name="twitter:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
 
     <!-- GEO / Local SEO -->
     <meta name="geo.region" content="NL-GE">
@@ -36,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Nijper Web Solutions",
-      "image": "https://nijper.nl/assets/logo.svg",
+      "image": "https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp",
       "@id": "https://nijper.nl/#organization",
       "url": "https://nijper.nl",
       "telephone": "",
@@ -67,7 +68,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    </noscript>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <noscript>
@@ -103,10 +108,11 @@
         </div>
     </nav>
 
-<section id="contact" class="contact">
-        <div class="container contact-container glass-panel fade-up">
-            <div class="contact-info">
-                <h2 data-i18n="contact_title">Laten we iets <span class='highlight'>geweldigs</span> bouwen</h2>
+    <main>
+        <section id="contact" class="contact">
+            <div class="container contact-container glass-panel fade-up">
+                <div class="contact-info">
+                    <h1 data-i18n="contact_title">Laten we iets <span class='highlight'>geweldigs</span> bouwen</h1>
                 <p data-i18n="contact_subtitle">Wil je een professionele website laten bouwen in Nijmegen voor jouw horeca-onderneming of festival? Neem direct contact op voor een vrijblijvend gesprek.</p>
             </div>
             <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
@@ -135,6 +141,7 @@
             </form>
         </div>
     </section>
+    </main>
 
 <footer>
         <div class="container">

@@ -15,10 +15,11 @@
     <meta property="og:description" content="Maak kennis met het team achter Nijper. Wij zijn gepassioneerde website bouwers uit Nijmegen.">
     <meta property="og:url" content="https://nijper.nl/over">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://nijper.nl/assets/logo.svg">
+    <meta property="og:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Over Ons | Nijper Website Bouwer in Nijmegen">
     <meta name="twitter:description" content="Maak kennis met het team achter Nijper. Wij zijn gepassioneerde website bouwers uit Nijmegen.">
+    <meta name="twitter:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
 
     <!-- GEO / Local SEO -->
     <meta name="geo.region" content="NL-GE">
@@ -36,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Nijper Web Solutions",
-      "image": "https://nijper.nl/assets/logo.svg",
+      "image": "https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp",
       "@id": "https://nijper.nl/#organization",
       "url": "https://nijper.nl",
       "telephone": "",
@@ -67,7 +68,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    </noscript>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <noscript>
@@ -103,10 +108,11 @@
         </div>
     </nav>
 
-<section id="about" class="about" style="padding-bottom: 1rem;">
-        <div class="container">
-            <div class="section-header fade-up">
-                <h2 data-i18n="about_title">Wie Zijn <span class='highlight'>Wij</span></h2>
+    <main>
+        <section id="about" class="about" style="padding-bottom: 1rem;">
+            <div class="container">
+                <div class="section-header fade-up">
+                    <h1 data-i18n="about_title">Wie Zijn <span class='highlight'>Wij</span></h1>
                 <p data-i18n="about_subtitle">Een gepassioneerd duo uit Nijmegen, toegewijd aan het online versterken
                     van lokale bedrijven.</p>
             </div>
@@ -117,7 +123,7 @@
                     data-bio="Als developer uit Nijmegen houd ik mij bezig met het bouwen van functionele websites voor bedrijven in de regio. Ik heb mijn bachelor Computing Science aan de Radboud Universiteit afgerond, waar ik de technische basis voor mijn werk heb gelegd. Op dit moment ben ik 25 jaar en woon ik in Nijmegen, waar ik mijn opgedane ervaring inzet voor diverse projecten. Mijn ontwikkeling staat niet stil, vanaf 2026 start ik met de master Information Science om mijn kennis verder te verdiepen. Ik richt me op het opleveren van goed werkende websites die bijdragen aan een professionele online aanwezigheid. Graag kijk ik samen met jou naar de mogelijkheden voor jouw bedrijf."
                     data-img="assets/RoelProfiel.webp">
                     <div class="card-img">
-                        <img src="assets/RoelProfiel.webp" alt="Roel - Mede-oprichter & Website Bouwer" loading="lazy">
+                        <img src="assets/RoelProfiel.webp" alt="Roel - Mede-oprichter & Website Bouwer" width="400" height="400" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3 class="cursor-pointer">Roel</h3>
@@ -132,7 +138,7 @@
                     data-bio="Als front-end developer en designer uit Nijmegen houd ik mij bezig met het creëren van visueel sterke websites. Momenteel bevind ik mij in het laatste jaar van mijn bachelor Computing Science aan de Radboud Universiteit, waar ik mijn technische kennis combineer met een oog voor design. Door mijn ervaring als front-end developer vertaal ik ontwerpen naar toegankelijke en goed werkende interfaces. Graag kijk ik samen met jou naar de mogelijkheden om jouw digitale visie te realiseren."
                     data-img="assets/SarahProfiel.webp">
                     <div class="card-img">
-                        <img src="assets/SarahProfiel.webp" alt="Sarah - Mede-oprichter & Designer" loading="lazy">
+                        <img src="assets/SarahProfiel.webp" alt="Sarah - Mede-oprichter & Designer" width="400" height="400" loading="lazy">
                     </div>
                     <div class="card-content">
                         <h3 class="cursor-pointer">Sarah</h3>
@@ -178,6 +184,7 @@
             </div>
         </div>
     </section>
+    </main>
 
 <footer>
         <div class="container">

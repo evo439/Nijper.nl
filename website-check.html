@@ -15,10 +15,11 @@
     <meta property="og:description" content="Test gratis de prestaties, SEO en toegankelijkheid van jouw website met de Nijper Website Check tool.">
     <meta property="og:url" content="https://nijper.nl/website-check">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://nijper.nl/assets/logo.svg">
+    <meta property="og:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Gratis Website Check & SEO Rapport">
     <meta name="twitter:description" content="Test gratis de prestaties, SEO en toegankelijkheid van jouw website.">
+    <meta name="twitter:image" content="https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp">
 
     <!-- GEO / Local SEO -->
     <meta name="geo.region" content="NL-GE">
@@ -36,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Nijper Web Solutions",
-      "image": "https://nijper.nl/assets/logo.svg",
+      "image": "https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp",
       "@id": "https://nijper.nl/#organization",
       "url": "https://nijper.nl",
       "telephone": "",
@@ -67,7 +68,11 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+    </noscript>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components/compare.css">
@@ -105,12 +110,11 @@
         </div>
     </nav>
 
-
-
-    <section class="website-check-section" style="padding-bottom: 1rem;">
-        <div class="container contact-container glass-panel fade-up">
-            <div class="contact-info">
-                <h2 data-i18n="check_title">Test jouw <span class='highlight'>Website</span></h2>
+    <main>
+        <section class="website-check-section" style="padding-bottom: 1rem;">
+            <div class="container contact-container glass-panel fade-up">
+                <div class="contact-info">
+                    <h1 data-i18n="check_title">Test jouw <span class='highlight'>Website</span></h1>
                 <p data-i18n="check_subtitle">Ontdek hoe jouw website presteert op het gebied van snelheid en SEO. Vul
                     je gegevens in en ontvang direct een analyse.</p>
             </div>
@@ -204,40 +208,40 @@
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_seo">SEO Score</td>
                             <td class="compare-cell">
-                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20">
                             </td>
                             <td class="compare-cell">
-                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20">
                             </td>
                         </tr>
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_perf">Performance</td>
                             <td class="compare-cell">
-                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20">
                             </td>
                             <td class="compare-cell">
-                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓">
+                                <img src="assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20">
                             </td>
                         </tr>
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_geo">GEO Score</td>
                             <td class="compare-cell"><span class="cross-icon">✕</span></td>
                             <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
-                                    alt="✓"></td>
+                                    alt="✓" width="20" height="20"></td>
                         </tr>
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_usability">Usability & Accessibility
                             </td>
                             <td class="compare-cell"><span class="cross-icon">✕</span></td>
                             <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
-                                    alt="✓"></td>
+                                    alt="✓" width="20" height="20"></td>
                         </tr>
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_full_report">Uitgebreid rapport met
                                 aanbevelingen & verbeterpunten</td>
                             <td class="compare-cell"><span class="cross-icon">✕</span></td>
                             <td class="compare-cell"><img src="assets/check-mark-svgrepo-com.svg" class="check-icon"
-                                    alt="✓"></td>
+                                    alt="✓" width="20" height="20"></td>
                         </tr>
                         <tr>
                             <td class="compare-cell feature" data-i18n="comp_td_price">Prijs</td>
@@ -249,8 +253,9 @@
             </div>
         </div>
     </section>
+    </main>
 
-    <footer>
+<footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo"><span class="brand-name-dot highlight">Nijper.</span></div>

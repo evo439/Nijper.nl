@@ -8,6 +8,14 @@
     align-items: center;
 }
 
+.contact-info h1,
+.contact-info h2,
+.contact-info h3 {
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
