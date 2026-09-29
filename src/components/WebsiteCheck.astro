@@ -1,0 +1,174 @@
+---
+import { useTranslations, type Lang, type TKey } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+
+const scores: { id: string; title: TKey; desc: TKey }[] = [
+  { id: 'performance', title: 'check_perf', desc: 'check_perf_desc' },
+  { id: 'seo', title: 'check_seo', desc: 'check_seo_desc' },
+];
+---
+
+<section class="website-check-section" style="padding-bottom: 1rem;">
+  <div class="container contact-container glass-panel fade-up">
+    <div class="contact-info">
+      <h1 set:html={t('check_title')} />
+      <p>{t('check_subtitle')}</p>
+    </div>
+
+    <form
+      id="website-check-form"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="contact-form"
+      data-error={t('check_error')}
+    >
+      <input type="hidden" name="access_key" value="f263e6c9-f5c6-444f-9751-9df99c072ec9" />
+      <input type="hidden" name="subject" value="Nieuwe Website Check Aanvraag" />
+
+      <div class="form-group">
+        <input type="text" name="name" id="name" required placeholder={t('contact_ph_name')} aria-label={t('contact_ph_name')} autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <input type="text" name="company" id="company" required placeholder={t('check_ph_company')} aria-label={t('check_ph_company')} autocomplete="organization" />
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" id="email" required placeholder={t('contact_ph_email')} aria-label={t('contact_ph_email')} autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <input type="text" name="website" id="website" required placeholder={t('check_ph_website')} aria-label={t('check_ph_website')} inputmode="url" autocomplete="url" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" id="check-btn">{t('check_btn')}</button>
+    </form>
+
+    <div id="check-loading" style="display: none; text-align: center; margin: 4rem 0;" aria-live="polite">
+      <div class="loader-spinner"></div>
+      <h3>{t('check_loading_title')}</h3>
+      <p style="color: var(--text-muted);">{t('check_loading_desc')}</p>
+    </div>
+
+    <div id="check-results" class="results-area" style="display: none; margin-top: 3rem; text-align: center;" aria-live="polite">
+      <h3 style="margin-bottom: 2rem;">{t('check_results_title')}</h3>
+      <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        {
+          scores.map((s) => (
+            <div class="service-card glass-panel" style="padding: 2rem;">
+              <h4>{t(s.title)}</h4>
+              <div class="progress-circle-container">
+                <svg class="progress-circle" width="120" height="120" aria-hidden="true">
+                  <circle class="progress-bg" cx="60" cy="60" r="54" />
+                  <circle class="progress-bar" id={`circle-${s.id}`} cx="60" cy="60" r="54" />
+                </svg>
+                <div class="progress-value" id={`score-${s.id}`}>0</div>
+              </div>
+              <p style="font-size: 0.9rem;">{t(s.desc)}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p style="margin-top: 2rem; color: var(--text-muted);">{t('check_contact_msg')}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const WORKER = 'https://nijper-lighthouse-proxy.contact-nijper.workers.dev';
+  const STORAGE_KEY = 'websiteCheckResults';
+  const CIRCUMFERENCE = 339.292;
+
+  const form = document.getElementById('website-check-form') as HTMLFormElement;
+  const loading = document.getElementById('check-loading')!;
+  const results = document.getElementById('check-results')!;
+  const websiteInput = document.getElementById('website') as HTMLInputElement;
+  const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  const scorePerf = document.getElementById('score-performance')!;
+  const scoreSeo = document.getElementById('score-seo')!;
+  const circlePerf = document.getElementById('circle-performance') as unknown as SVGCircleElement;
+  const circleSeo = document.getElementById('circle-seo') as unknown as SVGCircleElement;
+
+  function animateScore(text: HTMLElement, circle: SVGCircleElement, target: number) {
+    let current = 0;
+    const increment = target / 50;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+
+      text.textContent = String(Math.round(current));
+      circle.style.strokeDashoffset = String(CIRCUMFERENCE - (current / 100) * CIRCUMFERENCE);
+
+      const color = current >= 90 ? '#0cce6b' : current >= 50 ? '#ffa400' : '#ff4e42';
+      text.style.color = color;
+      circle.style.stroke = color;
+    }, 30);
+  }
+
+  const showScores = (perf: number, seo: number) => {
+    animateScore(scorePerf, circlePerf, perf);
+    animateScore(scoreSeo, circleSeo, seo);
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Ensure the URL has a protocol
+    let url = websiteInput.value.trim();
+    if (url && !/^https?:\/\//.test(url)) {
+      url = 'https://' + url;
+      websiteInput.value = url;
+    }
+
+    form.style.display = 'none';
+    loading.style.display = 'block';
+    results.style.display = 'none';
+    scorePerf.textContent = scoreSeo.textContent = '0';
+    circlePerf.style.strokeDashoffset = circleSeo.style.strokeDashoffset = String(CIRCUMFERENCE);
+
+    try {
+      // Lead email via Web3Forms and PageSpeed via the Cloudflare Worker proxy, in parallel
+      const emailPromise = fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const psiPromise = fetch(`${WORKER}?url=${encodeURIComponent(url)}`);
+
+      const [, psiRes] = await Promise.all([emailPromise, psiPromise]);
+      const psi = await psiRes.json();
+      if (!psi.lighthouseResult) throw new Error('Ongeldige response van Lighthouse');
+
+      const perf = Math.round(psi.lighthouseResult.categories.performance.score * 100);
+      const seo = Math.round(psi.lighthouseResult.categories.seo.score * 100);
+      showScores(perf, seo);
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ perfScore: perf, seoScore: seo }));
+
+      loading.style.display = 'none';
+      results.style.display = 'block';
+    } catch (err) {
+      console.error(err);
+      loading.style.display = 'none';
+      form.style.display = 'block';
+      submitBtn.textContent = form.dataset.error!;
+      submitBtn.classList.add('btn-error');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Restore earlier results from this session
+  try {
+    const saved = sessionStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const { perfScore, seoScore } = JSON.parse(saved);
+      form.style.display = 'none';
+      results.style.display = 'block';
+      setTimeout(() => showScores(perfScore, seoScore), 500);
+    }
+  } catch {
+    // sessionStorage unavailable: just show the form
+  }
+</script>

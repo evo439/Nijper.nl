@@ -1,0 +1,76 @@
+---
+import '../styles/legacy/style.css';
+import '../styles/legacy/components/compare.css';
+import '../styles/legacy/bridge.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { meta, schemaFor } from '../i18n/meta';
+import { routes, type Lang, type PageId } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+}
+
+const { lang, page } = Astro.props;
+const m = meta[page][lang];
+const site = 'https://nijper.nl';
+const abs = (p: string) => `${site}${p}`;
+const canonical = abs(routes[page][lang]);
+const ogImage = `${site}/assets/nijper-website-bouwer-nijmegen.webp`;
+const fontUrl = 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{m.title}</title>
+    <meta name="description" content={m.description} />
+    <meta name="keywords" content={m.keywords} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={m.ogTitle} />
+    <meta property="og:description" content={m.ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={m.twitterTitle} />
+    <meta name="twitter:description" content={m.twitterDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="geo.region" content="NL-GE" />
+    <meta name="geo.placename" content="Nijmegen" />
+    <meta name="geo.position" content="51.8126;5.8372" />
+    <meta name="ICBM" content="51.8126, 5.8372" />
+
+    <link rel="alternate" hreflang="nl" href={abs(routes[page].nl)} />
+    <link rel="alternate" hreflang="en" href={abs(routes[page].en)} />
+    <link rel="alternate" hreflang="x-default" href={abs(routes[page].nl)} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schemaFor(page, lang))} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontUrl} />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <noscript><style>.fade-up { opacity: 1 !important; transform: none !important; }</style></noscript>
+  </head>
+  <body>
+    <Nav lang={lang} page={page} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <slot name="after" />
+  </body>
+</html>
+
+<script>
+  import '../scripts/navbar';
+  import '../scripts/scroll';
+  import '../scripts/animations';
+</script>

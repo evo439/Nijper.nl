@@ -1,0 +1,47 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { team } from '../data/team';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  headingLevel?: 'h1' | 'h2';
+  class?: string;
+}
+
+const { lang, headingLevel = 'h2', class: className } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="about" class:list={['about', className]}>
+  <div class="container">
+    <SectionHeader as={headingLevel} title={t('about_title')} subtitle={t('about_subtitle')} />
+
+    <div class="team-grid">
+      {
+        team.map((m, i) => (
+          <div
+            class={`team-card glass-panel fade-up delay-${i + 1}`}
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+            data-name={m.name}
+            data-role={t(m.role)}
+            data-bio={t(m.bio)}
+            data-img={m.img}
+            data-socials={JSON.stringify(m.socials)}
+          >
+            <div class="card-img">
+              <img src={m.img} alt={m.alt} width="400" height="400" loading="lazy" />
+            </div>
+            <div class="card-content">
+              <h3 class="cursor-pointer">{m.name}</h3>
+              <p class="role highlight cursor-pointer">{t(m.role)}</p>
+              <p class="cursor-pointer">{t(m.bioShort)}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

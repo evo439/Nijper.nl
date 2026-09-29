@@ -1,0 +1,51 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { useTranslations, type Lang, type TKey } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  headingLevel?: 'h1' | 'h2';
+  class?: string;
+}
+
+const { lang, headingLevel = 'h2', class: className } = Astro.props;
+const t = useTranslations(lang);
+
+const packages: { img: string; alt: string; keys: [TKey, TKey, TKey, TKey, TKey] }[] = [
+  {
+    img: '/assets/rocket-monitor.webp',
+    alt: 'Essential Design Pakket Icon',
+    keys: ['pkg1_title', 'pkg1_tag', 'pkg1_basis', 'pkg1_voordeel', 'pkg1_resultaat'],
+  },
+  {
+    img: '/assets/toolbox.webp',
+    alt: 'Custom Solution Pakket Icon',
+    keys: ['pkg2_title', 'pkg2_tag', 'pkg2_basis', 'pkg2_voordeel', 'pkg2_resultaat'],
+  },
+];
+---
+
+<section id="package" class:list={['package', className]}>
+  <div class="container">
+    <SectionHeader as={headingLevel} title={t('package_title')} subtitle={t('package_subtitle')} />
+
+    <div class="package-grid">
+      {
+        packages.map(({ img, alt, keys: [title, tag, ...points] }, i) => (
+          <div class={`package-card glass-panel fade-up delay-${i + 1}`}>
+            <div class="package-img">
+              <img src={img} alt={alt} width="200" height="200" loading="lazy" />
+            </div>
+            <h3>{t(title)}</h3>
+            <p class="package-role">{t(tag)}</p>
+            <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-muted);">
+              {points.map((p, j) => (
+                <li style={j < points.length - 1 ? 'margin-bottom: 0.5rem;' : undefined} set:html={t(p)} />
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

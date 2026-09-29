@@ -1,0 +1,15 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo"><span class="brand-name-dot highlight">Nijper.</span></div>
+      <p set:html={t('footer_text')} />
+    </div>
+  </div>
+</footer>

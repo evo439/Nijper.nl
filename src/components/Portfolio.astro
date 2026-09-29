@@ -1,0 +1,38 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { useTranslations, type Lang, type TKey } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+
+const { lang, class: className } = Astro.props;
+const t = useTranslations(lang);
+
+const projects: { title: string; url: string; tag: TKey; desc: TKey }[] = [
+  { title: 'Thalia Lustrum Festival', url: 'https://evo439.github.io/Lustrum-Festival2/', tag: 'port_tag_1', desc: 'port_desc_1' },
+  { title: 'Interactive Resume', url: 'https://roelnijhuis.nl', tag: 'port_tag_2', desc: 'port_desc_2' },
+];
+---
+
+<section id="portfolio" class:list={['portfolio', className]}>
+  <div class="container">
+    <SectionHeader title={t('port_title')} subtitle={t('port_subtitle')} />
+
+    <div class="portfolio-grid">
+      {
+        projects.map((p, i) => (
+          <div class={`portfolio-card glass-panel fade-up delay-${i + 1}`}>
+            <div class="portfolio-content">
+              <div class="tag">{t(p.tag)}</div>
+              <h3>{p.title}</h3>
+              <p>{t(p.desc)}</p>
+              <a href={p.url} target="_blank" rel="noopener noreferrer" class="link-arrow" set:html={t('port_btn')} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

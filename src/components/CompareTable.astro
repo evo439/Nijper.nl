@@ -1,0 +1,56 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { useTranslations, type Lang, type TKey } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+
+// [feature, included in free check, included in full report]
+const rows: [TKey, boolean, boolean][] = [
+  ['comp_td_seo', true, true],
+  ['comp_td_perf', true, true],
+  ['comp_td_geo', false, true],
+  ['comp_td_usability', false, true],
+  ['comp_td_full_report', false, true],
+];
+---
+
+<section id="compare" class="compare-section">
+  <div class="container">
+    <SectionHeader title={t('compare_title')} subtitle={t('compare_subtitle')} />
+    <div class="table-responsive glass-panel fade-up compare-table-container">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>{t('comp_th_feature')}</th>
+            <th class="paid">{t('comp_th_free')}</th>
+            <th class="highlight">{t('comp_th_paid')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map(([feature, free, paid]) => (
+              <tr>
+                <td class="compare-cell feature">{t(feature)}</td>
+                {[free, paid].map((yes) => (
+                  <td class="compare-cell">
+                    {yes ? (
+                      <img src="/assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20" />
+                    ) : (
+                      <span class="cross-icon" aria-label="✕">✕</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+          <tr>
+            <td class="compare-cell feature">{t('comp_td_price')}</td>
+            <td class="compare-cell" style="font-weight: 600;">{t('comp_td_price_free')}</td>
+            <td class="compare-cell" style="font-weight: 600;">&euro;50,-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

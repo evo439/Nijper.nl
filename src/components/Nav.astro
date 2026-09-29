@@ -1,0 +1,53 @@
+---
+import { path, useTranslations, type Lang, type PageId } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+}
+
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+const onHome = page === 'home';
+const other: Lang = lang === 'nl' ? 'en' : 'nl';
+const homeHref = path('home', lang);
+---
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href={homeHref} class="logo"><span class="brand-name-dot highlight">Nijper.</span></a>
+    <button class="hamburger" type="button" aria-label={t('menu_toggle')} aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul class="nav-links">
+      <li class="mobile-logo">
+        <a href={homeHref} class="logo"><span class="brand-name-dot highlight">Nijper.</span></a>
+      </li>
+      <li><a href={onHome ? '#hero' : homeHref}>{t('nav_home')}</a></li>
+      <li><a href={path('about', lang)}>{t('nav_about')}</a></li>
+      <li><a href={path('services', lang)}>{t('nav_services')}</a></li>
+      <li><a href={onHome ? '#contact' : path('contact', lang)}>{t('nav_contact')}</a></li>
+      <li class="lang-switch">
+        {
+          (['en', 'nl'] as const).map((l, i) => (
+            <>
+              {i > 0 && ' | '}
+              <a
+                href={l === lang ? path(page, lang) : path(page, other)}
+                class:list={['lang-btn', { active: l === lang }]}
+                hreflang={l}
+                lang={l}
+                aria-current={l === lang ? 'true' : undefined}
+              >
+                {l.toUpperCase()}
+              </a>
+            </>
+          ))
+        }
+      </li>
+      <li><a href={path('check', lang)} class="btn btn-primary">{t('nav_websiteCheck')}</a></li>
+    </ul>
+  </div>
+</nav>

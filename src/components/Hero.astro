@@ -1,0 +1,32 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<header id="hero" class="hero">
+  <div class="hero-bg">
+    <div class="gradient-sphere sphere-1"></div>
+    <div class="gradient-sphere sphere-2"></div>
+  </div>
+  <div class="container hero-content">
+    <h1 class="fade-up" data-typewriter set:html={t('hero_title')} />
+    <p class="subtitle fade-up-hero delay-1">{t('hero_subtitle')}</p>
+    <a href="#contact" class="btn btn-large btn-glow fade-up-hero delay-2">{t('hero_btn')}</a>
+  </div>
+</header>
+
+<script>
+  import { typeWriterHTML } from '../scripts/typewriter';
+
+  const title = document.querySelector<HTMLElement>('[data-typewriter]');
+  const revealRest = () =>
+    document.querySelectorAll('.fade-up-hero').forEach((el) => el.classList.add('visible'));
+
+  if (title && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    typeWriterHTML(title, title.innerHTML, 60, 1000, revealRest);
+  } else {
+    revealRest();
+  }
+</script>

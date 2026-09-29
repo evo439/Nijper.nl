@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import WebsiteCheck from '../components/WebsiteCheck.astro';
+import CompareTable from '../components/CompareTable.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang} page="check">
+  <WebsiteCheck lang={lang} />
+  <CompareTable lang={lang} />
+</Base>

@@ -1,0 +1,107 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<div id="team-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+  <div class="modal-content glass-panel">
+    <button type="button" class="close-modal" aria-label={t('modal_close')}>&times;</button>
+    <div class="modal-body">
+      <div class="modal-img-container">
+        <img id="modal-img" src="" alt="" />
+      </div>
+      <div class="modal-text">
+        <h3 id="modal-name"></h3>
+        <p id="modal-role" class="role highlight"></p>
+        <p id="modal-bio"></p>
+        <div id="modal-socials" class="modal-socials"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import type { Social } from '../data/team';
+
+  const modal = document.getElementById('team-modal')!;
+  const closeBtn = modal.querySelector<HTMLButtonElement>('.close-modal')!;
+  const img = document.getElementById('modal-img') as HTMLImageElement;
+  const name = document.getElementById('modal-name')!;
+  const role = document.getElementById('modal-role')!;
+  const bio = document.getElementById('modal-bio')!;
+  const socials = document.getElementById('modal-socials')!;
+  let opener: HTMLElement | null = null;
+
+  const isOpen = () => modal.classList.contains('show');
+
+  const hide = () => {
+    modal.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+    opener?.focus();
+  };
+
+  const open = (card: HTMLElement) => {
+    const d = card.dataset;
+    name.textContent = d.name ?? '';
+    role.textContent = d.role ?? '';
+    bio.textContent = d.bio ?? '';
+    img.src = d.img ?? '';
+    img.alt = d.name ?? '';
+
+    socials.replaceChildren(
+      ...(JSON.parse(d.socials ?? '[]') as Social[]).map((s) => {
+        const a = document.createElement('a');
+        a.href = s.url;
+        a.className = 'modal-social-link';
+        a.setAttribute('aria-label', s.alt);
+        if (!s.url.startsWith('mailto:')) {
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+        }
+        const icon = document.createElement('img');
+        icon.src = s.icon;
+        icon.alt = s.alt;
+        icon.className = 'modal-social-icon';
+        a.append(icon);
+        return a;
+      }),
+    );
+
+    opener = card;
+    modal.classList.add('show');
+    document.body.classList.add('no-scroll');
+    closeBtn.focus();
+    // History entry so the (mobile) back button closes the modal
+    history.pushState({ modalOpen: true }, '');
+  };
+
+  // Close via UI: also drop the history entry we pushed
+  const close = () => {
+    if (!isOpen()) return;
+    hide();
+    if (history.state?.modalOpen) history.back();
+  };
+
+  document.querySelectorAll<HTMLElement>('.team-card').forEach((card) => {
+    card.addEventListener('click', () => open(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(card);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) close();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+  window.addEventListener('popstate', () => {
+    if (isOpen()) hide();
+  });
+</script>

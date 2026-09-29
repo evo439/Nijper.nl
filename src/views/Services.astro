@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import Packages from '../components/Packages.astro';
+import ServicesSection from '../components/Services.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang} page="services">
+  <Packages lang={lang} headingLevel="h1" class="pb-tight" />
+  <ServicesSection lang={lang} class="pt-mid" />
+</Base>

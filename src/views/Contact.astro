@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactSection from '../components/Contact.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang} page="contact">
+  <ContactSection lang={lang} standalone />
+</Base>

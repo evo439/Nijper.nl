@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Team from '../components/Team.astro';
+import TeamModal from '../components/TeamModal.astro';
+import Services from '../components/Services.astro';
+import Packages from '../components/Packages.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Contact from '../components/Contact.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<Base lang={lang} page="home">
+  <Hero lang={lang} />
+  <Team lang={lang} />
+  <Services lang={lang} />
+  <Packages lang={lang} />
+  <Portfolio lang={lang} />
+  <Contact lang={lang} />
+  <TeamModal lang={lang} slot="after" />
+</Base>
