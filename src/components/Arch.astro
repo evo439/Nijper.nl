@@ -4,10 +4,14 @@ interface Props {
   class?: string;
   /** Draw the lines in on page load (used once, in the home hero) */
   animate?: boolean;
+  /** 404: the span has a gap in the middle and the lamp has dropped onto the deck */
+  broken?: boolean;
 }
 
-const { class: className, animate = false } = Astro.props;
-const hangers = [200, 280, 360, 440, 500, 560, 640, 720, 800];
+const { class: className, animate = false, broken = false } = Astro.props;
+const hangers = [200, 280, 360, 440, 500, 560, 640, 720, 800].filter((x) => !broken || x < 420 || x > 580);
+// Rib gap for the broken variant (pathLength=1): solid, gap, solid
+const ribDash = broken ? '0.4 0.2 0.4' : undefined;
 // y of the outer rib (quadratic from (120,140) via (500,-40) to (880,140)) at x
 const ribY = (x: number) => {
   const t = (x - 120) / 760;
@@ -23,12 +27,12 @@ const ribY = (x: number) => {
   preserveAspectRatio="xMidYMax meet"
 >
   <path class="line" pathLength="1" d="M0 140 H1000" stroke="currentColor" stroke-width="3" />
-  <path class="line" pathLength="1" d="M120 140 Q500 -40 880 140" stroke="currentColor" stroke-width="5" />
-  <path class="line" pathLength="1" d="M120 140 Q500 20 880 140" stroke="currentColor" stroke-width="2" />
+  <path class="line" pathLength="1" d="M120 140 Q500 -40 880 140" stroke="currentColor" stroke-width="5" stroke-dasharray={ribDash} />
+  <path class="line" pathLength="1" d="M120 140 Q500 20 880 140" stroke="currentColor" stroke-width="2" stroke-dasharray={ribDash} />
   <g stroke="currentColor" stroke-width="1.5">
     {hangers.map((x, i) => <path class="hanger" style={`--i:${i}`} pathLength="1" d={`M${x} 140 V${ribY(x).toFixed(1)}`} />)}
   </g>
-  <circle class="lamp" cx="500" cy="50" r="7" fill="var(--color-lamp)" />
+  <circle class="lamp" cx="500" cy={broken ? 133 : 50} r="7" fill="var(--color-lamp)" />
 </svg>
 
 <style>

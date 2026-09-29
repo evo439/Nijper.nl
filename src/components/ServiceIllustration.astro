@@ -108,31 +108,32 @@ const gridDots = Array.from({ length: 10 * 7 }, (_, i) => ({ x: 8 + (i % 10) * 1
   {
     name === 'essential' && (
       <>
-        {/* Proven templates: two behind, the chosen one in front */}
-        <g opacity="0.45" stroke-width="1.5">
-          <rect x="12" y="6" width="80" height="80" rx="3" />
-          <rect x="24" y="14" width="80" height="80" rx="3" fill="var(--illu-bg, var(--color-sky))" />
+        {/* Brand swatches applied to a page: your huisstijl, delivered fast */}
+        {/* Swatch fan: the client's brand colours */}
+        <g stroke-width="1.5" transform="translate(12 0)">
+          <rect x="12" y="44" width="14" height="52" rx="3" transform="rotate(-22 19 96)" fill="var(--illu-bg, var(--color-sky))" />
+          <rect x="12" y="44" width="14" height="52" rx="3" transform="rotate(-9 19 96)" fill="var(--color-lamp)" />
+          <rect x="12" y="44" width="14" height="52" rx="3" transform="rotate(4 19 96)" fill="currentColor" />
+          <circle cx="19" cy="90" r="2" fill="var(--illu-bg, var(--color-sky))" />
         </g>
-        <rect x="36" y="22" width="80" height="84" rx="3" fill="var(--illu-bg, var(--color-sky))" />
-        <path d="M36 34 H116" />
+        {/* The page, dressed in those colours */}
+        <rect x="42" y="12" width="84" height="92" rx="3" fill="var(--illu-bg, var(--color-sky))" />
+        <path d="M42 26 H126" />
+        <circle cx="52" cy="19" r="3.5" fill="var(--color-lamp)" stroke="none" />
+        <path d="M60 19 h22" stroke-width="1.5" />
+        <rect x="50" y="34" width="68" height="28" rx="2" fill="currentColor" stroke="none" />
+        <path d="M54 58 l10 -10 l8 7 l6 -5 l10 8" stroke="var(--illu-bg, var(--color-sky))" stroke-width="1.5" />
         <g stroke-width="1.5">
-          <circle cx="43" cy="28" r="1.5" />
-          <circle cx="49" cy="28" r="1.5" />
+          <path d="M50 72 h58" />
+          <path d="M50 80 h44" />
+          <path d="M50 88 h52" />
         </g>
-        <rect x="44" y="42" width="64" height="26" rx="2" />
-        <path d="M48 64 l10 -10 l8 7 l6 -5 l10 8" stroke-width="1.5" />
-        <g stroke-width="1.5">
-          <path d="M44 78 h56" />
-          <path d="M44 86 h42" />
-          <path d="M44 94 h50" />
-        </g>
-        {/* The pick */}
-        <circle cx="116" cy="22" r="6" fill="var(--color-lamp)" stroke="none" />
+        <rect x="50" y="94" width="22" height="5" rx="2.5" fill="var(--color-lamp)" stroke="none" />
         {/* Speed: live quickly */}
         <g stroke-width="2.5">
-          <path d="M128 52 h24" />
-          <path d="M134 64 h18" />
-          <path d="M140 76 h12" />
+          <path d="M134 50 h20" />
+          <path d="M139 62 h15" />
+          <path d="M144 74 h10" />
         </g>
       </>
     )

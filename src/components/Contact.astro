@@ -36,6 +36,8 @@ const messages = {
       data-messages={JSON.stringify(messages)}
     >
       <input type="hidden" name="access_key" value="9a0f52ef-0b63-43bf-ac1f-6d82a42c3c98" />
+      {/* Honeypot: hidden from people, bots tick it and Web3Forms then rejects the submission */}
+      <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="grid gap-6 sm:grid-cols-2">
         <div class="field">
           <label for="name">{t('contact_ph_name')}</label>

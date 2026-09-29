@@ -14,7 +14,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   home: {
     nl: {
       title: 'Nijper | Website Bouwer in Nijmegen voor Horeca & Festivals',
-      description: 'Professionele website laten bouwen in Nijmegen? Nijper is dé website bouwer voor cafés, restaurants en festivals, gespecialiseerd in SEO.',
+      description: 'Website laten bouwen in Nijmegen? Nijper is dé website bouwer voor cafés, restaurants en festivals: snel, vindbaar in Google en in jouw huisstijl.',
       keywords: 'website bouwer Nijmegen, webdesign Nijmegen, SEO Nijmegen, horeca website bouwen, festival website bouwen',
       ogTitle: 'Nijper | Website Bouwer in Nijmegen voor Horeca & Festivals',
       ogDescription: 'Professionele website laten bouwen in Nijmegen? Nijper is dé website bouwer voor cafés, restaurants en festivals, gespecialiseerd in SEO.',
@@ -23,7 +23,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
     },
     en: {
       title: 'Nijper | Web Developer in Nijmegen for Hospitality & Festivals',
-      description: 'Looking for a professional website built in Nijmegen? Nijper builds websites for cafés, restaurants and festivals, specialised in SEO.',
+      description: 'Need a professional website in Nijmegen? Nijper builds websites for cafés, restaurants and festivals: fast, easy to find on Google and in your own brand style.',
       keywords: 'web developer Nijmegen, web design Nijmegen, SEO Nijmegen, hospitality website, festival website',
       ogTitle: 'Nijper | Web Developer in Nijmegen for Hospitality & Festivals',
       ogDescription: 'Looking for a professional website built in Nijmegen? Nijper builds websites for cafés, restaurants and festivals, specialised in SEO.',
@@ -34,7 +34,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   about: {
     nl: {
       title: 'Over Ons | Nijper Website Bouwer in Nijmegen',
-      description: 'Maak kennis met het team achter Nijper. Wij zijn gepassioneerde website bouwers uit Nijmegen die robuuste websites bouwen voor lokale bedrijven.',
+      description: 'Maak kennis met Roel en Sarah, het team achter Nijper: gepassioneerde website bouwers uit Nijmegen die robuuste websites bouwen voor lokale bedrijven.',
       keywords: 'over ons, website bouwer Nijmegen, webdesign team, Roel en Sarah',
       ogTitle: 'Over Ons | Nijper Website Bouwer in Nijmegen',
       ogDescription: 'Maak kennis met het team achter Nijper. Wij zijn gepassioneerde website bouwers uit Nijmegen.',
@@ -43,7 +43,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
     },
     en: {
       title: 'About Us | Nijper Web Developer in Nijmegen',
-      description: 'Meet the team behind Nijper. We are passionate web developers from Nijmegen building robust websites for local businesses.',
+      description: 'Meet Roel and Sarah, the team behind Nijper: passionate web developers from Nijmegen who build fast websites for local cafés, restaurants and festivals.',
       keywords: 'about us, web developer Nijmegen, web design team, Roel and Sarah',
       ogTitle: 'About Us | Nijper Web Developer in Nijmegen',
       ogDescription: 'Meet the team behind Nijper. We are passionate web developers from Nijmegen.',
@@ -54,7 +54,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   services: {
     nl: {
       title: 'Onze Diensten | SEO & Webdesign in Nijmegen | Nijper',
-      description: 'Van optimale Google SEO en Sanity CMS tot ontwikkeling op maat. Bekijk de diensten en pakketten van Nijper Website Bouwer.',
+      description: 'Van optimale Google SEO en Sanity CMS tot ontwikkeling op maat. Bekijk de diensten en website pakketten van Nijper, website bouwer voor horeca in Nijmegen.',
       keywords: 'webdesign diensten, SEO Nijmegen, Sanity CMS, website pakketten, website bouwer',
       ogTitle: 'Onze Diensten | SEO & Webdesign in Nijmegen | Nijper',
       ogDescription: 'Van optimale Google SEO en Sanity CMS tot ontwikkeling op maat. Bekijk de diensten en pakketten van Nijper.',
@@ -63,7 +63,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
     },
     en: {
       title: 'Our Services | SEO & Web Design in Nijmegen | Nijper',
-      description: 'From optimal Google SEO and Sanity CMS to custom development. Explore the services and packages of Nijper.',
+      description: 'From optimal Google SEO and Sanity CMS to custom development. Explore the services and website packages of Nijper, web developer for hospitality in Nijmegen.',
       keywords: 'web design services, SEO Nijmegen, Sanity CMS, website packages, web developer',
       ogTitle: 'Our Services | SEO & Web Design in Nijmegen | Nijper',
       ogDescription: 'From optimal Google SEO and Sanity CMS to custom development. Explore the services and packages of Nijper.',
@@ -74,7 +74,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   contact: {
     nl: {
       title: 'Contact | Nijper Website Bouwer in Nijmegen',
-      description: 'Klaar voor een nieuwe website? Neem contact op met Nijper, jouw website bouwer in Nijmegen, voor een vrijblijvend gesprek.',
+      description: 'Klaar voor een nieuwe website? Neem contact op met Nijper, jouw website bouwer in Nijmegen, voor een vrijblijvend gesprek over je café, restaurant of festival.',
       keywords: 'contact webdesign Nijmegen, website bouwer, SEO advies, horeca website',
       ogTitle: 'Contact | Nijper Website Bouwer in Nijmegen',
       ogDescription: 'Klaar voor een nieuwe website? Neem contact op met Nijper, jouw website bouwer in Nijmegen.',
@@ -83,7 +83,7 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
     },
     en: {
       title: 'Contact | Nijper Web Developer in Nijmegen',
-      description: 'Ready for a new website? Get in touch with Nijper, your web developer in Nijmegen, for a free consultation.',
+      description: 'Ready for a new website? Get in touch with Nijper, your web developer in Nijmegen, for a free consultation about your café, restaurant or festival.',
       keywords: 'contact web design Nijmegen, web developer, SEO advice, hospitality website',
       ogTitle: 'Contact | Nijper Web Developer in Nijmegen',
       ogDescription: 'Ready for a new website? Get in touch with Nijper, your web developer in Nijmegen.',
@@ -94,39 +94,39 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   check: {
     nl: {
       title: 'Gratis Website Check & SEO Rapport | Nijper',
-      description: 'Test gratis de prestaties, SEO en toegankelijkheid van jouw website met de Nijper Website Check tool.',
+      description: 'Test gratis hoe snel en vindbaar jouw website is. De Nijper Website Check meet je performance- en SEO-score met Google Lighthouse, direct zichtbaar.',
       keywords: 'gratis website check, SEO rapport, website prestaties, website bouwer Nijmegen',
       ogTitle: 'Gratis Website Check & SEO Rapport | Nijper',
-      ogDescription: 'Test gratis de prestaties, SEO en toegankelijkheid van jouw website met de Nijper Website Check tool.',
+      ogDescription: 'Test gratis hoe snel en vindbaar jouw website is, met de performance- en SEO-score van Google Lighthouse.',
       twitterTitle: 'Gratis Website Check & SEO Rapport',
-      twitterDescription: 'Test gratis de prestaties, SEO en toegankelijkheid van jouw website.',
+      twitterDescription: 'Test gratis hoe snel en vindbaar jouw website is.',
     },
     en: {
       title: 'Free Website Check & SEO Report | Nijper',
-      description: 'Test the performance, SEO and accessibility of your website for free with the Nijper Website Check tool.',
+      description: 'Test for free how fast and findable your website is. The Nijper Website Check measures your performance and SEO scores with Google Lighthouse, instantly.',
       keywords: 'free website check, SEO report, website performance, web developer Nijmegen',
       ogTitle: 'Free Website Check & SEO Report | Nijper',
-      ogDescription: 'Test the performance, SEO and accessibility of your website for free with the Nijper Website Check tool.',
+      ogDescription: 'Test for free how fast and findable your website is, with performance and SEO scores from Google Lighthouse.',
       twitterTitle: 'Free Website Check & SEO Report',
-      twitterDescription: 'Test the performance, SEO and accessibility of your website for free.',
+      twitterDescription: 'Test for free how fast and findable your website is.',
     },
   },
   designs: {
     nl: {
       title: 'Voorbeeldontwerpen | Websites voor Horeca & Festivals | Nijper',
-      description: 'Bekijk voorbeeldontwerpen van Nijper: complete websites voor een festival en een eetcafé. Zo kan de website van jouw zaak in Nijmegen eruitzien.',
+      description: 'Bekijk voorbeeldontwerpen van Nijper: complete websites voor een festival en een eetcafé. Zo zie je welke kwaliteit je krijgt, in een eigen ontwerp op maat.',
       keywords: 'voorbeeld website horeca, festival website voorbeeld, webdesign Nijmegen, website ontwerp',
       ogTitle: 'Voorbeeldontwerpen | Nijper',
-      ogDescription: 'Complete voorbeeldwebsites voor een festival en een eetcafé. Zo kan jouw website eruitzien.',
+      ogDescription: 'Complete voorbeeldwebsites voor een festival en een eetcafé. Zo zie je welke kwaliteit je van ons krijgt.',
       twitterTitle: 'Voorbeeldontwerpen | Nijper',
       twitterDescription: 'Complete voorbeeldwebsites voor een festival en een eetcafé.',
     },
     en: {
       title: 'Example Designs | Websites for Hospitality & Festivals | Nijper',
-      description: 'Explore example designs by Nijper: complete websites for a festival and a café. See what the website for your business in Nijmegen could look like.',
+      description: 'Explore example designs by Nijper: complete websites for a festival and a café. See the quality you can expect, delivered as an original design for you.',
       keywords: 'hospitality website example, festival website example, web design Nijmegen, website design',
       ogTitle: 'Example designs | Nijper',
-      ogDescription: 'Complete example websites for a festival and a café. See what your website could look like.',
+      ogDescription: 'Complete example websites for a festival and a café. See the quality you can expect from us.',
       twitterTitle: 'Example designs | Nijper',
       twitterDescription: 'Complete example websites for a festival and a café.',
     },
@@ -171,12 +171,32 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
       twitterDescription: 'A hospitality website in the "Menu card" style.',
     },
   },
+  notFound: {
+    nl: {
+      title: 'Pagina niet gevonden | Nijper',
+      description: 'Deze pagina bestaat niet (meer). Ga terug naar de homepage van Nijper, website bouwer in Nijmegen.',
+      keywords: '',
+      ogTitle: 'Pagina niet gevonden | Nijper',
+      ogDescription: 'Deze pagina bestaat niet (meer).',
+      twitterTitle: 'Pagina niet gevonden | Nijper',
+      twitterDescription: 'Deze pagina bestaat niet (meer).',
+    },
+    en: {
+      title: 'Page not found | Nijper',
+      description: 'This page does not exist (any more). Go back to the Nijper homepage, web developer in Nijmegen.',
+      keywords: '',
+      ogTitle: 'Page not found | Nijper',
+      ogDescription: 'This page does not exist (any more).',
+      twitterTitle: 'Page not found | Nijper',
+      twitterDescription: 'This page does not exist (any more).',
+    },
+  },
 };
 
 const common = {
   '@context': 'https://schema.org',
   name: 'Nijper Web Solutions',
-  image: 'https://nijper.nl/assets/nijper-website-bouwer-nijmegen.webp',
+  image: 'https://nijper.nl/assets/nijper-website-bouwer-nijmegen.png',
   '@id': 'https://nijper.nl/#organization',
   url: 'https://nijper.nl',
   geo: { '@type': 'GeoCoordinates', latitude: 51.8126, longitude: 5.8372 },
@@ -192,7 +212,7 @@ const common = {
 /** Same structured data as the original pages: LocalBusiness on home, ProfessionalService elsewhere. */
 export function schemaFor(page: PageId, lang: Lang) {
   // Demo sites describe fictional businesses: no Nijper business schema there
-  if (page === 'demoLineup' || page === 'demoMenu') return null;
+  if (page === 'demoLineup' || page === 'demoMenu' || page === 'notFound') return null;
   if (page === 'home') {
     return {
       ...common,

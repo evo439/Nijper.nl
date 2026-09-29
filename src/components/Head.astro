@@ -12,12 +12,14 @@ interface Props {
   themeColor?: string;
 }
 
-const { lang, page, noindex = false, themeColor = '#dfe7e6' } = Astro.props;
+const { lang, page, themeColor = '#dfe7e6' } = Astro.props;
+const isNotFound = page === 'notFound';
+const noindex = Astro.props.noindex || isNotFound;
 const m = meta[page][lang];
 const site = 'https://nijper.nl';
 const abs = (p: string) => `${site}${p}`;
 const canonical = abs(routes[page][lang]);
-const ogImage = `${site}/assets/nijper-website-bouwer-nijmegen.webp`;
+const ogImage = `${site}/assets/${lang === 'nl' ? 'nijper-website-bouwer-nijmegen' : 'nijper-web-developer-nijmegen'}.png`;
 const schema = schemaFor(page, lang);
 ---
 
@@ -26,7 +28,7 @@ const schema = schemaFor(page, lang);
 <title>{m.title}</title>
 <meta name="description" content={m.description} />
 <meta name="keywords" content={m.keywords} />
-<link rel="canonical" href={canonical} />
+{!isNotFound && <link rel="canonical" href={canonical} />}
 {noindex && <meta name="robots" content="noindex, follow" />}
 
 <meta property="og:title" content={m.ogTitle} />
@@ -34,7 +36,10 @@ const schema = schemaFor(page, lang);
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="website" />
 <meta property="og:image" content={ogImage} />
-<meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_US'} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={m.ogTitle} />
+<meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_GB'} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={m.twitterTitle} />
 <meta name="twitter:description" content={m.twitterDescription} />
@@ -45,13 +50,21 @@ const schema = schemaFor(page, lang);
 <meta name="geo.position" content="51.8126;5.8372" />
 <meta name="ICBM" content="51.8126, 5.8372" />
 
-<link rel="alternate" hreflang="nl" href={abs(routes[page].nl)} />
-<link rel="alternate" hreflang="en" href={abs(routes[page].en)} />
-<link rel="alternate" hreflang="x-default" href={abs(routes[page].nl)} />
+{
+  !isNotFound && (
+    <>
+      <link rel="alternate" hreflang="nl" href={abs(routes[page].nl)} />
+      <link rel="alternate" hreflang="en" href={abs(routes[page].en)} />
+      <link rel="alternate" hreflang="x-default" href={abs(routes[page].nl)} />
+    </>
+  )
+}
 
 {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
 <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
-<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <meta name="theme-color" content={themeColor} />

@@ -65,7 +65,7 @@ const links: { page: PageId; label: string }[] = [
         ))
       }
       <li>
-        <a href={path(page, other)} hreflang={other} lang={other} class="block py-2 hover:text-steel lg:py-0">
+        <a href={path(page === 'notFound' ? 'home' : page, other)} hreflang={other} lang={other} class="block py-2 hover:text-steel lg:py-0">
           {other.toUpperCase()}
           <span class="sr-only">{other === 'en' ? ' (English)' : ' (Nederlands)'}</span>
         </a>

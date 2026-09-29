@@ -1,0 +1,28 @@
+---
+/**
+ * GitHub Pages serves this for every unknown URL, in either language, so it
+ * speaks Dutch first with an English line underneath.
+ */
+import Base from '../layouts/Base.astro';
+import Arch from '../components/Arch.astro';
+import { path } from '../i18n/utils';
+---
+
+<Base lang="nl" page="notFound">
+  <section class="wrap grid gap-8 pt-10 pb-24 sm:pb-32" aria-labelledby="nf-title">
+    <Arch broken class="max-w-3xl text-steel" />
+    <div class="grid gap-4">
+      <p class="font-display text-sm font-medium text-steel tabular-nums font-stretch-[80%]">404</p>
+      <h1 id="nf-title" class="h1 max-w-[16ch]">Deze pagina bestaat niet</h1>
+      <p class="lede">
+        Misschien is de link verouderd of zit er een typfout in het adres. Via de homepage vind je snel weer je weg.
+      </p>
+      <p class="lede" lang="en">This page doesn't exist. The link may be out of date, or the address may contain a typo.</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a href={path('home', 'nl')} class="btn-primary">Naar de homepage</a>
+      <a href={path('contact', 'nl')} class="btn-secondary">Neem contact op</a>
+      <a href={path('home', 'en')} lang="en" class="btn-secondary">English homepage</a>
+    </div>
+  </section>
+</Base>

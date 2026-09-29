@@ -21,6 +21,8 @@ export const routes = {
   // Demo sites for fictional clients (noindex, not in the sitemap)
   demoLineup: { nl: '/ontwerpen/line-up', en: '/en/designs/line-up' },
   demoMenu: { nl: '/ontwerpen/menukaart', en: '/en/designs/menu' },
+  // Served by GitHub Pages for any unknown URL (noindex, no canonical/hreflang)
+  notFound: { nl: '/404', en: '/404' },
 } as const;
 export type PageId = keyof typeof routes;
 
