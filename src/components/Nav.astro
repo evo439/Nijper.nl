@@ -8,46 +8,94 @@ interface Props {
 
 const { lang, page } = Astro.props;
 const t = useTranslations(lang);
-const onHome = page === 'home';
 const other: Lang = lang === 'nl' ? 'en' : 'nl';
-const homeHref = path('home', lang);
+
+const links: { page: PageId; label: string }[] = [
+  { page: 'about', label: t('nav_about') },
+  { page: 'services', label: t('nav_services') },
+  { page: 'contact', label: t('nav_contact') },
+];
 ---
 
-<nav class="navbar">
-  <div class="container nav-container">
-    <a href={homeHref} class="logo"><span class="brand-name-dot highlight">Nijper.</span></a>
-    <button class="hamburger" type="button" aria-label={t('menu_toggle')} aria-expanded="false">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+<a
+  href="#main"
+  class="sr-only z-50 bg-ink px-4 py-3 font-display text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+>
+  {lang === 'nl' ? 'Naar de inhoud' : 'Skip to content'}
+</a>
+
+<header
+  data-nav
+  class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-sky/95 backdrop-blur-sm transition-colors data-scrolled:border-rule"
+>
+  <nav class="wrap flex h-18 items-center justify-between gap-6 font-display" aria-label={lang === 'nl' ? 'Hoofdmenu' : 'Main'}>
+    <a href={path('home', lang)} class="text-2xl font-extrabold text-steel font-stretch-[125%]" aria-label="Nijper, home">
+      Nijper
+    </a>
+
+    <button
+      type="button"
+      data-menu-toggle
+      class="-mr-2 grid size-11 place-items-center md:hidden"
+      aria-controls="site-menu"
+      aria-expanded="false"
+      aria-label={t('menu_toggle')}
+    >
+      <span class="relative block h-0.5 w-6 bg-ink transition before:absolute before:-top-2 before:h-0.5 before:w-6 before:bg-ink before:transition after:absolute after:top-2 after:h-0.5 after:w-6 after:bg-ink after:transition in-aria-expanded:bg-transparent in-aria-expanded:before:top-0 in-aria-expanded:before:rotate-45 in-aria-expanded:after:top-0 in-aria-expanded:after:-rotate-45"></span>
     </button>
-    <ul class="nav-links">
-      <li class="mobile-logo">
-        <a href={homeHref} class="logo"><span class="brand-name-dot highlight">Nijper.</span></a>
+
+    <ul
+      id="site-menu"
+      class="fixed inset-x-0 top-18 bottom-0 hidden flex-col gap-1 bg-sky px-4 pt-6 text-2xl font-stretch-[110%] data-open:flex sm:px-8 md:static md:flex md:flex-row md:items-center md:gap-7 md:bg-transparent md:p-0 md:text-[0.95rem] md:font-stretch-[95%]"
+    >
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={path(l.page, lang)}
+              class="block py-2 hover:text-steel aria-[current=page]:text-steel aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8 md:py-0"
+              aria-current={l.page === page ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href={path(page, other)} hreflang={other} lang={other} class="block py-2 hover:text-steel md:py-0">
+          {other.toUpperCase()}
+          <span class="sr-only">{other === 'en' ? ' (English)' : ' (Nederlands)'}</span>
+        </a>
       </li>
-      <li><a href={onHome ? '#hero' : homeHref}>{t('nav_home')}</a></li>
-      <li><a href={path('about', lang)}>{t('nav_about')}</a></li>
-      <li><a href={path('services', lang)}>{t('nav_services')}</a></li>
-      <li><a href={onHome ? '#contact' : path('contact', lang)}>{t('nav_contact')}</a></li>
-      <li class="lang-switch">
-        {
-          (['en', 'nl'] as const).map((l, i) => (
-            <>
-              {i > 0 && ' | '}
-              <a
-                href={l === lang ? path(page, lang) : path(page, other)}
-                class:list={['lang-btn', { active: l === lang }]}
-                hreflang={l}
-                lang={l}
-                aria-current={l === lang ? 'true' : undefined}
-              >
-                {l.toUpperCase()}
-              </a>
-            </>
-          ))
-        }
+      <li class="mt-4 md:mt-0">
+        <a href={path('check', lang)} class="btn-primary !px-5 !py-3 text-[0.95rem]" aria-current={page === 'check' ? 'page' : undefined}>
+          {t('nav_websiteCheck')}
+        </a>
       </li>
-      <li><a href={path('check', lang)} class="btn btn-primary">{t('nav_websiteCheck')}</a></li>
     </ul>
-  </div>
-</nav>
+  </nav>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]')!;
+  const toggle = nav.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const menu = nav.querySelector<HTMLElement>('#site-menu')!;
+
+  const onScroll = () => nav.toggleAttribute('data-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const setOpen = (open: boolean) => {
+    menu.toggleAttribute('data-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('overflow-hidden', open);
+  };
+  toggle.addEventListener('click', () => setOpen(!menu.hasAttribute('data-open')));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.hasAttribute('data-open')) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

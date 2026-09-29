@@ -1,5 +1,6 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import { Image } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
 import { team } from '../data/team';
 import { useTranslations, type Lang } from '../i18n/utils';
 
@@ -11,37 +12,116 @@ interface Props {
 
 const { lang, headingLevel = 'h2', class: className } = Astro.props;
 const t = useTranslations(lang);
+const Name = headingLevel === 'h1' ? 'h2' : 'h3';
 ---
 
-<section id="about" class:list={['about', className]}>
-  <div class="container">
-    <SectionHeader as={headingLevel} title={t('about_title')} subtitle={t('about_subtitle')} />
+<section id="about" class:list={['py-20 sm:py-28', className]} aria-labelledby="about-title">
+  <div class="wrap grid gap-14">
+    <SectionHead as={headingLevel} id="about-title" title={t('about_title')} subtitle={t('about_subtitle')} />
 
-    <div class="team-grid">
+    <div class="grid gap-14 sm:grid-cols-2 sm:gap-10 lg:gap-16">
       {
-        team.map((m, i) => (
-          <div
-            class={`team-card glass-panel fade-up delay-${i + 1}`}
-            role="button"
-            tabindex="0"
-            aria-haspopup="dialog"
-            data-name={m.name}
-            data-role={t(m.role)}
-            data-bio={t(m.bio)}
-            data-img={m.img}
-            data-socials={JSON.stringify(m.socials)}
-          >
-            <div class="card-img">
-              <img src={m.img} alt={m.alt} width="400" height="400" loading="lazy" />
+        team.map((m) => (
+          <article class="grid content-start gap-5">
+            {/* Arched frame: the bridge motif, once more */}
+            <div class="aspect-[4/5] max-w-sm overflow-hidden rounded-t-full bg-steel">
+              <Image src={m.img} alt={m.alt} widths={[320, 480, 640]} sizes="(min-width: 640px) 24rem, 100vw" class="size-full object-cover" />
             </div>
-            <div class="card-content">
-              <h3 class="cursor-pointer">{m.name}</h3>
-              <p class="role highlight cursor-pointer">{t(m.role)}</p>
-              <p class="cursor-pointer">{t(m.bioShort)}</p>
+            <div class="grid gap-1">
+              <Name class="font-display text-3xl font-extrabold font-stretch-[115%]">{m.name}</Name>
+              <p class="font-display font-semibold text-steel">{t(m.role)}</p>
             </div>
-          </div>
+            <p class="max-w-[42ch] text-slate">{t(m.bioShort)}</p>
+            <button type="button" class="link justify-self-start text-left" data-open-dialog={`team-${m.name.toLowerCase()}`} aria-haspopup="dialog">
+              {t('team_more')} {m.name}
+            </button>
+          </article>
         ))
       }
     </div>
   </div>
+
+  {
+    team.map((m) => (
+      <dialog
+        id={`team-${m.name.toLowerCase()}`}
+        class="team-dialog m-auto max-h-[90dvh] w-[min(56rem,calc(100%-2rem))] overflow-y-auto bg-sky p-0 text-ink backdrop:bg-ink/70"
+        aria-labelledby={`team-${m.name.toLowerCase()}-name`}
+      >
+        <div class="grid gap-8 p-6 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] sm:p-10">
+          <div class="aspect-[4/5] max-w-60 overflow-hidden rounded-t-full bg-steel">
+            <Image src={m.img} alt="" widths={[240, 480]} sizes="15rem" loading="lazy" class="size-full object-cover" />
+          </div>
+          <div class="grid content-start gap-4">
+            <div class="grid gap-1">
+              <p id={`team-${m.name.toLowerCase()}-name`} class="font-display text-3xl font-extrabold font-stretch-[115%]">{m.name}</p>
+              <p class="font-display font-semibold text-steel">{t(m.role)}</p>
+            </div>
+            <p class="max-w-[62ch]">{t(m.bio)}</p>
+            <ul class="mt-2 flex flex-wrap gap-x-6 gap-y-2">
+              {m.socials.map((s) => (
+                <li>
+                  <a
+                    href={s.url}
+                    class="link"
+                    {...(s.url.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                  >
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <form method="dialog" class="absolute top-3 right-3">
+          <button class="grid size-11 place-items-center font-display text-3xl leading-none hover:text-steel" aria-label={t('modal_close')}>
+            ×
+          </button>
+        </form>
+      </dialog>
+    ))
+  }
 </section>
+
+<script>
+  // Native <dialog> per team member. Extra behaviour: closes on backdrop click, and
+  // the (mobile) back button closes it instead of leaving the page.
+  document.querySelectorAll<HTMLButtonElement>('[data-open-dialog]').forEach((btn) => {
+    const dialog = document.getElementById(btn.dataset.openDialog!) as HTMLDialogElement;
+
+    btn.addEventListener('click', () => {
+      dialog.showModal();
+      history.pushState({ dialog: dialog.id }, '');
+    });
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    // Closed via Esc, × or backdrop: drop the history entry we pushed
+    dialog.addEventListener('close', () => {
+      if (history.state?.dialog === dialog.id) history.back();
+    });
+  });
+
+  window.addEventListener('popstate', () => {
+    document.querySelectorAll<HTMLDialogElement>('dialog.team-dialog[open]').forEach((d) => d.close());
+  });
+</script>
+
+<style>
+  .team-dialog[open] {
+    position: fixed;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .team-dialog[open] {
+      animation: rise 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+</style>

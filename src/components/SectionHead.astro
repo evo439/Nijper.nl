@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  /** The page's main heading uses h1, sections use h2 */
+  as?: 'h1' | 'h2';
+  id?: string;
+  class?: string;
+}
+
+const { title, subtitle, as: Tag = 'h2', id, class: className } = Astro.props;
+---
+
+<div class:list={['grid content-start gap-4', className]}>
+  <Tag id={id} class:list={[Tag === 'h1' ? 'h1' : 'h2']}>{title}</Tag>
+  {subtitle && <p class="lede">{subtitle}</p>}
+</div>

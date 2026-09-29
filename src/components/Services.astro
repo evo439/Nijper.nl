@@ -1,5 +1,5 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import SectionHead from './SectionHead.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
@@ -10,29 +10,25 @@ interface Props {
 const { lang, class: className } = Astro.props;
 const t = useTranslations(lang);
 
-const services: { icon: string; alt: string; title: TKey; desc: TKey }[] = [
-  { icon: '/assets/SEO.webp', alt: 'SEO Optimalisatie Logo', title: 'srv_custom1_title', desc: 'srv_custom1_desc' },
-  { icon: '/assets/Logo_of_Kirby_CMS-white.webp', alt: 'Kirby CMS Logo', title: 'srv_custom2_title', desc: 'srv_custom2_desc' },
-  { icon: '/assets/persoonlijke-aandacht.webp', alt: 'Persoonlijke Aandacht Icon', title: 'srv_custom3_title', desc: 'srv_custom3_desc' },
+const services: { title: TKey; desc: TKey }[] = [
+  { title: 'srv_custom1_title', desc: 'srv_custom1_desc' },
+  { title: 'srv_custom2_title', desc: 'srv_custom2_desc' },
+  { title: 'srv_custom3_title', desc: 'srv_custom3_desc' },
 ];
 ---
 
-<section id="services" class:list={['services', className]}>
-  <div class="container">
-    <SectionHeader title={t('services_title')} subtitle={t('services_subtitle')} />
-
-    <div class="services-grid">
+<section id="services" class:list={['py-20 sm:py-28', className]} aria-labelledby="services-title">
+  <div class="wrap grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+    <SectionHead id="services-title" title={t('services_title')} subtitle={t('services_subtitle')} class="lg:sticky lg:top-28 lg:self-start" />
+    <ul class="ruled">
       {
-        services.map((s, i) => (
-          <div class={`service-card glass-panel fade-up delay-${i + 1}`}>
-            <div class="icon">
-              <img src={s.icon} alt={s.alt} style="height: 72px; width: auto;" width="72" height="72" loading="lazy" />
-            </div>
-            <h3>{t(s.title)}</h3>
-            <p>{t(s.desc)}</p>
-          </div>
+        services.map((s) => (
+          <li class="grid gap-3 py-8 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] sm:gap-8">
+            <h3 class="h3">{t(s.title)}</h3>
+            <p class="max-w-[60ch] text-slate">{t(s.desc)}</p>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>

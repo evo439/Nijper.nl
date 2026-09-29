@@ -1,9 +1,11 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import SectionHead from './SectionHead.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
 const t = useTranslations(lang);
+const yes = lang === 'nl' ? 'Inbegrepen' : 'Included';
+const no = lang === 'nl' ? 'Niet inbegrepen' : 'Not included';
 
 // [feature, included in free check, included in full report]
 const rows: [TKey, boolean, boolean][] = [
@@ -15,39 +17,37 @@ const rows: [TKey, boolean, boolean][] = [
 ];
 ---
 
-<section id="compare" class="compare-section">
-  <div class="container">
-    <SectionHeader title={t('compare_title')} subtitle={t('compare_subtitle')} />
-    <div class="table-responsive glass-panel fade-up compare-table-container">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th>{t('comp_th_feature')}</th>
-            <th class="paid">{t('comp_th_free')}</th>
-            <th class="highlight">{t('comp_th_paid')}</th>
+<section id="compare" class="bg-mist py-20 sm:py-28" aria-labelledby="compare-title">
+  <div class="wrap grid gap-12">
+    <SectionHead id="compare-title" title={t('compare_title')} subtitle={t('compare_subtitle')} />
+    <!-- relative: keeps the absolutely positioned sr-only labels inside the scroll box -->
+    <div class="relative min-w-0 overflow-x-auto">
+      <table class="w-full table-fixed border-t-2 border-ink text-left hyphens-auto [&_th]:break-words">
+        <thead class="font-display text-sm font-bold font-stretch-[105%]">
+          <tr class="border-b border-rule">
+            <th scope="col" class="w-1/2 py-4 pr-4 font-bold text-slate">{t('comp_th_feature')}</th>
+            <th scope="col" class="w-1/4 px-2 sm:px-4 py-4">{t('comp_th_free')}</th>
+            <th scope="col" class="w-1/4 bg-steel px-2 sm:px-4 py-4 text-white">{t('comp_th_paid')}</th>
           </tr>
         </thead>
         <tbody>
           {
             rows.map(([feature, free, paid]) => (
-              <tr>
-                <td class="compare-cell feature">{t(feature)}</td>
-                {[free, paid].map((yes) => (
-                  <td class="compare-cell">
-                    {yes ? (
-                      <img src="/assets/check-mark-svgrepo-com.svg" class="check-icon" alt="✓" width="20" height="20" />
-                    ) : (
-                      <span class="cross-icon" aria-label="✕">✕</span>
-                    )}
+              <tr class="border-b border-rule">
+                <th scope="row" class="py-4 pr-4 font-normal">{t(feature)}</th>
+                {[free, paid].map((included, i) => (
+                  <td class:list={['px-2 sm:px-4 py-4', { 'bg-steel/8': i === 1 }]}>
+                    <span class:list={['inline-block size-3 rounded-full', included ? 'bg-steel' : 'border-2 border-rule']} aria-hidden="true" />
+                    <span class="sr-only">{included ? yes : no}</span>
                   </td>
                 ))}
               </tr>
             ))
           }
           <tr>
-            <td class="compare-cell feature">{t('comp_td_price')}</td>
-            <td class="compare-cell" style="font-weight: 600;">{t('comp_td_price_free')}</td>
-            <td class="compare-cell" style="font-weight: 600;">&euro;50,-</td>
+            <th scope="row" class="py-5 pr-4 font-display font-bold">{t('comp_td_price')}</th>
+            <td class="px-2 sm:px-4 py-5 font-display text-xl font-extrabold">{t('comp_td_price_free')}</td>
+            <td class="bg-steel/8 px-2 sm:px-4 py-5 font-display text-xl font-extrabold tabular-nums">€50,-</td>
           </tr>
         </tbody>
       </table>

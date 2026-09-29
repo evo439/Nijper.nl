@@ -1,16 +1,15 @@
 ---
-import SectionHeader from './SectionHeader.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   lang: Lang;
-  /** Standalone contact page: form title becomes the page's h1, no section header */
+  /** Standalone contact page: the form title becomes the page's h1 */
   standalone?: boolean;
 }
 
 const { lang, standalone = false } = Astro.props;
 const t = useTranslations(lang);
-const Title = standalone ? 'h1' : 'h3';
+const Title = standalone ? 'h1' : 'h2';
 const messages = {
   sending: t('form_sending'),
   sent: t('form_sent'),
@@ -19,45 +18,51 @@ const messages = {
 };
 ---
 
-<section id="contact" class="contact">
-  {
-    !standalone && (
-      <div class="container">
-        <SectionHeader title={t('contact_section_title')} subtitle={t('contact_section_subtitle')} />
-      </div>
-    )
-  }
-  <div class="container contact-container glass-panel fade-up">
-    <div class="contact-info">
-      <Title set:html={t('contact_title')} />
-      <p>{t('contact_subtitle')}</p>
+<section id="contact" class="bg-steel py-20 text-white sm:py-28" aria-labelledby="contact-title">
+  <div class="wrap grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+    <div class="grid content-start gap-5">
+      <Title id="contact-title" class:list={[standalone ? 'h1' : 'h2']}>{t('contact_title')}</Title>
+      <p class="max-w-[46ch] text-white/85">{t('contact_subtitle')}</p>
+      <p class="mt-2 text-white/85">
+        <a href="mailto:info@nijper.nl" class="font-display font-semibold text-white underline decoration-lamp decoration-2 underline-offset-4">info@nijper.nl</a>
+      </p>
     </div>
+
     <form
       action="https://api.web3forms.com/submit"
       method="POST"
-      class="contact-form"
+      class="grid content-start gap-6 [&_:is(input,select,textarea)]:border-white/40 [&_:is(input,select,textarea):focus]:border-lamp"
       data-contact-form
       data-messages={JSON.stringify(messages)}
     >
       <input type="hidden" name="access_key" value="9a0f52ef-0b63-43bf-ac1f-6d82a42c3c98" />
-      <div class="form-group">
-        <input type="text" name="name" id="name" required placeholder={t('contact_ph_name')} aria-label={t('contact_ph_name')} autocomplete="name" />
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="field">
+          <label for="name">{t('contact_ph_name')}</label>
+          <input type="text" name="name" id="name" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="email">{t('contact_ph_email')}</label>
+          <input type="email" name="email" id="email" required autocomplete="email" />
+        </div>
       </div>
-      <div class="form-group">
-        <input type="email" name="email" id="email" required placeholder={t('contact_ph_email')} aria-label={t('contact_ph_email')} autocomplete="email" />
-      </div>
-      <div class="form-group">
-        <select name="subject" id="subject" required aria-label={t('contact_ph_subject')}>
+      <div class="field">
+        <label for="subject">{t('form_label_subject')}</label>
+        <select name="subject" id="subject" required class="[&>option]:text-ink">
           <option value="" disabled selected>{t('contact_ph_subject')}</option>
           <option value="Website bouwen">{t('contact_opt_website')}</option>
           <option value="SEO Rapport">{t('contact_opt_seo')}</option>
           <option value="Overig">{t('contact_opt_other')}</option>
         </select>
       </div>
-      <div class="form-group">
-        <textarea name="message" id="message" rows="4" required placeholder={t('contact_ph_msg')} aria-label={t('contact_ph_msg')}></textarea>
+      <div class="field">
+        <label for="message">{t('contact_ph_msg')}</label>
+        <textarea name="message" id="message" rows="4" required class="resize-y"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary btn-full">{t('contact_btn')}</button>
+      <div class="flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn bg-lamp text-ink hover:bg-white disabled:opacity-70">{t('contact_btn')}</button>
+        <p data-status role="status" class="font-display font-semibold"></p>
+      </div>
     </form>
   </div>
 </section>
@@ -69,10 +74,10 @@ const messages = {
     e.preventDefault();
     const msg = JSON.parse(form.dataset.messages!);
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
-    const originalText = btn.textContent;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
 
-    btn.textContent = msg.sending;
     btn.disabled = true;
+    status.textContent = msg.sending;
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -82,24 +87,17 @@ const messages = {
       });
 
       if (res.status === 200) {
-        btn.classList.add('btn-success');
-        btn.textContent = msg.sent;
+        status.textContent = msg.sent;
         form.reset();
       } else {
         console.error(res);
-        btn.classList.add('btn-error');
-        btn.textContent = msg.error;
+        status.textContent = msg.error;
       }
     } catch (err) {
       console.error(err);
-      btn.classList.add('btn-error');
-      btn.textContent = msg.failed;
+      status.textContent = msg.failed;
     } finally {
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.disabled = false;
-        btn.classList.remove('btn-success', 'btn-error');
-      }, 3000);
+      btn.disabled = false;
     }
   });
 </script>

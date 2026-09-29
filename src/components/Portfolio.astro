@@ -1,5 +1,5 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import SectionHead from './SectionHead.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
@@ -16,23 +16,25 @@ const projects: { title: string; url: string; tag: TKey; desc: TKey }[] = [
 ];
 ---
 
-<section id="portfolio" class:list={['portfolio', className]}>
-  <div class="container">
-    <SectionHeader title={t('port_title')} subtitle={t('port_subtitle')} />
-
-    <div class="portfolio-grid">
+<section id="portfolio" class:list={['bg-mist py-20 sm:py-28', className]} aria-labelledby="portfolio-title">
+  <div class="wrap grid gap-12">
+    <SectionHead id="portfolio-title" title={t('port_title')} subtitle={t('port_subtitle')} />
+    <ul class="ruled">
       {
-        projects.map((p, i) => (
-          <div class={`portfolio-card glass-panel fade-up delay-${i + 1}`}>
-            <div class="portfolio-content">
-              <div class="tag">{t(p.tag)}</div>
-              <h3>{p.title}</h3>
-              <p>{t(p.desc)}</p>
-              <a href={p.url} target="_blank" rel="noopener noreferrer" class="link-arrow" set:html={t('port_btn')} />
+        projects.map((p) => (
+          <li class="grid gap-3 py-8 md:grid-cols-[minmax(0,16rem)_minmax(0,1fr)_auto] md:items-baseline md:gap-10">
+            <div class="grid gap-1">
+              <h3 class="h3">{p.title}</h3>
+              <p class="font-display text-sm font-semibold text-steel">{t(p.tag)}</p>
             </div>
-          </div>
+            <p class="max-w-[58ch] text-slate">{t(p.desc)}</p>
+            <a href={p.url} target="_blank" rel="noopener noreferrer" class="link justify-self-start">
+              {t('port_btn')}
+              <span class="sr-only">: {p.title}</span>
+            </a>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>

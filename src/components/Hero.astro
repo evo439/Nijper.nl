@@ -1,32 +1,22 @@
 ---
-import { useTranslations, type Lang } from '../i18n/utils';
+import Arch from './Arch.astro';
+import { path, useTranslations, type Lang } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
 const t = useTranslations(lang);
 ---
 
-<header id="hero" class="hero">
-  <div class="hero-bg">
-    <div class="gradient-sphere sphere-1"></div>
-    <div class="gradient-sphere sphere-2"></div>
+<section id="hero" class="wrap pt-6 pb-20 sm:pb-28" aria-labelledby="hero-title">
+  <Arch class="text-steel" animate />
+  <p class="mt-5 font-display text-sm font-medium text-steel tabular-nums font-stretch-[80%]">
+    51.8126° N, 5.8372° E &nbsp;/&nbsp; Nijmegen
+  </p>
+  <h1 id="hero-title" class="h1 mt-4 max-w-[15ch]">{t('hero_title')}</h1>
+  <div class="mt-8 grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+    <p class="max-w-[48ch] text-lg leading-relaxed sm:text-xl">{t('hero_subtitle')}</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#contact" class="btn-primary">{t('hero_btn')}</a>
+      <a href={path('check', lang)} class="btn-secondary">{t('hero_check')}</a>
+    </div>
   </div>
-  <div class="container hero-content">
-    <h1 class="fade-up" data-typewriter set:html={t('hero_title')} />
-    <p class="subtitle fade-up-hero delay-1">{t('hero_subtitle')}</p>
-    <a href="#contact" class="btn btn-large btn-glow fade-up-hero delay-2">{t('hero_btn')}</a>
-  </div>
-</header>
-
-<script>
-  import { typeWriterHTML } from '../scripts/typewriter';
-
-  const title = document.querySelector<HTMLElement>('[data-typewriter]');
-  const revealRest = () =>
-    document.querySelectorAll('.fade-up-hero').forEach((el) => el.classList.add('visible'));
-
-  if (title && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    typeWriterHTML(title, title.innerHTML, 60, 1000, revealRest);
-  } else {
-    revealRest();
-  }
-</script>
+</section>

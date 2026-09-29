@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Team from '../components/Team.astro';
-import TeamModal from '../components/TeamModal.astro';
 import Portfolio from '../components/Portfolio.astro';
 import type { Lang } from '../i18n/utils';
 
@@ -9,7 +8,6 @@ const { lang } = Astro.props as { lang: Lang };
 ---
 
 <Base lang={lang} page="about">
-  <Team lang={lang} headingLevel="h1" class="pb-tight" />
-  <Portfolio lang={lang} class="pt-loose" />
-  <TeamModal lang={lang} slot="after" />
+  <Team lang={lang} headingLevel="h1" class="!pt-10" />
+  <Portfolio lang={lang} />
 </Base>

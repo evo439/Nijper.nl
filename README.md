@@ -13,6 +13,7 @@ De website is te bezoeken via: [nijper.nl](https://nijper.nl)
 - **SEO**: per pagina title/description/OG-tags, JSON-LD (LocalBusiness / ProfessionalService), automatisch gegenereerde sitemap, `robots.txt` en `llm.txt`.
 - **Contactformulier**: via Web3Forms.
 - **Website Check**: gratis Lighthouse-analyse (performance & SEO) via een Cloudflare Worker-proxy (`Cloudflare/worker.js`), plus een lead via Web3Forms.
+- **Design "Waalbrug"**: Tailwind CSS v4 met design tokens in `src/styles/global.css` (kleuren, lettertypen, typeschaal). Lettertypen (Archivo, Source Serif 4) worden zelf gehost via Fontsource. De boog van de Waalbrug (`src/components/Arch.astro`) is het terugkerende motief.
 
 ---
 
@@ -28,8 +29,8 @@ Nijper/
 │   ├── layouts/Base.astro  # <head> met SEO, nav en footer
 │   ├── i18n/               # nl.ts, en.ts (teksten), meta.ts (SEO per pagina), utils.ts (routes)
 │   ├── data/team.ts        # Teamleden en social links
-│   ├── scripts/            # Gedeelde client-side scripts
-│   └── styles/
+│   ├── assets/             # Afbeeldingen die Astro optimaliseert (teamfoto's)
+│   └── styles/global.css   # Tailwind + design tokens
 ├── Cloudflare/worker.js    # PageSpeed-proxy (los gedeployed op Cloudflare)
 └── .github/workflows/      # Build & deploy naar GitHub Pages
 ```

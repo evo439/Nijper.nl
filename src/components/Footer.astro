@@ -1,15 +1,48 @@
 ---
-import { useTranslations, type Lang } from '../i18n/utils';
+import Arch from './Arch.astro';
+import { path, useTranslations, type Lang, type PageId } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
 const t = useTranslations(lang);
+
+const links: { page: PageId; label: string }[] = [
+  { page: 'home', label: t('nav_home') },
+  { page: 'about', label: t('nav_about') },
+  { page: 'services', label: t('nav_services') },
+  { page: 'contact', label: t('nav_contact') },
+  { page: 'check', label: t('nav_websiteCheck') },
+];
 ---
 
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-logo"><span class="brand-name-dot highlight">Nijper.</span></div>
-      <p set:html={t('footer_text')} />
+<footer class="bg-ink text-mist">
+  <div class="wrap pt-14 pb-10">
+    <Arch class="max-w-xs text-steel" />
+    <div class="mt-10 grid gap-10 sm:grid-cols-[1.4fr_1fr]">
+      <div class="grid content-start gap-3">
+        <p class="font-display text-3xl font-extrabold font-stretch-[125%]">Nijper</p>
+        <p class="max-w-[40ch] text-mist/80" set:html={t('footer_text')} />
+        <p class="mt-2">
+          <a href="mailto:info@nijper.nl" class="font-display font-semibold text-lamp underline decoration-lamp/40 decoration-2 underline-offset-4 hover:decoration-lamp">
+            info@nijper.nl
+          </a>
+        </p>
+      </div>
+      <nav aria-label={t('footer_nav')}>
+        <ul class="grid gap-2 font-display">
+          {
+            links.map((l) => (
+              <li>
+                <a href={path(l.page, lang)} class="hover:text-lamp">
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
     </div>
+    <p class="mt-12 border-t border-mist/15 pt-6 font-display text-sm text-mist/60 tabular-nums font-stretch-[85%]">
+      51.8126° N, 5.8372° E
+    </p>
   </div>
 </footer>

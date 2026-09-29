@@ -1,4 +1,5 @@
 ---
+import Arch from './Arch.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
@@ -10,64 +11,73 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
 ];
 ---
 
-<section class="website-check-section" style="padding-bottom: 1rem;">
-  <div class="container contact-container glass-panel fade-up">
-    <div class="contact-info">
-      <h1 set:html={t('check_title')} />
-      <p>{t('check_subtitle')}</p>
-    </div>
+<section class="wrap grid gap-12 pt-10 pb-20 sm:pb-28 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20" aria-labelledby="check-title">
+  <div class="grid content-start gap-5">
+    <h1 id="check-title" class="h1 !text-[clamp(2.4rem,5.4vw,4.4rem)]">{t('check_title')}</h1>
+    <p class="lede">{t('check_subtitle')}</p>
+  </div>
 
+  <div class="grid content-start">
     <form
       id="website-check-form"
       action="https://api.web3forms.com/submit"
       method="POST"
-      class="contact-form"
+      class="grid gap-6 [&_input]:border-ink/30 [&_input:focus]:border-steel"
       data-error={t('check_error')}
     >
       <input type="hidden" name="access_key" value="f263e6c9-f5c6-444f-9751-9df99c072ec9" />
       <input type="hidden" name="subject" value="Nieuwe Website Check Aanvraag" />
 
-      <div class="form-group">
-        <input type="text" name="name" id="name" required placeholder={t('contact_ph_name')} aria-label={t('contact_ph_name')} autocomplete="name" />
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="field">
+          <label for="name">{t('contact_ph_name')}</label>
+          <input type="text" name="name" id="name" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="company">{t('check_ph_company')}</label>
+          <input type="text" name="company" id="company" required autocomplete="organization" />
+        </div>
       </div>
-      <div class="form-group">
-        <input type="text" name="company" id="company" required placeholder={t('check_ph_company')} aria-label={t('check_ph_company')} autocomplete="organization" />
+      <div class="field">
+        <label for="email">{t('contact_ph_email')}</label>
+        <input type="email" name="email" id="email" required autocomplete="email" />
       </div>
-      <div class="form-group">
-        <input type="email" name="email" id="email" required placeholder={t('contact_ph_email')} aria-label={t('contact_ph_email')} autocomplete="email" />
+      <div class="field">
+        <label for="website">Website</label>
+        <input type="text" name="website" id="website" required placeholder={t('check_ph_website')} inputmode="url" autocomplete="url" class="placeholder:text-slate/60" />
       </div>
-      <div class="form-group">
-        <input type="text" name="website" id="website" required placeholder={t('check_ph_website')} aria-label={t('check_ph_website')} inputmode="url" autocomplete="url" />
+      <div class="flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn-primary" id="check-btn">{t('check_btn')}</button>
+        <p data-status role="status" class="font-display font-semibold text-score-bad"></p>
       </div>
-      <button type="submit" class="btn btn-primary btn-full" id="check-btn">{t('check_btn')}</button>
     </form>
 
-    <div id="check-loading" style="display: none; text-align: center; margin: 4rem 0;" aria-live="polite">
-      <div class="loader-spinner"></div>
-      <h3>{t('check_loading_title')}</h3>
-      <p style="color: var(--text-muted);">{t('check_loading_desc')}</p>
+    <div id="check-loading" class="grid gap-4" hidden aria-live="polite">
+      <Arch class="check-arch max-w-md text-steel" />
+      <h2 class="h3">{t('check_loading_title')}</h2>
+      <p class="text-slate">{t('check_loading_desc')}</p>
     </div>
 
-    <div id="check-results" class="results-area" style="display: none; margin-top: 3rem; text-align: center;" aria-live="polite">
-      <h3 style="margin-bottom: 2rem;">{t('check_results_title')}</h3>
-      <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+    <div id="check-results" class="grid gap-8" hidden aria-live="polite">
+      <h2 class="h3">{t('check_results_title')}</h2>
+      <div class="grid border-t-2 border-ink sm:grid-cols-2">
         {
-          scores.map((s) => (
-            <div class="service-card glass-panel" style="padding: 2rem;">
-              <h4>{t(s.title)}</h4>
-              <div class="progress-circle-container">
-                <svg class="progress-circle" width="120" height="120" aria-hidden="true">
-                  <circle class="progress-bg" cx="60" cy="60" r="54" />
-                  <circle class="progress-bar" id={`circle-${s.id}`} cx="60" cy="60" r="54" />
+          scores.map((s, i) => (
+            <div class:list={['grid justify-items-start gap-3 py-8', i === 0 ? 'sm:border-r sm:border-rule sm:pr-8' : 'border-t border-rule sm:border-t-0 sm:pl-8']}>
+              <div class="relative size-32">
+                <svg class="size-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="var(--color-rule)" stroke-width="8" />
+                  <circle id={`circle-${s.id}`} class="score-arc" cx="60" cy="60" r="54" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292" />
                 </svg>
-                <div class="progress-value" id={`score-${s.id}`}>0</div>
+                <span id={`score-${s.id}`} class="absolute inset-0 grid place-items-center font-display text-4xl font-extrabold tabular-nums font-stretch-[110%]">0</span>
               </div>
-              <p style="font-size: 0.9rem;">{t(s.desc)}</p>
+              <h3 class="h3">{t(s.title)}</h3>
+              <p class="text-slate">{t(s.desc)}</p>
             </div>
           ))
         }
       </div>
-      <p style="margin-top: 2rem; color: var(--text-muted);">{t('check_contact_msg')}</p>
+      <p class="max-w-[52ch]">{t('check_contact_msg')}</p>
     </div>
   </div>
 </section>
@@ -76,35 +86,40 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
   const WORKER = 'https://nijper-lighthouse-proxy.contact-nijper.workers.dev';
   const STORAGE_KEY = 'websiteCheckResults';
   const CIRCUMFERENCE = 339.292;
+  const css = getComputedStyle(document.documentElement);
+  const color = (score: number) =>
+    css.getPropertyValue(score >= 90 ? '--color-score-good' : score >= 50 ? '--color-score-ok' : '--color-score-bad');
 
   const form = document.getElementById('website-check-form') as HTMLFormElement;
   const loading = document.getElementById('check-loading')!;
   const results = document.getElementById('check-results')!;
   const websiteInput = document.getElementById('website') as HTMLInputElement;
   const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  const status = form.querySelector<HTMLElement>('[data-status]')!;
   const scorePerf = document.getElementById('score-performance')!;
   const scoreSeo = document.getElementById('score-seo')!;
   const circlePerf = document.getElementById('circle-performance') as unknown as SVGCircleElement;
   const circleSeo = document.getElementById('circle-seo') as unknown as SVGCircleElement;
 
+  const show = (el: 'form' | 'loading' | 'results') => {
+    form.hidden = el !== 'form';
+    loading.hidden = el !== 'loading';
+    results.hidden = el !== 'results';
+  };
+
   function animateScore(text: HTMLElement, circle: SVGCircleElement, target: number) {
-    let current = 0;
-    const increment = target / 50;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = reduce ? target : 0;
+    const step = () => {
+      current = Math.min(target, current + target / 50);
       text.textContent = String(Math.round(current));
       circle.style.strokeDashoffset = String(CIRCUMFERENCE - (current / 100) * CIRCUMFERENCE);
-
-      const color = current >= 90 ? '#0cce6b' : current >= 50 ? '#ffa400' : '#ff4e42';
-      text.style.color = color;
-      circle.style.stroke = color;
-    }, 30);
+      const c = color(current);
+      text.style.color = c;
+      circle.style.stroke = c;
+      if (current < target) setTimeout(step, 30);
+    };
+    step();
   }
 
   const showScores = (perf: number, seo: number) => {
@@ -122,11 +137,9 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
       websiteInput.value = url;
     }
 
-    form.style.display = 'none';
-    loading.style.display = 'block';
-    results.style.display = 'none';
-    scorePerf.textContent = scoreSeo.textContent = '0';
-    circlePerf.style.strokeDashoffset = circleSeo.style.strokeDashoffset = String(CIRCUMFERENCE);
+    status.textContent = '';
+    submitBtn.disabled = true;
+    show('loading');
 
     try {
       // Lead email via Web3Forms and PageSpeed via the Cloudflare Worker proxy, in parallel
@@ -143,17 +156,15 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
 
       const perf = Math.round(psi.lighthouseResult.categories.performance.score * 100);
       const seo = Math.round(psi.lighthouseResult.categories.seo.score * 100);
+      show('results');
       showScores(perf, seo);
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ perfScore: perf, seoScore: seo }));
-
-      loading.style.display = 'none';
-      results.style.display = 'block';
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ perfScore: perf, seoScore: seo }));
+      } catch {}
     } catch (err) {
       console.error(err);
-      loading.style.display = 'none';
-      form.style.display = 'block';
-      submitBtn.textContent = form.dataset.error!;
-      submitBtn.classList.add('btn-error');
+      show('form');
+      status.textContent = form.dataset.error!;
     } finally {
       submitBtn.disabled = false;
     }
@@ -164,11 +175,25 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
     const saved = sessionStorage.getItem(STORAGE_KEY);
     if (saved) {
       const { perfScore, seoScore } = JSON.parse(saved);
-      form.style.display = 'none';
-      results.style.display = 'block';
-      setTimeout(() => showScores(perfScore, seoScore), 500);
+      show('results');
+      setTimeout(() => showScores(perfScore, seoScore), 300);
     }
   } catch {
     // sessionStorage unavailable: just show the form
   }
 </script>
+
+<style>
+  /* Loading: the arch redraws itself while Lighthouse runs */
+  @media (prefers-reduced-motion: no-preference) {
+    #check-loading:not([hidden]) :global(.check-arch path) {
+      stroke-dasharray: 1;
+      animation: redraw 2.4s ease-in-out infinite;
+    }
+  }
+  @keyframes redraw {
+    0% { stroke-dashoffset: 1; }
+    50% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -1; }
+  }
+</style>

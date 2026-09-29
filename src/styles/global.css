@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/source-serif-4/opsz.css';
+
+/*
+ * Waalbrug: Nijper as a piece of Nijmegen.
+ * Calm river palette, one sodium-lamp accent, wide Archivo for structure and
+ * Source Serif for reading. Content sits left-aligned on ruled lists; the
+ * bridge arch is the only ornament and the only ambient motion.
+ */
+@theme {
+  --color-sky: #dfe7e6; /* page ground: Waal mist */
+  --color-mist: #eef2f0; /* alternate bands */
+  --color-steel: #2d5c4f; /* bridge steel: primary */
+  --color-steel-deep: #1f463b; /* hover / pressed */
+  --color-lamp: #f0a53a; /* street lamp: the single accent */
+  --color-ink: #12201b; /* text, footer */
+  --color-slate: #3b4a44; /* secondary text */
+  --color-rule: #b9c6c1; /* dividers */
+
+  --color-score-good: #0f8a4f;
+  --color-score-ok: #b86e00;
+  --color-score-bad: #c43d2e;
+
+  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+
+  /* Type scale (1.25 ratio from 18px body) */
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.65;
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.2;
+  --text-h2: clamp(2rem, 4.2vw, 3.1rem);
+  --text-h2--line-height: 1;
+  --text-h1: clamp(2.5rem, 6.4vw, 5.4rem);
+  --text-h1--line-height: 0.95;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem; /* fixed nav */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-sky font-serif text-body text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-balance;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-steel;
+  }
+  ::selection {
+    @apply bg-lamp text-ink;
+  }
+}
+
+@utility wrap {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-8 lg:px-12;
+}
+@utility h1 {
+  @apply text-h1 font-extrabold tracking-[-0.02em] font-stretch-[118%];
+}
+@utility h2 {
+  @apply text-h2 font-extrabold tracking-[-0.015em] font-stretch-[115%];
+}
+@utility h3 {
+  @apply text-h3 font-bold font-stretch-[105%];
+}
+@utility lede {
+  @apply max-w-[52ch] text-slate;
+}
+/* Ruled list: thick top rule, thin rules between rows */
+@utility ruled {
+  @apply border-t-2 border-ink;
+  & > * {
+    @apply border-b border-rule;
+  }
+}
+@utility btn {
+  @apply inline-flex items-center gap-3 px-6 py-4 font-display text-base font-bold font-stretch-[105%] transition-colors;
+}
+@utility btn-primary {
+  @apply btn bg-steel text-white hover:bg-steel-deep;
+  /* The lamp: a lit dot on the primary action */
+  &::after {
+    content: '';
+    @apply size-2.5 rounded-full bg-lamp shadow-[0_0_0_4px_rgb(240_165_58/0.25)];
+  }
+}
+@utility btn-secondary {
+  @apply btn text-steel shadow-[inset_0_0_0_2px_var(--color-steel)] hover:bg-steel hover:text-white;
+}
+@utility link {
+  @apply font-display font-semibold text-steel underline decoration-rule decoration-2 underline-offset-4 hover:decoration-steel;
+}
+@utility field {
+  @apply grid gap-1.5;
+  & label {
+    @apply font-display text-sm font-semibold font-stretch-[105%];
+  }
+  & :is(input, select, textarea) {
+    @apply w-full border-0 border-b-2 bg-transparent px-0 py-2.5 font-serif text-body focus:outline-none;
+  }
+}

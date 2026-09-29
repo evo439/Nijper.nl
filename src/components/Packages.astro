@@ -1,5 +1,5 @@
 ---
-import SectionHeader from './SectionHeader.astro';
+import SectionHead from './SectionHead.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
@@ -11,39 +11,42 @@ interface Props {
 const { lang, headingLevel = 'h2', class: className } = Astro.props;
 const t = useTranslations(lang);
 
-const packages: { img: string; alt: string; keys: [TKey, TKey, TKey, TKey, TKey] }[] = [
-  {
-    img: '/assets/rocket-monitor.webp',
-    alt: 'Essential Design Pakket Icon',
-    keys: ['pkg1_title', 'pkg1_tag', 'pkg1_basis', 'pkg1_voordeel', 'pkg1_resultaat'],
-  },
-  {
-    img: '/assets/toolbox.webp',
-    alt: 'Custom Solution Pakket Icon',
-    keys: ['pkg2_title', 'pkg2_tag', 'pkg2_basis', 'pkg2_voordeel', 'pkg2_resultaat'],
-  },
+const packages: { keys: [TKey, TKey, TKey, TKey, TKey] }[] = [
+  { keys: ['pkg1_title', 'pkg1_tag', 'pkg1_basis', 'pkg1_voordeel', 'pkg1_resultaat'] },
+  { keys: ['pkg2_title', 'pkg2_tag', 'pkg2_basis', 'pkg2_voordeel', 'pkg2_resultaat'] },
 ];
+
+// "<strong>Fundament:</strong> text" -> term + description
+const split = (html: string) => {
+  const m = html.match(/^<strong>(.*?):?<\/strong>\s*(.*)$/s);
+  return m ? { term: m[1].replace(/:$/, ''), desc: m[2] } : { term: '', desc: html };
+};
+const Title = headingLevel === 'h1' ? 'h2' : 'h3';
 ---
 
-<section id="package" class:list={['package', className]}>
-  <div class="container">
-    <SectionHeader as={headingLevel} title={t('package_title')} subtitle={t('package_subtitle')} />
-
-    <div class="package-grid">
+<section id="package" class:list={['bg-mist py-20 sm:py-28', className]} aria-labelledby="package-title">
+  <div class="wrap grid gap-12">
+    <SectionHead as={headingLevel} id="package-title" title={t('package_title')} subtitle={t('package_subtitle')} />
+    <div class="grid border-t-2 border-ink md:grid-cols-2">
       {
-        packages.map(({ img, alt, keys: [title, tag, ...points] }, i) => (
-          <div class={`package-card glass-panel fade-up delay-${i + 1}`}>
-            <div class="package-img">
-              <img src={img} alt={alt} width="200" height="200" loading="lazy" />
+        packages.map(({ keys: [title, tag, ...points] }, i) => (
+          <article class:list={['grid content-start gap-6 py-10', i === 0 ? 'md:border-r md:border-rule md:pr-12' : 'border-t border-rule md:border-t-0 md:pl-12']}>
+            <div class="grid gap-1">
+              <Title class="font-display text-3xl font-extrabold font-stretch-[115%]">{t(title)}</Title>
+              <p class="font-display font-semibold text-steel">{t(tag)}</p>
             </div>
-            <h3>{t(title)}</h3>
-            <p class="package-role">{t(tag)}</p>
-            <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-muted);">
-              {points.map((p, j) => (
-                <li style={j < points.length - 1 ? 'margin-bottom: 0.5rem;' : undefined} set:html={t(p)} />
-              ))}
-            </ul>
-          </div>
+            <dl class="grid gap-5">
+              {points.map((p) => {
+                const { term, desc } = split(t(p));
+                return (
+                  <div class="grid gap-1">
+                    <dt class="font-display text-sm font-bold text-slate font-stretch-[105%]">{term}</dt>
+                    <dd class="max-w-[46ch]">{desc}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+          </article>
         ))
       }
     </div>
