@@ -11,6 +11,7 @@ const t = useTranslations(lang);
 const other: Lang = lang === 'nl' ? 'en' : 'nl';
 
 const links: { page: PageId; label: string }[] = [
+  { page: 'home', label: t('nav_home') },
   { page: 'about', label: t('nav_about') },
   { page: 'services', label: t('nav_services') },
   { page: 'designs', label: t('nav_designs') },
@@ -25,9 +26,10 @@ const links: { page: PageId; label: string }[] = [
   {lang === 'nl' ? 'Naar de inhoud' : 'Skip to content'}
 </a>
 
+<!-- No backdrop-filter here: it would become the containing block of the fixed mobile menu -->
 <header
   data-nav
-  class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-sky/95 backdrop-blur-sm transition-colors data-scrolled:border-rule"
+  class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-sky transition-colors data-scrolled:border-rule"
 >
   <nav class="wrap flex h-18 items-center justify-between gap-6 font-display" aria-label={lang === 'nl' ? 'Hoofdmenu' : 'Main'}>
     <a href={path('home', lang)} class="text-2xl font-extrabold text-steel font-stretch-[125%]" aria-label="Nijper, home" translate="no">
