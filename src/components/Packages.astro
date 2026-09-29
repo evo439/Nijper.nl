@@ -1,7 +1,7 @@
 ---
 import SectionHead from './SectionHead.astro';
 import ServiceIllustration from './ServiceIllustration.astro';
-import { useTranslations, type Lang, type TKey } from '../i18n/utils';
+import { path, useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
   lang: Lang;
@@ -54,6 +54,11 @@ const Title = headingLevel === 'h1' ? 'h2' : 'h3';
                 );
               })}
             </dl>
+            {illu === 'essential' && (
+              <p>
+                <a href={path('designs', lang)} class="link">{t('pkg1_demos')}</a>
+              </p>
+            )}
           </article>
         ))
       }

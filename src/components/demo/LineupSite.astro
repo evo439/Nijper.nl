@@ -1,0 +1,476 @@
+---
+/**
+ * Example design "Line-up": a festival website set like a poster.
+ * Palette from the concept: gladiolus pink, night blue, tomato; condensed
+ * Big Shoulders for the poster type, Figtree for reading.
+ */
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource-variable/figtree';
+import { festival as f, euro } from '../../data/demos';
+import { useTranslations, type Lang } from '../../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+const nav = f.nav[lang];
+---
+
+<div class="lineup">
+  <header class="bar">
+    <a href="#top" class="logo">{f.name}</a>
+    <nav aria-label={f.name}>
+      <ul>
+        <li><a href="#programma">{nav.programme}</a></li>
+        <li><a href="#tickets">{nav.tickets}</a></li>
+        <li><a href="#info">{nav.info}</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Poster: the headliner hierarchy is the design -->
+    <section class="poster" aria-labelledby="fest-name">
+      <p class="pre">{f.pre[lang]}</p>
+      <h1 id="fest-name" class="name">{f.name}</h1>
+      <p class="when">
+        <span>{f.dates[lang]}</span>
+        <span>{f.place}</span>
+      </p>
+      <ul class="headliners">
+        {f.headliners.map((act, i) => <li style={`--i:${i}`}>{act}</li>)}
+      </ul>
+      <ul class="undercard">
+        {f.undercard.map((act) => <li>{act}</li>)}
+      </ul>
+      <p class="poster-cta">
+        <a href="#tickets" class="btn-navy">{f.buy[lang]}</a>
+      </p>
+    </section>
+
+    <section id="programma" class="programme" aria-labelledby="prog-title">
+      <div class="inner">
+        <div class="section-head">
+          <h2 id="prog-title">{f.programmeTitle[lang]}</h2>
+          <p>{f.intro[lang]}</p>
+        </div>
+        <div class="days">
+          {
+            f.days.map((d) => (
+              <div class="day">
+                <h3>{d.label[lang]}</h3>
+                <ol>
+                  {d.slots.map((s) => (
+                    <li class:list={{ headline: f.headliners.includes(s.act) }}>
+                      <time>{s.time}</time>
+                      <span class="act">{s.act}</span>
+                      <span class:list={['stage', s.stage]}>{f.stages[lang][s.stage]}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="tickets" class="tickets" aria-labelledby="tickets-title">
+      <div class="inner">
+        <h2 id="tickets-title">{f.ticketsTitle[lang]}</h2>
+        <ul class="ticket-list">
+          {
+            f.tickets.map((tk, i) => (
+              <li class:list={['ticket', { featured: tk.featured }]}>
+                <div class="ticket-main">
+                  <h3>{tk.name[lang]}</h3>
+                  <p>{tk.note[lang]}</p>
+                </div>
+                <div class="ticket-stub">
+                  <p class="price">{euro(lang, tk.price)}</p>
+                  <button type="button" class="btn-tomato" data-demo-note={t('demo_form_note')} aria-describedby={`ticket-note-${i}`}>
+                    {f.buy[lang]}
+                  </button>
+                  <p id={`ticket-note-${i}`} class="note" role="status"></p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="info" class="info" aria-labelledby="info-title">
+      <div class="inner">
+        <h2 id="info-title">{f.faqTitle[lang]}</h2>
+        <div class="faq">
+          {
+            f.faq.map((item) => (
+              <details>
+                <summary>{item.q[lang]}</summary>
+                <p>{item.a[lang]}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+  .lineup {
+    --pink: #f4cfdc;
+    --navy: #14215a;
+    --tomato: #e8452c;
+    --paper: #fff9fb;
+    --display: 'Big Shoulders Display Variable', Impact, 'Arial Narrow', sans-serif;
+    --body: 'Figtree Variable', system-ui, sans-serif;
+    background: var(--pink);
+    color: var(--navy);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  .lineup :focus-visible {
+    outline: 3px solid var(--tomato);
+    outline-offset: 3px;
+  }
+  .inner,
+  .bar,
+  .poster {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3rem);
+  }
+  h2 {
+    font: 900 clamp(2.6rem, 7vw, 5rem) / 0.9 var(--display);
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* Header */
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-block: 1.25rem;
+  }
+  .logo {
+    font: 900 1.9rem/1 var(--display);
+    text-transform: uppercase;
+    color: inherit;
+    text-decoration: none;
+  }
+  .bar ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+  }
+  .bar a:not(.logo) {
+    color: inherit;
+    text-decoration: none;
+  }
+  .bar a:not(.logo):hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+
+  /* Poster */
+  .poster {
+    text-align: center;
+    padding-block: clamp(2rem, 6vw, 4.5rem) clamp(3rem, 8vw, 6rem);
+  }
+  .pre {
+    font: 800 clamp(1.2rem, 2.6vw, 1.7rem) / 1.1 var(--display);
+    margin: 0;
+  }
+  .name {
+    font: 900 clamp(3.4rem, 15vw, 11rem) / 0.82 var(--display);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0.75rem 0 0;
+    overflow-wrap: anywhere;
+  }
+  .when {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    margin: 1rem 0 0;
+    font: 800 clamp(1.3rem, 3vw, 2rem) / 1.1 var(--display);
+  }
+  .when span + span::before {
+    content: '✶';
+    color: var(--tomato);
+    margin-right: 1.5rem;
+  }
+  .headliners {
+    list-style: none;
+    margin: clamp(2rem, 5vw, 3rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.25rem;
+    font-family: var(--display);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+  /* Poster hierarchy: each night's headliner a step smaller */
+  .headliners li:nth-child(1) {
+    font-size: clamp(2.4rem, 7vw, 5.2rem);
+  }
+  .headliners li:nth-child(2) {
+    font-size: clamp(2rem, 5.6vw, 4.2rem);
+  }
+  .headliners li:nth-child(3) {
+    font-size: clamp(1.7rem, 4.6vw, 3.4rem);
+  }
+  .undercard {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 1.1rem;
+    max-width: 48rem;
+    margin: 1.5rem auto 0;
+    padding: 0;
+    font: 800 clamp(1.05rem, 2.2vw, 1.45rem) / 1.2 var(--display);
+  }
+  .undercard li + li::before {
+    content: '✶';
+    color: var(--tomato);
+    margin-right: 1.1rem;
+    font-size: 0.8em;
+  }
+  .poster-cta {
+    margin: 2.5rem 0 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .headliners li {
+      animation: drop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      animation-delay: calc(0.15s + var(--i) * 0.12s);
+    }
+    @keyframes drop {
+      from {
+        opacity: 0;
+        transform: translateY(-0.4em);
+      }
+    }
+  }
+
+  .btn-navy,
+  .btn-tomato {
+    display: inline-block;
+    font: 700 1rem/1 var(--body);
+    padding: 1rem 1.6rem;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .btn-navy {
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .btn-navy:hover {
+    background: var(--tomato);
+    color: var(--navy);
+  }
+  /* Tomato stays decorative; as a button fill it can't carry text at AA */
+  .btn-tomato {
+    background: var(--navy);
+    color: var(--paper);
+    box-shadow: inset 0 -4px 0 var(--tomato);
+  }
+  .btn-tomato:hover {
+    background: var(--tomato);
+    color: var(--navy);
+    box-shadow: none;
+  }
+
+  /* Programme */
+  .programme {
+    background: var(--paper);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .section-head {
+    display: grid;
+    gap: 1rem;
+    max-width: 44rem;
+  }
+  .section-head p {
+    margin: 0;
+  }
+  .days {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+  .day h3 {
+    font: 900 1.9rem/1 var(--display);
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 4px solid var(--navy);
+  }
+  .day ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .day li {
+    display: grid;
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+    gap: 0 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgb(20 33 90 / 0.18);
+  }
+  .day time {
+    font: 800 1.1rem/1.3 var(--display);
+    font-variant-numeric: tabular-nums;
+    grid-row: span 2;
+  }
+  .act {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+  .headline .act {
+    font: 900 1.45rem/1.1 var(--display);
+    text-transform: uppercase;
+  }
+  .stage {
+    font-size: 0.85rem;
+    opacity: 0.75;
+  }
+  .stage.main::before {
+    content: '';
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--tomato);
+    margin-right: 0.4rem;
+  }
+  .stage.tent::before {
+    content: '';
+    display: inline-block;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    margin-right: 0.4rem;
+    vertical-align: -1px;
+  }
+
+  /* Tickets: shaped like tickets, with a torn stub */
+  .tickets {
+    background: var(--navy);
+    color: var(--paper);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .ticket-list {
+    list-style: none;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 1.5rem;
+  }
+  .ticket {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background: var(--paper);
+    color: var(--navy);
+    border-radius: 14px;
+    -webkit-mask:
+      radial-gradient(circle 13px at 0 calc(100% - 7.2rem), #0000 98%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 13px at 100% calc(100% - 7.2rem), #0000 98%, #000) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle 13px at 0 calc(100% - 7.2rem), #0000 98%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 13px at 100% calc(100% - 7.2rem), #0000 98%, #000) right / 51% 100% no-repeat;
+  }
+  .ticket.featured {
+    background: var(--pink);
+  }
+  .ticket-main {
+    padding: 1.75rem 1.75rem 1.25rem;
+  }
+  .ticket-main h3 {
+    font: 900 2rem/1 var(--display);
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+  .ticket-main p {
+    margin: 0;
+  }
+  .ticket-stub {
+    height: 7.2rem;
+    padding: 1.1rem 1.75rem;
+    border-top: 2px dashed rgb(20 33 90 / 0.35);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-content: center;
+    align-items: center;
+    gap: 0.25rem 1rem;
+  }
+  .price {
+    font: 900 2.2rem/1 var(--display);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+  .ticket-stub .btn-tomato {
+    justify-self: end;
+  }
+  .note {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 0.85rem;
+    min-height: 1.2em;
+  }
+
+  /* Info */
+  .info {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .faq {
+    margin-top: 2rem;
+    max-width: 48rem;
+    border-top: 4px solid var(--navy);
+  }
+  details {
+    border-bottom: 1px solid rgb(20 33 90 / 0.25);
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    font: 800 1.45rem/1.15 var(--display);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: '+';
+    color: var(--tomato);
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  details[open] summary::after {
+    content: '−';
+  }
+  details p {
+    margin: 0 0 1.25rem;
+    max-width: 60ch;
+  }
+</style>

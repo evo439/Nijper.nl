@@ -111,6 +111,66 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
       twitterDescription: 'Test the performance, SEO and accessibility of your website for free.',
     },
   },
+  designs: {
+    nl: {
+      title: 'Voorbeeldontwerpen | Websites voor Horeca & Festivals | Nijper',
+      description: 'Bekijk voorbeeldontwerpen van Nijper: complete websites voor een festival en een eetcafé. Zo kan de website van jouw zaak in Nijmegen eruitzien.',
+      keywords: 'voorbeeld website horeca, festival website voorbeeld, webdesign Nijmegen, website ontwerp',
+      ogTitle: 'Voorbeeldontwerpen | Nijper',
+      ogDescription: 'Complete voorbeeldwebsites voor een festival en een eetcafé. Zo kan jouw website eruitzien.',
+      twitterTitle: 'Voorbeeldontwerpen | Nijper',
+      twitterDescription: 'Complete voorbeeldwebsites voor een festival en een eetcafé.',
+    },
+    en: {
+      title: 'Example Designs | Websites for Hospitality & Festivals | Nijper',
+      description: 'Explore example designs by Nijper: complete websites for a festival and a café. See what the website for your business in Nijmegen could look like.',
+      keywords: 'hospitality website example, festival website example, web design Nijmegen, website design',
+      ogTitle: 'Example designs | Nijper',
+      ogDescription: 'Complete example websites for a festival and a café. See what your website could look like.',
+      twitterTitle: 'Example designs | Nijper',
+      twitterDescription: 'Complete example websites for a festival and a café.',
+    },
+  },
+  demoLineup: {
+    nl: {
+      title: 'Zomerzwerm Festival | Voorbeeldontwerp Line-up | Nijper',
+      description: 'Voorbeeldontwerp "Line-up" van Nijper: een festivalwebsite voor het fictieve festival Zomerzwerm, met programma, tickets en praktische info.',
+      keywords: 'festival website ontwerp, voorbeeld festivalwebsite',
+      ogTitle: 'Zomerzwerm | Voorbeeldontwerp door Nijper',
+      ogDescription: 'Een festivalwebsite in de stijl "Line-up", gemaakt als voorbeeld door Nijper.',
+      twitterTitle: 'Zomerzwerm | Voorbeeldontwerp door Nijper',
+      twitterDescription: 'Een festivalwebsite in de stijl "Line-up".',
+    },
+    en: {
+      title: 'Zomerzwerm Festival | Example Design Line-up | Nijper',
+      description: 'Example design "Line-up" by Nijper: a festival website for the fictional festival Zomerzwerm, with programme, tickets and practical info.',
+      keywords: 'festival website design, festival website example',
+      ogTitle: 'Zomerzwerm | Example design by Nijper',
+      ogDescription: 'A festival website in the "Line-up" style, made as an example by Nijper.',
+      twitterTitle: 'Zomerzwerm | Example design by Nijper',
+      twitterDescription: 'A festival website in the "Line-up" style.',
+    },
+  },
+  demoMenu: {
+    nl: {
+      title: 'Eetcafé De Kiezel | Voorbeeldontwerp Menukaart | Nijper',
+      description: 'Voorbeeldontwerp "Menukaart" van Nijper: een website voor het fictieve Eetcafé De Kiezel, met menukaart, openingstijden en reserveren.',
+      keywords: 'restaurant website ontwerp, eetcafé website voorbeeld',
+      ogTitle: 'Eetcafé De Kiezel | Voorbeeldontwerp door Nijper',
+      ogDescription: 'Een horecawebsite in de stijl "Menukaart", gemaakt als voorbeeld door Nijper.',
+      twitterTitle: 'Eetcafé De Kiezel | Voorbeeldontwerp door Nijper',
+      twitterDescription: 'Een horecawebsite in de stijl "Menukaart".',
+    },
+    en: {
+      title: 'Eetcafé De Kiezel | Example Design Menu Card | Nijper',
+      description: 'Example design "Menu card" by Nijper: a website for the fictional Eetcafé De Kiezel, with menu, opening hours and reservations.',
+      keywords: 'restaurant website design, café website example',
+      ogTitle: 'Eetcafé De Kiezel | Example design by Nijper',
+      ogDescription: 'A hospitality website in the "Menu card" style, made as an example by Nijper.',
+      twitterTitle: 'Eetcafé De Kiezel | Example design by Nijper',
+      twitterDescription: 'A hospitality website in the "Menu card" style.',
+    },
+  },
 };
 
 const common = {
@@ -131,6 +191,8 @@ const common = {
 
 /** Same structured data as the original pages: LocalBusiness on home, ProfessionalService elsewhere. */
 export function schemaFor(page: PageId, lang: Lang) {
+  // Demo sites describe fictional businesses: no Nijper business schema there
+  if (page === 'demoLineup' || page === 'demoMenu') return null;
   if (page === 'home') {
     return {
       ...common,

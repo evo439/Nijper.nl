@@ -1,0 +1,11 @@
+---
+import DemoLayout from '../layouts/DemoLayout.astro';
+import LineupSite from '../components/demo/LineupSite.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<DemoLayout lang={lang} page="demoLineup" themeColor="#f4cfdc">
+  <LineupSite lang={lang} />
+</DemoLayout>

@@ -1,0 +1,11 @@
+---
+import DemoLayout from '../layouts/DemoLayout.astro';
+import MenuSite from '../components/demo/MenuSite.astro';
+import type { Lang } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+---
+
+<DemoLayout lang={lang} page="demoMenu" themeColor="#fafaf7">
+  <MenuSite lang={lang} />
+</DemoLayout>

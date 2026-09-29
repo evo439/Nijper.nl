@@ -13,6 +13,7 @@ const other: Lang = lang === 'nl' ? 'en' : 'nl';
 const links: { page: PageId; label: string }[] = [
   { page: 'about', label: t('nav_about') },
   { page: 'services', label: t('nav_services') },
+  { page: 'designs', label: t('nav_designs') },
   { page: 'contact', label: t('nav_contact') },
 ];
 ---
@@ -36,7 +37,7 @@ const links: { page: PageId; label: string }[] = [
     <button
       type="button"
       data-menu-toggle
-      class="-mr-2 grid size-11 place-items-center md:hidden"
+      class="-mr-2 grid size-11 place-items-center lg:hidden"
       aria-controls="site-menu"
       aria-expanded="false"
       aria-label={t('menu_toggle')}
@@ -46,14 +47,14 @@ const links: { page: PageId; label: string }[] = [
 
     <ul
       id="site-menu"
-      class="fixed inset-x-0 top-18 bottom-0 hidden flex-col gap-1 bg-sky px-4 pt-6 text-2xl font-stretch-[110%] data-open:flex sm:px-8 md:static md:flex md:flex-row md:items-center md:gap-7 md:bg-transparent md:p-0 md:text-[0.95rem] md:font-stretch-[95%]"
+      class="fixed inset-x-0 top-18 bottom-0 hidden flex-col gap-1 bg-sky px-4 pt-6 text-2xl font-stretch-[110%] data-open:flex sm:px-8 lg:static lg:flex lg:flex-row lg:items-center lg:gap-7 lg:bg-transparent lg:p-0 lg:text-[0.95rem] lg:font-stretch-[95%]"
     >
       {
         links.map((l) => (
           <li>
             <a
               href={path(l.page, lang)}
-              class="block py-2 hover:text-steel aria-[current=page]:text-steel aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8 md:py-0"
+              class="block whitespace-nowrap py-2 hover:text-steel aria-[current=page]:text-steel aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8 lg:py-0"
               aria-current={l.page === page ? 'page' : undefined}
             >
               {l.label}
@@ -62,12 +63,12 @@ const links: { page: PageId; label: string }[] = [
         ))
       }
       <li>
-        <a href={path(page, other)} hreflang={other} lang={other} class="block py-2 hover:text-steel md:py-0">
+        <a href={path(page, other)} hreflang={other} lang={other} class="block py-2 hover:text-steel lg:py-0">
           {other.toUpperCase()}
           <span class="sr-only">{other === 'en' ? ' (English)' : ' (Nederlands)'}</span>
         </a>
       </li>
-      <li class="mt-4 md:mt-0">
+      <li class="mt-4 lg:mt-0">
         <a href={path('check', lang)} class="btn-primary !px-5 !py-3 text-[0.95rem]" aria-current={page === 'check' ? 'page' : undefined}>
           {t('nav_websiteCheck')}
         </a>

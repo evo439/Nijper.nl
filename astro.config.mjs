@@ -22,8 +22,10 @@ export default defineConfig({
     // hreflang pairs live in each page's <head>; NL and EN slugs differ, so the
     // sitemap's path-based i18n matching would pair them incorrectly
     sitemap({
-      // the EN home is a directory index; keep its URL identical to the canonical
-      serialize: (item) => ({ ...item, url: item.url.replace(/\/en$/, '/en/') }),
+      // directory indexes (EN home, designs overview): keep URLs identical to the canonicals
+      serialize: (item) => ({ ...item, url: item.url.replace(/\/(en|ontwerpen|en\/designs)$/, '/$1/') }),
+      // demo sites for fictional clients are noindex; keep them out of the sitemap
+      filter: (page) => !/\/(ontwerpen|en\/designs)\/[^/]/.test(page),
     }),
   ],
   vite: {

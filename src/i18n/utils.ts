@@ -16,6 +16,11 @@ export const routes = {
   services: { nl: '/diensten', en: '/en/services' },
   contact: { nl: '/contact', en: '/en/contact' },
   check: { nl: '/website-check', en: '/en/website-check' },
+  // Directory indexes (a sibling ontwerpen.html would 404 next to the ontwerpen/ folder on GitHub Pages)
+  designs: { nl: '/ontwerpen/', en: '/en/designs/' },
+  // Demo sites for fictional clients (noindex, not in the sitemap)
+  demoLineup: { nl: '/ontwerpen/line-up', en: '/en/designs/line-up' },
+  demoMenu: { nl: '/ontwerpen/menukaart', en: '/en/designs/menu' },
 } as const;
 export type PageId = keyof typeof routes;
 

@@ -1,0 +1,57 @@
+---
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import serifUrl from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-normal.woff2?url';
+import { meta, schemaFor } from '../i18n/meta';
+import { routes, type Lang, type PageId } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+  /** Demo pages: keep them out of search results (fictional businesses) */
+  noindex?: boolean;
+  themeColor?: string;
+}
+
+const { lang, page, noindex = false, themeColor = '#dfe7e6' } = Astro.props;
+const m = meta[page][lang];
+const site = 'https://nijper.nl';
+const abs = (p: string) => `${site}${p}`;
+const canonical = abs(routes[page][lang]);
+const ogImage = `${site}/assets/nijper-website-bouwer-nijmegen.webp`;
+const schema = schemaFor(page, lang);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{m.title}</title>
+<meta name="description" content={m.description} />
+<meta name="keywords" content={m.keywords} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:title" content={m.ogTitle} />
+<meta property="og:description" content={m.ogDescription} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_US'} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={m.twitterTitle} />
+<meta name="twitter:description" content={m.twitterDescription} />
+<meta name="twitter:image" content={ogImage} />
+
+<meta name="geo.region" content="NL-GE" />
+<meta name="geo.placename" content="Nijmegen" />
+<meta name="geo.position" content="51.8126;5.8372" />
+<meta name="ICBM" content="51.8126, 5.8372" />
+
+<link rel="alternate" hreflang="nl" href={abs(routes[page].nl)} />
+<link rel="alternate" hreflang="en" href={abs(routes[page].en)} />
+<link rel="alternate" hreflang="x-default" href={abs(routes[page].nl)} />
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+<link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<meta name="theme-color" content={themeColor} />

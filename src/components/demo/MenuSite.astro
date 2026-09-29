@@ -1,0 +1,443 @@
+---
+/**
+ * Example design "Menukaart": a café website set like a house menu.
+ * Palette from the concept: linen, bottle green, amber; Young Serif for the
+ * card headings, Instrument Sans for reading. Dotted leaders carry prices.
+ */
+import '@fontsource/young-serif';
+import '@fontsource-variable/instrument-sans';
+import { cafe as c, euro, type Dish } from '../../data/demos';
+import { useTranslations, type Lang } from '../../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+const nav = c.nav[lang];
+const form = c.form[lang];
+---
+
+<div class="menu-site">
+  <header class="bar">
+    <a href="#top" class="logo"><span class="kind">{c.kind[lang]}</span> {c.name}</a>
+    <nav aria-label={c.name}>
+      <ul>
+        <li><a href="#kaart">{nav.menu}</a></li>
+        <li><a href="#tijden">{nav.hours}</a></li>
+        <li><a href="#reserveren" class="cta">{nav.reserve}</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="cafe-title">
+      <div class="hero-text">
+        <h1 id="cafe-title">{c.headline[lang]}</h1>
+        <p>{c.intro[lang]}</p>
+        <div class="actions">
+          <a href="#reserveren" class="btn primary">{c.reserveBtn[lang]}</a>
+          <a href="#kaart" class="btn ghost">{c.menuBtn[lang]}</a>
+        </div>
+      </div>
+      <!-- The day's card, pinned slightly askew like a chalkboard insert -->
+      <aside class="card today" aria-labelledby="today-title">
+        <h2 id="today-title">{c.today.title[lang]}</h2>
+        <p class="sub">{c.today.note[lang]}</p>
+        <ul>
+          {
+            c.today.dishes.map((d: Dish) => (
+              <li class="item">
+                <p class="line">
+                  <span>{d.name[lang]}</span>
+                  <span class="price">{euro(lang, d.price)}</span>
+                </p>
+                <p class="desc">{d.desc[lang]}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </section>
+
+    <section id="kaart" class="full-menu" aria-labelledby="menu-title">
+      <div class="inner">
+        <h2 id="menu-title" class="section-title">{c.menuTitle[lang]}</h2>
+        <div class="courses">
+          {
+            c.courses.map((course) => (
+              <div class="course">
+                <h3>
+                  {course.title[lang]} <span>{course.time[lang]}</span>
+                </h3>
+                <ul>
+                  {course.dishes.map((d) => (
+                    <li class="item">
+                      <p class="line">
+                        <span>{d.name[lang]}</span>
+                        <span class="price">{euro(lang, d.price)}</span>
+                      </p>
+                      <p class="desc">{d.desc[lang]}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="visit">
+      <div class="inner visit-grid">
+        <section id="tijden" aria-labelledby="hours-title">
+          <h2 id="hours-title" class="section-title">{c.hoursTitle[lang]}</h2>
+          <dl class="hours">
+            {
+              c.hours.map((h) => (
+                <div class="line">
+                  <dt>{h.day[lang]}</dt>
+                  <dd>{h.time[lang]}</dd>
+                </div>
+              ))
+            }
+          </dl>
+          <p class="address">{c.address[lang]}</p>
+        </section>
+
+        <section id="reserveren" aria-labelledby="reserve-title">
+          <h2 id="reserve-title" class="section-title">{c.reserveTitle[lang]}</h2>
+          <p class="reserve-intro">{c.reserveIntro[lang]}</p>
+          <form class="reserve" data-demo-form={t('demo_form_note')}>
+            <div class="field wide">
+              <label for="r-name">{form.name}</label>
+              <input id="r-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="r-date">{form.date}</label>
+              <input id="r-date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="r-time">{form.time}</label>
+              <select id="r-time" name="time" required>
+                {['17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30'].map((tm) => <option>{tm}</option>)}
+              </select>
+            </div>
+            <div class="field">
+              <label for="r-people">{form.people}</label>
+              <select id="r-people" name="people" required>
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => <option selected={n === 2}>{n}</option>)}
+              </select>
+            </div>
+            <div class="submit">
+              <button type="submit" class="btn primary">{form.submit}</button>
+              <p data-demo-status role="status" class="status"></p>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+  .menu-site {
+    --linen: #fafaf7;
+    --green: #16453a;
+    --green-deep: #0f332a;
+    --amber: #8f5f06; /* amber darkened to meet AA on white and linen */
+    --amber-bright: #d99a1e;
+    --ink: #1c1c1a;
+    --soft: #585c55;
+    --line: #d9dbd3;
+    --serif: 'Young Serif', Georgia, serif;
+    --sans: 'Instrument Sans Variable', system-ui, sans-serif;
+    background: var(--linen);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  .menu-site :focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+  }
+  .inner,
+  .bar,
+  .hero {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+  .section-title {
+    font: 400 clamp(2rem, 4.4vw, 3rem) / 1.05 var(--serif);
+    color: var(--green);
+    margin: 0;
+  }
+
+  /* Header */
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo {
+    font: 400 1.6rem/1 var(--serif);
+    color: var(--green);
+    text-decoration: none;
+  }
+  .kind {
+    font: 500 0.8rem/1 var(--sans);
+    letter-spacing: 0.04em;
+    color: var(--soft);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .bar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .bar a:not(.logo) {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .bar a:not(.logo):hover,
+  .bar .cta {
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+
+  /* Hero */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .hero h1 {
+    font: 400 clamp(2.5rem, 5.6vw, 4.4rem) / 1.03 var(--serif);
+    color: var(--green);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .hero-text > p {
+    margin: 1.4rem 0 0;
+    color: var(--soft);
+    font-size: 1.12rem;
+    max-width: 44ch;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.95rem 1.4rem;
+    border-radius: 6px;
+    border: 0;
+    font: 600 1rem/1 var(--sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .btn.primary {
+    background: var(--green);
+    color: var(--linen);
+  }
+  .btn.primary:hover {
+    background: var(--green-deep);
+  }
+  .btn.ghost {
+    color: var(--green);
+    box-shadow: inset 0 0 0 1.5px var(--green);
+  }
+  .btn.ghost:hover {
+    background: var(--green);
+    color: var(--linen);
+  }
+
+  /* The menu card: double rule, like a printed insert */
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    outline: 1px solid var(--line);
+    outline-offset: -9px;
+    padding: 2.4rem clamp(1.4rem, 3vw, 2.6rem);
+    box-shadow: 0 22px 44px -28px rgb(22 69 58 / 0.45);
+  }
+  .today {
+    transform: rotate(-1.2deg);
+  }
+  .today h2 {
+    font: 400 1.6rem/1.1 var(--serif);
+    color: var(--green);
+    text-align: center;
+    margin: 0;
+  }
+  .today .sub {
+    text-align: center;
+    color: var(--soft);
+    font-size: 0.9rem;
+    margin: 0.3rem 0 1.6rem;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .item {
+    margin-bottom: 1.1rem;
+  }
+  .line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  /* Dotted leader between dish and price */
+  .line::after {
+    content: '';
+    order: 1;
+    flex: 1;
+    border-bottom: 2px dotted #b3b7ad;
+    transform: translateY(-0.3em);
+  }
+  .line > :last-child {
+    order: 2;
+  }
+  .price {
+    color: var(--green);
+    font-variant-numeric: tabular-nums;
+  }
+  .desc {
+    margin: 0.15rem 0 0;
+    color: var(--soft);
+    font-size: 0.92rem;
+    max-width: 44ch;
+  }
+
+  /* Full menu */
+  .full-menu {
+    background: #fff;
+    border-block: 1px solid var(--line);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .courses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: 2.5rem 3.5rem;
+    margin-top: 2.5rem;
+  }
+  .course h3 {
+    font: 400 1.35rem/1.2 var(--serif);
+    color: var(--amber);
+    margin: 0 0 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  .course h3 span {
+    font: 500 0.85rem/1 var(--sans);
+    color: var(--soft);
+  }
+
+  /* Visit: hours + reservations */
+  .visit {
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+  .hours {
+    margin: 1.8rem 0 0;
+  }
+  .hours .line {
+    padding: 0.55rem 0;
+    font-weight: 500;
+  }
+  .hours dd {
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .address {
+    margin: 1.4rem 0 0;
+    color: var(--soft);
+  }
+  .reserve-intro {
+    color: var(--soft);
+    margin: 1rem 0 0;
+    max-width: 46ch;
+  }
+  .reserve {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.8rem;
+  }
+  .field {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .field.wide,
+  .submit {
+    grid-column: 1 / -1;
+  }
+  .field label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .field input,
+  .field select {
+    font: inherit;
+    padding: 0.7rem 0.8rem;
+    border: 1.5px solid #b3b7ad;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    min-width: 0;
+  }
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--green);
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(22 69 58 / 0.18);
+  }
+  .submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .status {
+    margin: 0;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  @media (max-width: 760px) {
+    .hero,
+    .visit-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .today {
+      transform: none;
+    }
+    .reserve {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+  }
+</style>

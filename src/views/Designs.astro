@@ -1,0 +1,198 @@
+---
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource/young-serif';
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Arch from '../components/Arch.astro';
+import { festival, cafe, euro } from '../data/demos';
+import { path, useTranslations, type Lang, type PageId, type TKey } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+
+const concepts: { id: 'lineup' | 'menu' | 'waalbrug'; page: PageId; name: TKey; for: TKey; desc: TKey; link: TKey }[] = [
+  { id: 'lineup', page: 'demoLineup', name: 'designs_lineup_name', for: 'designs_lineup_for', desc: 'designs_lineup_desc', link: 'designs_view' },
+  { id: 'menu', page: 'demoMenu', name: 'designs_menu_name', for: 'designs_menu_for', desc: 'designs_menu_desc', link: 'designs_view' },
+  { id: 'waalbrug', page: 'home', name: 'designs_waalbrug_name', for: 'designs_waalbrug_for', desc: 'designs_waalbrug_desc', link: 'designs_waalbrug_link' },
+];
+---
+
+<Base lang={lang} page="designs">
+  <section class="pt-10 pb-20 sm:pb-28" aria-labelledby="designs-title">
+    <div class="wrap grid grid-cols-[minmax(0,1fr)] gap-14">
+      <SectionHead as="h1" id="designs-title" title={t('designs_title')} subtitle={t('designs_intro')} />
+
+      <ul class="ruled">
+        {
+          concepts.map((c) => (
+            <li class="grid grid-cols-[minmax(0,1fr)] items-center gap-8 py-10 md:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] md:gap-14">
+              {/* Live mini preview in the concept's own look; the whole preview links to the demo */}
+              <a href={path(c.page, lang)} class="preview group block min-w-0 overflow-hidden border border-rule" aria-hidden="true" tabindex="-1">
+                {c.id === 'lineup' && (
+                  <div class="p-lineup">
+                    <p class="p-pre">{festival.pre[lang]}</p>
+                    <p class="p-name">{festival.name}</p>
+                    <p class="p-when">{festival.dates[lang]}</p>
+                    <p class="p-acts">{festival.headliners.join('  ✶  ')}</p>
+                  </div>
+                )}
+                {c.id === 'menu' && (
+                  <div class="p-menu">
+                    <p class="p-headline">{cafe.headline[lang]}</p>
+                    <div class="p-card">
+                      <p class="p-card-title">{cafe.today.title[lang]}</p>
+                      {cafe.today.dishes.map((d) => (
+                        <p class="p-line">
+                          <span>{d.name[lang]}</span>
+                          <span>{euro(lang, d.price)}</span>
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {c.id === 'waalbrug' && (
+                  <div class="p-waal">
+                    <Arch class="text-steel" />
+                    <p class="p-waal-title">{t('hero_title')}</p>
+                  </div>
+                )}
+              </a>
+              <div class="grid content-start gap-3">
+                <h2 class="font-display text-3xl font-extrabold font-stretch-[115%]">{t(c.name)}</h2>
+                <p class="font-display font-semibold text-steel">{t(c.for)}</p>
+                <p class="max-w-[46ch] text-slate">{t(c.desc)}</p>
+                <p class="mt-2">
+                  {c.page === 'home' ? (
+                    <a href={path('home', lang)} class="link">{t(c.link)}</a>
+                  ) : (
+                    <a href={path(c.page, lang)} class="btn-primary">
+                      {t(c.link)}
+                      <span class="sr-only">: {t(c.name)}</span>
+                    </a>
+                  )}
+                </p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Preview type scales with the preview box (cqi), not the viewport */
+  .preview {
+    container-type: inline-size;
+    aspect-ratio: 16 / 10;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .preview:hover {
+    transform: translateY(-4px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .preview:hover {
+      transform: none;
+    }
+  }
+  .preview > div {
+    height: 100%;
+    display: grid;
+    align-content: center;
+    padding: 6cqi;
+  }
+
+  /* Line-up */
+  .p-lineup {
+    background: #f4cfdc;
+    color: #14215a;
+    text-align: center;
+    font-family: 'Big Shoulders Display Variable', Impact, sans-serif;
+  }
+  .p-pre {
+    font-weight: 800;
+    font-size: 3.6cqi;
+  }
+  .p-name {
+    font-weight: 900;
+    font-size: 15cqi;
+    line-height: 0.85;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+  .p-when {
+    font-weight: 800;
+    font-size: 4.4cqi;
+    margin-top: 0.5rem;
+  }
+  .p-acts {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 3.8cqi;
+    margin-top: 1rem;
+    white-space: pre-wrap;
+  }
+
+  /* Menukaart */
+  .p-menu {
+    background: #fafaf7;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .p-headline {
+    font: 400 6cqi / 1.08 'Young Serif', Georgia, serif;
+    color: #16453a;
+  }
+  .p-card {
+    background: #fff;
+    border: 1px solid #d9dbd3;
+    outline: 1px solid #d9dbd3;
+    outline-offset: -6px;
+    padding: 1.1rem 1rem;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 14px 30px -20px rgb(22 69 58 / 0.5);
+    font-size: 2.5cqi;
+    color: #1c1c1a;
+  }
+  .p-card-title {
+    font-family: 'Young Serif', Georgia, serif;
+    color: #16453a;
+    text-align: center;
+    font-size: 1.15em;
+    margin-bottom: 0.6rem;
+  }
+  .p-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+  }
+  .p-line::after {
+    content: '';
+    order: 1;
+    flex: 1;
+    border-bottom: 2px dotted #b3b7ad;
+  }
+  .p-line span:last-child {
+    order: 2;
+    color: #16453a;
+  }
+
+  /* Waalbrug */
+  .p-waal {
+    background: var(--color-sky);
+    align-content: end;
+  }
+  .p-waal-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 118%;
+    letter-spacing: -0.02em;
+    font-size: 6.4cqi;
+    line-height: 0.95;
+    margin-top: 0.9rem;
+    max-width: 16ch;
+  }
+</style>
