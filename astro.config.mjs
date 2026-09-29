@@ -10,6 +10,8 @@ export default defineConfig({
     // over.astro -> over.html (so /over keeps working on GitHub Pages),
     // en/index.astro -> en/index.html (served at /en/)
     format: 'preserve',
+    // the whole stylesheet is small; inlining removes the render-blocking request
+    inlineStylesheets: 'always',
   },
   i18n: {
     defaultLocale: 'nl',

@@ -40,11 +40,11 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
       </div>
       <div class="field">
         <label for="email">{t('contact_ph_email')}</label>
-        <input type="email" name="email" id="email" required autocomplete="email" />
+        <input type="email" name="email" id="email" required autocomplete="email" spellcheck="false" />
       </div>
       <div class="field">
         <label for="website">Website</label>
-        <input type="text" name="website" id="website" required placeholder={t('check_ph_website')} inputmode="url" autocomplete="url" class="placeholder:text-slate/60" />
+        <input type="text" name="website" id="website" required placeholder={t('check_ph_website')} inputmode="url" autocomplete="url" spellcheck="false" class="placeholder:text-slate/60" />
       </div>
       <div class="flex flex-wrap items-center gap-4">
         <button type="submit" class="btn-primary" id="check-btn">{t('check_btn')}</button>

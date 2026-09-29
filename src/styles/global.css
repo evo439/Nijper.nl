@@ -46,6 +46,14 @@
       scroll-behavior: auto;
     }
   }
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  label {
+    touch-action: manipulation;
+  }
   body {
     @apply bg-sky font-serif text-body text-ink antialiased;
   }

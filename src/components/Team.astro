@@ -13,6 +13,8 @@ interface Props {
 const { lang, headingLevel = 'h2', class: className } = Astro.props;
 const t = useTranslations(lang);
 const Name = headingLevel === 'h1' ? 'h2' : 'h3';
+// On /over the photos are above the fold: load them straight away
+const eager = headingLevel === 'h1';
 ---
 
 <section id="about" class:list={['py-20 sm:py-28', className]} aria-labelledby="about-title">
@@ -25,7 +27,15 @@ const Name = headingLevel === 'h1' ? 'h2' : 'h3';
           <article class="grid content-start gap-5">
             {/* Arched frame: the bridge motif, once more */}
             <div class="aspect-[4/5] max-w-sm overflow-hidden rounded-t-full bg-steel">
-              <Image src={m.img} alt={m.alt} widths={[320, 480, 640]} sizes="(min-width: 640px) 24rem, 100vw" class="size-full object-cover" />
+              <Image
+                src={m.img}
+                alt={`${m.name}, ${t(m.role)}`}
+                widths={[320, 480, 640]}
+                sizes="(min-width: 640px) 24rem, 100vw"
+                loading={eager ? 'eager' : 'lazy'}
+                fetchpriority={eager ? 'high' : 'auto'}
+                class="size-full object-cover"
+              />
             </div>
             <div class="grid gap-1">
               <Name class="font-display text-3xl font-extrabold font-stretch-[115%]">{m.name}</Name>
@@ -45,7 +55,7 @@ const Name = headingLevel === 'h1' ? 'h2' : 'h3';
     team.map((m) => (
       <dialog
         id={`team-${m.name.toLowerCase()}`}
-        class="team-dialog m-auto max-h-[90dvh] w-[min(56rem,calc(100%-2rem))] overflow-y-auto bg-sky p-0 text-ink backdrop:bg-ink/70"
+        class="team-dialog m-auto overscroll-contain max-h-[90dvh] w-[min(56rem,calc(100%-2rem))] overflow-y-auto bg-sky p-0 text-ink backdrop:bg-ink/70"
         aria-labelledby={`team-${m.name.toLowerCase()}-name`}
       >
         <div class="grid gap-8 p-6 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] sm:p-10">

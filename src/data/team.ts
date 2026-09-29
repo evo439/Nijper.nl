@@ -11,7 +11,6 @@ export interface Social {
 export interface Member {
   name: string;
   img: ImageMetadata;
-  alt: string;
   role: TKey;
   bio: TKey;
   bioShort: TKey;
@@ -22,7 +21,6 @@ export const team: Member[] = [
   {
     name: 'Roel',
     img: roel,
-    alt: 'Roel - Mede-oprichter & Website Bouwer',
     role: 'role_roel',
     bio: 'bio_roel',
     bioShort: 'bio_roel_short',
@@ -36,7 +34,6 @@ export const team: Member[] = [
   {
     name: 'Sarah',
     img: sarah,
-    alt: 'Sarah - Mede-oprichter & Designer',
     role: 'role_sarah',
     bio: 'bio_sarah',
     bioShort: 'bio_sarah_short',

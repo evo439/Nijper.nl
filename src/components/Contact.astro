@@ -43,12 +43,12 @@ const messages = {
         </div>
         <div class="field">
           <label for="email">{t('contact_ph_email')}</label>
-          <input type="email" name="email" id="email" required autocomplete="email" />
+          <input type="email" name="email" id="email" required autocomplete="email" spellcheck="false" />
         </div>
       </div>
       <div class="field">
         <label for="subject">{t('form_label_subject')}</label>
-        <select name="subject" id="subject" required class="[&>option]:text-ink">
+        <select name="subject" id="subject" required class="[&>option]:bg-white [&>option]:text-ink">
           <option value="" disabled selected>{t('contact_ph_subject')}</option>
           <option value="Website bouwen">{t('contact_opt_website')}</option>
           <option value="SEO Rapport">{t('contact_opt_seo')}</option>

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import serifUrl from '@fontsource-variable/source-serif-4/files/source-serif-4-latin-opsz-normal.woff2?url';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { meta, schemaFor } from '../i18n/meta';
@@ -50,6 +52,8 @@ const ogImage = `${site}/assets/nijper-website-bouwer-nijmegen.webp`;
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaFor(page, lang))} />
 
+    <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <meta name="theme-color" content="#dfe7e6" />
   </head>
