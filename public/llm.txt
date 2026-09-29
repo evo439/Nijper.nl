@@ -4,7 +4,7 @@ Nijper is een website bouwer gevestigd in Nijmegen, gespecialiseerd in het bouwe
 
 ## Diensten
 - **SEO Optimalisatie**: Zorgt ervoor dat de website beter vindbaar is in Google.
-- **Kirby CMS**: Gemakkelijk teksten aanpassen en foto's toevoegen via een overzichtelijk dashboard.
+- **Sanity CMS**: Gemakkelijk teksten aanpassen en foto's toevoegen via een overzichtelijk dashboard.
 - **Ontwikkeling op Maat**: Een website die perfect de sfeer van het bedrijf uitstraalt.
 
 ## Pakketten
