@@ -1,15 +1,18 @@
 ---
 /**
- * Line illustrations for the three services, drawn in the same language as
+ * Line illustrations for the services and packages, drawn in the same language as
  * the Waalbrug arch: steel strokes, round joins, one lamp-coloured accent.
  * Set --illu-bg on a parent when the background isn't sky (for overlapping fills).
  */
 interface Props {
-  name: 'seo' | 'cms' | 'personal';
+  name: 'seo' | 'cms' | 'personal' | 'essential' | 'custom';
   class?: string;
 }
 
 const { name, class: className } = Astro.props;
+
+// Drafting grid behind the blueprint (plain circles, so no duplicate <pattern> ids)
+const gridDots = Array.from({ length: 10 * 7 }, (_, i) => ({ x: 8 + (i % 10) * 16, y: 8 + Math.floor(i / 10) * 16 }));
 ---
 
 <svg
@@ -99,6 +102,70 @@ const { name, class: className } = Astro.props;
           <path d="M82 76 h38" />
         </g>
         <circle cx="136" cy="76" r="4" fill="var(--color-lamp)" stroke="none" />
+      </>
+    )
+  }
+  {
+    name === 'essential' && (
+      <>
+        {/* Proven templates: two behind, the chosen one in front */}
+        <g opacity="0.45" stroke-width="1.5">
+          <rect x="12" y="6" width="80" height="80" rx="3" />
+          <rect x="24" y="14" width="80" height="80" rx="3" fill="var(--illu-bg, var(--color-sky))" />
+        </g>
+        <rect x="36" y="22" width="80" height="84" rx="3" fill="var(--illu-bg, var(--color-sky))" />
+        <path d="M36 34 H116" />
+        <g stroke-width="1.5">
+          <circle cx="43" cy="28" r="1.5" />
+          <circle cx="49" cy="28" r="1.5" />
+        </g>
+        <rect x="44" y="42" width="64" height="26" rx="2" />
+        <path d="M48 64 l10 -10 l8 7 l6 -5 l10 8" stroke-width="1.5" />
+        <g stroke-width="1.5">
+          <path d="M44 78 h56" />
+          <path d="M44 86 h42" />
+          <path d="M44 94 h50" />
+        </g>
+        {/* The pick */}
+        <circle cx="116" cy="22" r="6" fill="var(--color-lamp)" stroke="none" />
+        {/* Speed: live quickly */}
+        <g stroke-width="2.5">
+          <path d="M128 52 h24" />
+          <path d="M134 64 h18" />
+          <path d="M140 76 h12" />
+        </g>
+      </>
+    )
+  }
+  {
+    name === 'custom' && (
+      <>
+        <g fill="currentColor" stroke="none" opacity="0.3">
+          {gridDots.map((d) => <circle cx={d.x} cy={d.y} r="0.9" />)}
+        </g>
+        {/* Dimension line: measured to your wishes */}
+        <g stroke-width="1.5">
+          <path d="M20 8 v10" />
+          <path d="M120 8 v10" />
+          <path d="M20 13 H120" />
+          <path d="M26 9 l-6 4 l6 4" />
+          <path d="M114 9 l6 4 l-6 4" />
+        </g>
+        {/* The page, half drawn: solid where it's done, dashed where it's planned */}
+        <path d="M20 100 V27 a3 3 0 0 1 3 -3 H120" />
+        <path d="M120 24 V100 H20" stroke-dasharray="4 5" />
+        <path d="M20 36 H120" />
+        <rect x="30" y="46" width="36" height="40" rx="2" />
+        <g stroke-width="1.5">
+          <path d="M76 50 h34" />
+          <path d="M76 58 h26" />
+          <path d="M76 66 h30" stroke-dasharray="4 5" />
+          <path d="M76 74 h20" stroke-dasharray="4 5" />
+        </g>
+        {/* Pencil still drawing */}
+        <path d="M126 88 l3 -11 l20 -20 l8 8 l-20 20 z" fill="var(--illu-bg, var(--color-sky))" />
+        <path d="M143 63 l8 8" stroke-width="1.5" />
+        <circle cx="126" cy="88" r="3.5" fill="var(--color-lamp)" stroke="none" />
       </>
     )
   }

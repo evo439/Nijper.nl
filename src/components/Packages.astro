@@ -1,19 +1,22 @@
 ---
 import SectionHead from './SectionHead.astro';
+import ServiceIllustration from './ServiceIllustration.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
   lang: Lang;
   headingLevel?: 'h1' | 'h2';
+  /** Background band; the illustrations' overlapping fills follow it */
+  tone?: 'mist' | 'sky';
   class?: string;
 }
 
-const { lang, headingLevel = 'h2', class: className } = Astro.props;
+const { lang, headingLevel = 'h2', tone = 'mist', class: className } = Astro.props;
 const t = useTranslations(lang);
 
-const packages: { keys: [TKey, TKey, TKey, TKey, TKey] }[] = [
-  { keys: ['pkg1_title', 'pkg1_tag', 'pkg1_basis', 'pkg1_voordeel', 'pkg1_resultaat'] },
-  { keys: ['pkg2_title', 'pkg2_tag', 'pkg2_basis', 'pkg2_voordeel', 'pkg2_resultaat'] },
+const packages: { illu: 'essential' | 'custom'; keys: [TKey, TKey, TKey, TKey, TKey] }[] = [
+  { illu: 'essential', keys: ['pkg1_title', 'pkg1_tag', 'pkg1_basis', 'pkg1_voordeel', 'pkg1_resultaat'] },
+  { illu: 'custom', keys: ['pkg2_title', 'pkg2_tag', 'pkg2_basis', 'pkg2_voordeel', 'pkg2_resultaat'] },
 ];
 
 // "<strong>Fundament:</strong> text" -> term + description
@@ -24,13 +27,18 @@ const split = (html: string) => {
 const Title = headingLevel === 'h1' ? 'h2' : 'h3';
 ---
 
-<section id="package" class:list={['bg-mist py-20 sm:py-28', className]} aria-labelledby="package-title">
+<section
+  id="package"
+  class:list={['py-20 sm:py-28', tone === 'mist' ? 'bg-mist [--illu-bg:var(--color-mist)]' : 'bg-sky', className]}
+  aria-labelledby="package-title"
+>
   <div class="wrap grid gap-12">
     <SectionHead as={headingLevel} id="package-title" title={t('package_title')} subtitle={t('package_subtitle')} />
     <div class="grid border-t-2 border-ink md:grid-cols-2">
       {
-        packages.map(({ keys: [title, tag, ...points] }, i) => (
+        packages.map(({ illu, keys: [title, tag, ...points] }, i) => (
           <article class:list={['grid content-start gap-6 py-10', i === 0 ? 'md:border-r md:border-rule md:pr-12' : 'border-t border-rule md:border-t-0 md:pl-12']}>
+            <ServiceIllustration name={illu} class="w-48 sm:w-56" />
             <div class="grid gap-1">
               <Title class="font-display text-3xl font-extrabold font-stretch-[115%]">{t(title)}</Title>
               <p class="font-display font-semibold text-steel">{t(tag)}</p>

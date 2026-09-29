@@ -9,7 +9,7 @@ const { lang } = Astro.props as { lang: Lang };
 ---
 
 <Base lang={lang} page="services">
-  <Packages lang={lang} headingLevel="h1" class="!bg-sky !pt-10" />
+  <Packages lang={lang} headingLevel="h1" tone="sky" class="!pt-10" />
   <CheckTeaser lang={lang} />
   <ServicesSection lang={lang} class="bg-mist [--illu-bg:var(--color-mist)]" />
 </Base>
