@@ -11,7 +11,42 @@ const t = useTranslations(lang);
   <p class="mt-5 font-display text-sm font-medium text-steel tabular-nums font-stretch-[80%]">
     51.8126° N, 5.8372° E &nbsp;/&nbsp; Nijmegen
   </p>
-  <h1 id="hero-title" class="h1 mt-4 max-w-[15ch]">{t('hero_title')}</h1>
+  <h1 id="hero-title" class="h1 mt-4 max-w-[15ch]" data-typewriter>{t('hero_title')}</h1>
+  {/*
+    Typewriter: inline so it runs before first paint (no flash of the full title).
+    The whole title stays in the DOM, with the untyped part transparent: layout never
+    shifts, and screen readers and crawlers always get the complete heading.
+  */}
+  <script is:inline>
+    (() => {
+      const h1 = document.querySelector('[data-typewriter]');
+      if (!h1 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const chars = Array.from(h1.textContent);
+      const typed = document.createElement('span');
+      const caret = document.createElement('span');
+      const rest = document.createElement('span');
+      caret.className = 'tw-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      rest.className = 'tw-rest';
+      rest.textContent = chars.join('');
+      h1.replaceChildren(typed, caret, rest);
+
+      let i = 0;
+      const step = () => {
+        typed.textContent += chars[i];
+        rest.textContent = chars.slice(++i).join('');
+        if (i < chars.length) {
+          // a slightly longer beat after spaces reads like real typing
+          setTimeout(step, chars[i - 1] === ' ' ? 110 : 55);
+        } else {
+          caret.classList.add('tw-done');
+          setTimeout(() => caret.remove(), 2600);
+        }
+      };
+      setTimeout(step, 450);
+    })();
+  </script>
   <div class="mt-8 grid items-end gap-8 lg:grid-cols-[1fr_auto]">
     <p class="max-w-[48ch] text-lg leading-relaxed sm:text-xl">{t('hero_subtitle')}</p>
     <div class="flex flex-wrap gap-3">
@@ -20,3 +55,33 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
+
+<style is:global>
+  [data-typewriter] .tw-rest {
+    color: transparent;
+  }
+  /* Zero-width caret (border + negative margin), so it never moves the text */
+  [data-typewriter] .tw-caret {
+    display: inline-block;
+    width: 0;
+    height: 0.82em;
+    margin-right: -0.09em;
+    border-right: 0.09em solid var(--color-lamp);
+    vertical-align: -0.04em;
+  }
+  [data-typewriter] .tw-caret.tw-done {
+    animation:
+      tw-blink 0.9s steps(1) 3,
+      tw-fade 0.4s ease-out 2.2s forwards;
+  }
+  @keyframes tw-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes tw-fade {
+    to {
+      opacity: 0;
+    }
+  }
+</style>
