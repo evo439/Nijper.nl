@@ -96,5 +96,6 @@ export default {
     "team_more": "Lees meer over",
     "hero_check": "Test jouw website",
     "footer_nav": "Navigatie",
+    "check_example": "Voorbeeldresultaat",
     "form_label_subject": "Onderwerp"
 } as const;

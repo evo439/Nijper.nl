@@ -1,0 +1,43 @@
+---
+/**
+ * Lighthouse-style score ring. With `id`, the website check script animates it
+ * (circle-{id}, score-{id}); without, it renders `value` statically.
+ */
+interface Props {
+  id?: string;
+  value?: number;
+  /** Lighter score colours for dark backgrounds */
+  dark?: boolean;
+  class?: string;
+}
+
+const { id, value = 0, dark = false, class: className } = Astro.props;
+const CIRCUMFERENCE = 339.292;
+const band = value >= 90 ? 'good' : value >= 50 ? 'ok' : 'bad';
+const color = id ? undefined : `var(--color-score-${band}${dark ? '-dark' : ''})`;
+---
+
+<div class:list={['relative shrink-0', className ?? 'size-32']}>
+  <svg class="size-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="54" fill="none" stroke={dark ? 'rgb(255 255 255 / 0.15)' : 'var(--color-rule)'} stroke-width="8" />
+    <circle
+      id={id && `circle-${id}`}
+      cx="60"
+      cy="60"
+      r="54"
+      fill="none"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-dasharray={CIRCUMFERENCE}
+      stroke-dashoffset={CIRCUMFERENCE - (value / 100) * CIRCUMFERENCE}
+      style={color && `stroke:${color}`}
+    />
+  </svg>
+  <span
+    id={id && `score-${id}`}
+    class="absolute inset-0 grid place-items-center font-display text-3xl sm:text-4xl font-extrabold tabular-nums font-stretch-[110%]"
+    style={color && `color:${color}`}
+  >
+    {value}
+  </span>
+</div>

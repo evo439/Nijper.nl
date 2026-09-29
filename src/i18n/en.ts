@@ -96,5 +96,6 @@ export default {
     "team_more": "Read more about",
     "hero_check": "Test your website",
     "footer_nav": "Navigation",
+    "check_example": "Example result",
     "form_label_subject": "Subject"
 } as const;

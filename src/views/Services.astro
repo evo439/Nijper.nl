@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Packages from '../components/Packages.astro';
 import ServicesSection from '../components/Services.astro';
+import CheckTeaser from '../components/CheckTeaser.astro';
 import type { Lang } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
@@ -9,5 +10,6 @@ const { lang } = Astro.props as { lang: Lang };
 
 <Base lang={lang} page="services">
   <Packages lang={lang} headingLevel="h1" class="!bg-sky !pt-10" />
-  <ServicesSection lang={lang} class="bg-mist" />
+  <CheckTeaser lang={lang} />
+  <ServicesSection lang={lang} class="bg-mist [--illu-bg:var(--color-mist)]" />
 </Base>

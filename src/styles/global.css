@@ -18,9 +18,6 @@
   --color-slate: #3b4a44; /* secondary text */
   --color-rule: #b9c6c1; /* dividers */
 
-  --color-score-good: #0f8a4f;
-  --color-score-ok: #b86e00;
-  --color-score-bad: #c43d2e;
 
   --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
   --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
@@ -34,6 +31,18 @@
   --text-h2--line-height: 1;
   --text-h1: clamp(2.5rem, 6.4vw, 5.4rem);
   --text-h1--line-height: 0.95;
+}
+
+/* Lighthouse score bands. Static: they're referenced by name from scripts and
+   inline styles, which Tailwind can't see, so always emit them. */
+@theme static {
+  --color-score-good: #0f8a4f;
+  --color-score-ok: #b86e00;
+  --color-score-bad: #c43d2e;
+  /* the same bands, lightened for the ink background */
+  --color-score-good-dark: #5fd39a;
+  --color-score-ok-dark: #f0a53a;
+  --color-score-bad-dark: #ff8a75;
 }
 
 @layer base {

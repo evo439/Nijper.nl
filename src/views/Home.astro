@@ -6,6 +6,7 @@ import Services from '../components/Services.astro';
 import Packages from '../components/Packages.astro';
 import Portfolio from '../components/Portfolio.astro';
 import Contact from '../components/Contact.astro';
+import CheckTeaser from '../components/CheckTeaser.astro';
 import type { Lang } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
@@ -14,6 +15,7 @@ const { lang } = Astro.props as { lang: Lang };
 <Base lang={lang} page="home">
   <Hero lang={lang} />
   <Services lang={lang} class="!pt-0" />
+  <CheckTeaser lang={lang} />
   <Packages lang={lang} />
   <Team lang={lang} />
   <Portfolio lang={lang} />

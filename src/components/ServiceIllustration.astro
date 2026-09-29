@@ -1,0 +1,105 @@
+---
+/**
+ * Line illustrations for the three services, drawn in the same language as
+ * the Waalbrug arch: steel strokes, round joins, one lamp-coloured accent.
+ * Set --illu-bg on a parent when the background isn't sky (for overlapping fills).
+ */
+interface Props {
+  name: 'seo' | 'cms' | 'personal';
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<svg
+  class:list={['text-steel', className]}
+  viewBox="0 0 160 112"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {
+    name === 'seo' && (
+      <>
+        {/* Search bar */}
+        <rect x="8" y="8" width="144" height="22" rx="11" />
+        <circle cx="24" cy="19" r="5" />
+        <path d="M28 23 l4 4" />
+        <path d="M42 19 h56" stroke-width="1.5" />
+        {/* First result: yours, lit */}
+        <circle cx="16" cy="48" r="4" fill="var(--color-lamp)" stroke="none" />
+        <path d="M26 44 h70" stroke-width="3" />
+        <path d="M26 52 h104" stroke-width="1.5" />
+        {/* Other results, quieter */}
+        <g opacity="0.45" stroke-width="1.5">
+          <path d="M26 70 h60" stroke-width="2.5" />
+          <path d="M26 77 h96" />
+          <path d="M26 94 h52" stroke-width="2.5" />
+          <path d="M26 101 h88" />
+        </g>
+        {/* Rising arrow: moving up in Google */}
+        <path d="M128 98 V64" />
+        <path d="M120 72 l8 -8 l8 8" />
+      </>
+    )
+  }
+  {
+    name === 'cms' && (
+      <>
+        {/* Browser window */}
+        <rect x="6" y="8" width="148" height="96" rx="4" />
+        <path d="M6 22 H154" />
+        <g stroke-width="1.5">
+          <circle cx="15" cy="15" r="2" />
+          <circle cx="23" cy="15" r="2" />
+          <circle cx="31" cy="15" r="2" />
+        </g>
+        {/* Dashboard sidebar */}
+        <path d="M44 22 V104" />
+        <g stroke-width="1.5">
+          <path d="M14 34 h20" />
+          <path d="M14 44 h16" />
+          <path d="M14 54 h22" />
+        </g>
+        {/* Page being edited: photo + text */}
+        <rect x="56" y="32" width="46" height="34" rx="2" />
+        <path d="M60 62 l12 -12 l9 8 l6 -5 l11 9" stroke-width="1.5" />
+        <circle cx="92" cy="41" r="3.5" fill="var(--color-lamp)" stroke="none" />
+        <g stroke-width="1.5">
+          <path d="M56 78 h86" />
+          <path d="M56 86 h70" />
+          <path d="M56 94 h78" />
+        </g>
+        {/* Pencil: you edit it yourself */}
+        <path d="M112 62 l24 -24 l6 6 l-24 24 l-8 2 z" />
+        <path d="M130 44 l6 6" stroke-width="1.5" />
+      </>
+    )
+  }
+  {
+    name === 'personal' && (
+      <>
+        {/* Two speech bubbles: a conversation */}
+        <path d="M10 18 h78 a6 6 0 0 1 6 6 v36 a6 6 0 0 1 -6 6 h-50 l-14 12 v-12 h-14 a6 6 0 0 1 -6 -6 v-36 a6 6 0 0 1 6 -6 z" />
+        <g stroke-width="3">
+          <path d="M34 42 h0.01" />
+          <path d="M49 42 h0.01" />
+          <path d="M64 42 h0.01" />
+        </g>
+        <path
+          d="M72 50 h72 a6 6 0 0 1 6 6 v32 a6 6 0 0 1 -6 6 h-12 v12 l-14 -12 h-46 a6 6 0 0 1 -6 -6 v-32 a6 6 0 0 1 6 -6 z"
+          fill="var(--illu-bg, var(--color-sky))"
+        />
+        <g stroke-width="1.5">
+          <path d="M82 66 h52" />
+          <path d="M82 76 h38" />
+        </g>
+        <circle cx="136" cy="76" r="4" fill="var(--color-lamp)" stroke="none" />
+      </>
+    )
+  }
+</svg>

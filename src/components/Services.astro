@@ -1,5 +1,6 @@
 ---
 import SectionHead from './SectionHead.astro';
+import ServiceIllustration from './ServiceIllustration.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 interface Props {
@@ -10,10 +11,10 @@ interface Props {
 const { lang, class: className } = Astro.props;
 const t = useTranslations(lang);
 
-const services: { title: TKey; desc: TKey }[] = [
-  { title: 'srv_custom1_title', desc: 'srv_custom1_desc' },
-  { title: 'srv_custom2_title', desc: 'srv_custom2_desc' },
-  { title: 'srv_custom3_title', desc: 'srv_custom3_desc' },
+const services: { illu: 'seo' | 'cms' | 'personal'; title: TKey; desc: TKey }[] = [
+  { illu: 'seo', title: 'srv_custom1_title', desc: 'srv_custom1_desc' },
+  { illu: 'cms', title: 'srv_custom2_title', desc: 'srv_custom2_desc' },
+  { illu: 'personal', title: 'srv_custom3_title', desc: 'srv_custom3_desc' },
 ];
 ---
 
@@ -23,9 +24,12 @@ const services: { title: TKey; desc: TKey }[] = [
     <ul class="ruled">
       {
         services.map((s) => (
-          <li class="grid gap-3 py-8 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] sm:gap-8">
-            <h3 class="h3">{t(s.title)}</h3>
-            <p class="max-w-[60ch] text-slate">{t(s.desc)}</p>
+          <li class="grid gap-5 py-8 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
+            <ServiceIllustration name={s.illu} class="w-40 sm:w-full" />
+            <div class="grid content-start gap-3">
+              <h3 class="h3">{t(s.title)}</h3>
+              <p class="max-w-[60ch] text-slate">{t(s.desc)}</p>
+            </div>
           </li>
         ))
       }

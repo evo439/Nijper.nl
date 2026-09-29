@@ -1,0 +1,40 @@
+---
+import ScoreRing from './ScoreRing.astro';
+import { path, useTranslations, type Lang, type TKey } from '../i18n/utils';
+
+const { lang } = Astro.props as { lang: Lang };
+const t = useTranslations(lang);
+
+// Illustrative numbers, labelled as an example in the UI
+const examples: { value: number; title: TKey; desc: TKey }[] = [
+  { value: 64, title: 'check_perf', desc: 'check_perf_desc' },
+  { value: 92, title: 'check_seo', desc: 'check_seo_desc' },
+];
+---
+
+<section class="bg-ink py-20 text-mist sm:py-24" aria-labelledby="teaser-title">
+  <div class="wrap grid items-center gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-20">
+    <div class="grid content-start gap-5">
+      <h2 id="teaser-title" class="h2 text-white">{t('check_title')}</h2>
+      <p class="max-w-[48ch] text-mist/80">{t('check_subtitle')}</p>
+      <p class="mt-2">
+        <a href={path('check', lang)} class="btn bg-lamp text-ink hover:bg-white">{t('nav_websiteCheck')}</a>
+      </p>
+    </div>
+
+    <figure class="grid gap-4">
+      <div class="grid grid-cols-2 border-t-2 border-mist/40">
+        {
+          examples.map((e, i) => (
+            <div class:list={['grid justify-items-start gap-3 pt-7', i === 0 ? 'border-r border-mist/15 pr-6' : 'pl-6']}>
+              <ScoreRing value={e.value} dark class="size-24 sm:size-32" />
+              <p class="font-display text-lg font-bold text-white font-stretch-[105%]">{t(e.title)}</p>
+              <p class="text-sm text-mist/70">{t(e.desc)}</p>
+            </div>
+          ))
+        }
+      </div>
+      <figcaption class="font-display text-sm text-mist/60 font-stretch-[90%]">{t('check_example')}</figcaption>
+    </figure>
+  </div>
+</section>

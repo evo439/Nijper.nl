@@ -1,5 +1,6 @@
 ---
 import Arch from './Arch.astro';
+import ScoreRing from './ScoreRing.astro';
 import { useTranslations, type Lang, type TKey } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
@@ -64,13 +65,7 @@ const scores: { id: string; title: TKey; desc: TKey }[] = [
         {
           scores.map((s, i) => (
             <div class:list={['grid justify-items-start gap-3 py-8', i === 0 ? 'sm:border-r sm:border-rule sm:pr-8' : 'border-t border-rule sm:border-t-0 sm:pl-8']}>
-              <div class="relative size-32">
-                <svg class="size-full -rotate-90" viewBox="0 0 120 120" aria-hidden="true">
-                  <circle cx="60" cy="60" r="54" fill="none" stroke="var(--color-rule)" stroke-width="8" />
-                  <circle id={`circle-${s.id}`} class="score-arc" cx="60" cy="60" r="54" fill="none" stroke-width="8" stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292" />
-                </svg>
-                <span id={`score-${s.id}`} class="absolute inset-0 grid place-items-center font-display text-4xl font-extrabold tabular-nums font-stretch-[110%]">0</span>
-              </div>
+              <ScoreRing id={s.id} />
               <h3 class="h3">{t(s.title)}</h3>
               <p class="text-slate">{t(s.desc)}</p>
             </div>
