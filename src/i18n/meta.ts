@@ -1,4 +1,5 @@
-import type { Lang, PageId } from './utils';
+import { useTranslations, type Lang, type PageId } from './utils';
+import { team } from '../data/team';
 
 export interface PageMeta {
   title: string;
@@ -193,43 +194,41 @@ export const meta: Record<PageId, Record<Lang, PageMeta>> = {
   },
 };
 
-const common = {
-  '@context': 'https://schema.org',
-  name: 'Nijper Web Solutions',
-  image: 'https://nijper.nl/assets/nijper-website-bouwer-nijmegen.png',
-  '@id': 'https://nijper.nl/#organization',
-  url: 'https://nijper.nl',
-  geo: { '@type': 'GeoCoordinates', latitude: 51.8126, longitude: 5.8372 },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    opens: '09:00',
-    closes: '18:00',
-  },
-  sameAs: [],
-};
-
-/** Same structured data as the original pages: LocalBusiness on home, ProfessionalService elsewhere. */
+/** One ProfessionalService (a LocalBusiness subtype) describes Nijper on every page. */
 export function schemaFor(page: PageId, lang: Lang) {
   // Demo sites describe fictional businesses: no Nijper business schema there
   if (page === 'demoLineup' || page === 'demoMenu' || page === 'notFound') return null;
-  if (page === 'home') {
-    return {
-      ...common,
-      '@type': 'LocalBusiness',
-      description:
-        lang === 'nl'
-          ? 'Dé website bouwer in Nijmegen voor horeca, cafés, restaurants en festivals. Gespecialiseerd in SEO en maatwerk.'
-          : 'Web developer in Nijmegen for hospitality, cafés, restaurants and festivals. Specialised in SEO and custom work.',
-      email: 'info@nijper.nl',
-      priceRange: '$$',
-      address: { '@type': 'PostalAddress', addressLocality: 'Nijmegen', addressRegion: 'Gelderland', addressCountry: 'NL' },
-    };
-  }
+  const t = useTranslations(lang);
   return {
-    ...common,
+    '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    telephone: '',
-    address: { '@type': 'PostalAddress', addressLocality: 'Nijmegen', addressCountry: 'NL' },
+    '@id': 'https://nijper.nl/#organization',
+    name: 'Nijper Web Solutions',
+    url: 'https://nijper.nl/',
+    logo: 'https://nijper.nl/apple-touch-icon.png',
+    image: 'https://nijper.nl/assets/nijper-website-bouwer-nijmegen.png',
+    // Google Business Profile (Knowledge Graph id, stable unlike share links)
+    sameAs: ['https://www.google.com/search?kgmid=/g/11z85twr7y'],
+    description:
+      lang === 'nl'
+        ? 'Dé website bouwer in Nijmegen voor horeca, cafés, restaurants en festivals. Gespecialiseerd in SEO en maatwerk.'
+        : 'Web developer in Nijmegen for hospitality, cafés, restaurants and festivals. Specialised in SEO and custom work.',
+    email: 'info@nijper.nl',
+    priceRange: '€€',
+    address: { '@type': 'PostalAddress', addressLocality: 'Nijmegen', addressRegion: 'Gelderland', addressCountry: 'NL' },
+    geo: { '@type': 'GeoCoordinates', latitude: 51.8126, longitude: 5.8372 },
+    areaServed: { '@type': 'City', name: 'Nijmegen' },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+    founder: team.map((m) => ({
+      '@type': 'Person',
+      name: m.name,
+      jobTitle: t(m.role),
+      sameAs: m.socials.map((s) => s.url).filter((u) => u.startsWith('http')),
+    })),
   };
 }

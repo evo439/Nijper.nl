@@ -4,6 +4,7 @@
  * a slim Nijper banner (what this is, way back, language) and a closing CTA.
  */
 import '../styles/global.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
 import Head from '../components/Head.astro';
 import { path, useTranslations, type Lang, type PageId } from '../i18n/utils';
 
@@ -11,9 +12,11 @@ interface Props {
   lang: Lang;
   page: PageId;
   themeColor: string;
+  /** The demo site's own fonts; the Nijper banner above it uses Archivo */
+  fonts: string[];
 }
 
-const { lang, page, themeColor } = Astro.props;
+const { lang, page, themeColor, fonts } = Astro.props;
 const t = useTranslations(lang);
 const other: Lang = lang === 'nl' ? 'en' : 'nl';
 ---
@@ -21,7 +24,7 @@ const other: Lang = lang === 'nl' ? 'en' : 'nl';
 <!doctype html>
 <html lang={lang}>
   <head>
-    <Head lang={lang} page={page} noindex themeColor={themeColor} />
+    <Head lang={lang} page={page} noindex themeColor={themeColor} preloadFonts={[archivoUrl, ...fonts]} />
   </head>
   <body class="bg-white">
     <a

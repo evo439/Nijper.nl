@@ -1,11 +1,13 @@
 ---
 import DemoLayout from '../layouts/DemoLayout.astro';
 import MenuSite from '../components/demo/MenuSite.astro';
+import displayUrl from '@fontsource/young-serif/files/young-serif-latin-400-normal.woff2?url';
+import bodyUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 import type { Lang } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
 ---
 
-<DemoLayout lang={lang} page="demoMenu" themeColor="#fafaf7">
+<DemoLayout lang={lang} page="demoMenu" themeColor="#fafaf7" fonts={[displayUrl, bodyUrl]}>
   <MenuSite lang={lang} />
 </DemoLayout>

@@ -10,9 +10,11 @@ interface Props {
   /** Demo pages: keep them out of search results (fictional businesses) */
   noindex?: boolean;
   themeColor?: string;
+  /** Fonts used above the fold; demo pages pass their own */
+  preloadFonts?: string[];
 }
 
-const { lang, page, themeColor = '#dfe7e6' } = Astro.props;
+const { lang, page, themeColor = '#dfe7e6', preloadFonts = [archivoUrl, serifUrl] } = Astro.props;
 const isNotFound = page === 'notFound';
 const noindex = Astro.props.noindex || isNotFound;
 const m = meta[page][lang];
@@ -62,8 +64,7 @@ const schema = schemaFor(page, lang);
 
 {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
-<link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
+{preloadFonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

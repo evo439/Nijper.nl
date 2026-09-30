@@ -10,7 +10,7 @@ De website is te bezoeken via: [nijper.nl](https://nijper.nl)
 
 - **Astro**: statische site, gebouwd met [Astro](https://astro.build). Geen JavaScript-framework in de browser; alleen kleine scripts per component.
 - **Meertalig (i18n)**: Nederlands op `/`, `/over`, `/diensten`, `/contact`, `/website-check`; Engels onder `/en/` (`/en/about`, `/en/services`, …). Beide versies worden vooraf gerenderd en zijn met `hreflang` aan elkaar gekoppeld.
-- **SEO**: per pagina title/description/OG-tags, JSON-LD (LocalBusiness / ProfessionalService), automatisch gegenereerde sitemap, `robots.txt` en `llm.txt`.
+- **SEO**: per pagina title/description/OG-tags, JSON-LD (LocalBusiness / ProfessionalService), automatisch gegenereerde sitemap, `robots.txt` en `llms.txt`.
 - **Contactformulier**: via Web3Forms.
 - **Website Check**: gratis Lighthouse-analyse (performance & SEO) via een Cloudflare Worker-proxy (`Cloudflare/worker.js`), plus een lead via Web3Forms.
 - **Voorbeeldontwerpen** (`/ontwerpen/`, EN `/en/designs/`): twee complete demosites voor fictieve klanten, in de stijlen "Line-up" (festival) en "Menukaart" (eetcafé). De inhoud staat in `src/data/demos.ts`; de demopagina's zijn `noindex` en staan niet in de sitemap.
@@ -22,7 +22,7 @@ De website is te bezoeken via: [nijper.nl](https://nijper.nl)
 
 ```text
 Nijper/
-├── public/                 # Statische bestanden, 1-op-1 gekopieerd (assets/, CNAME, robots.txt, llm.txt)
+├── public/                 # Statische bestanden, 1-op-1 gekopieerd (assets/, CNAME, robots.txt, llms.txt)
 ├── src/
 │   ├── pages/              # Routes: NL in de root, EN in pages/en/
 │   ├── views/              # Pagina-inhoud, gedeeld door NL en EN

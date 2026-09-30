@@ -1,11 +1,13 @@
 ---
 import DemoLayout from '../layouts/DemoLayout.astro';
 import LineupSite from '../components/demo/LineupSite.astro';
+import displayUrl from '@fontsource-variable/big-shoulders-display/files/big-shoulders-display-latin-wght-normal.woff2?url';
+import bodyUrl from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
 import type { Lang } from '../i18n/utils';
 
 const { lang } = Astro.props as { lang: Lang };
 ---
 
-<DemoLayout lang={lang} page="demoLineup" themeColor="#f4cfdc">
+<DemoLayout lang={lang} page="demoLineup" themeColor="#f4cfdc" fonts={[displayUrl, bodyUrl]}>
   <LineupSite lang={lang} />
 </DemoLayout>

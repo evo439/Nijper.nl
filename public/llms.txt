@@ -1,6 +1,6 @@
 # Nijper Web Solutions
 
-Nijper is een website bouwer gevestigd in Nijmegen, gespecialiseerd in het bouwen van op maat gemaakte websites voor de horeca (cafés, restaurants) en festivals. We focussen ons op robuuste, snelle en SEO-geoptimaliseerde websites.
+> Nijper is een website bouwer gevestigd in Nijmegen, gespecialiseerd in het bouwen van op maat gemaakte websites voor de horeca (cafés, restaurants) en festivals. We focussen ons op robuuste, snelle en SEO-geoptimaliseerde websites.
 
 ## Diensten
 - **SEO Optimalisatie**: Zorgt ervoor dat de website beter vindbaar is in Google.
@@ -10,6 +10,22 @@ Nijper is een website bouwer gevestigd in Nijmegen, gespecialiseerd in het bouwe
 ## Pakketten
 - **Essential Design**: Snel en efficiënt: een eigen ontwerp in de huisstijl van de klant, met standaardfuncties.
 - **Custom Solution**: Volledig op maat gemaakte oplossingen.
+
+## Pagina's
+- [Home](https://nijper.nl/): Website bouwer in Nijmegen voor horeca en festivals
+- [Diensten](https://nijper.nl/diensten): Diensten en website pakketten
+- [Voorbeeldontwerpen](https://nijper.nl/ontwerpen/): Complete voorbeeldwebsites voor een festival en een eetcafé
+- [Website Check](https://nijper.nl/website-check): Gratis performance- en SEO-check met Google Lighthouse
+- [Over ons](https://nijper.nl/over): Het team achter Nijper
+- [Contact](https://nijper.nl/contact): Vrijblijvend gesprek aanvragen
+
+## English
+- [Home](https://nijper.nl/en/): Web developer in Nijmegen for hospitality and festivals
+- [Services](https://nijper.nl/en/services)
+- [Example designs](https://nijper.nl/en/designs/)
+- [Website Check](https://nijper.nl/en/website-check)
+- [About](https://nijper.nl/en/about)
+- [Contact](https://nijper.nl/en/contact)
 
 ## Contact
 - **Locatie**: Nijmegen, Nederland
