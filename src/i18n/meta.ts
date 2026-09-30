@@ -216,7 +216,7 @@ export function schemaFor(page: PageId, lang: Lang) {
     email: 'info@nijper.nl',
     priceRange: '€€',
     address: { '@type': 'PostalAddress', addressLocality: 'Nijmegen', addressRegion: 'Gelderland', addressCountry: 'NL' },
-    geo: { '@type': 'GeoCoordinates', latitude: 51.8126, longitude: 5.8372 },
+    geo: { '@type': 'GeoCoordinates', latitude: 51.8514, longitude: 5.8713 },
     areaServed: { '@type': 'City', name: 'Nijmegen' },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
